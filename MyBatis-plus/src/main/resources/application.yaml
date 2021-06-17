@@ -1,0 +1,14 @@
+#基本配置
+server:
+  port: 8080
+#sql server 配置
+spring:
+  datasource:
+    url: jdbc:sqlserver://192.168.31.39:1433;database=mybatis_puls
+    username: sa
+    password: root
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#mybatis puls 配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
