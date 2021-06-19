@@ -26,7 +26,6 @@
         <!--全局配置项目版本号-->
         <version>1.0-SNAPSHOT</version>
     </properties>
-
     <!-- 依赖声明 -->
 <dependencyManagement>
     <dependencies>
@@ -46,11 +45,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.20</version>
-            <optional>true</optional>
         </dependency>
     </dependencies>
 </dependencyManagement>
-
-
-
 </project>
