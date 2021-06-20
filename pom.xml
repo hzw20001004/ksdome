@@ -26,6 +26,7 @@
         <!--全局配置项目版本号-->
         <version>1.0-SNAPSHOT</version>
     </properties>
+
     <!-- 依赖声明 -->
 <dependencyManagement>
     <dependencies>
@@ -53,4 +54,7 @@
         </dependency>
     </dependencies>
 </dependencyManagement>
+
+
+
 </project>
