@@ -3,8 +3,8 @@ server:
   tomcat:
     uri-encoding: UTF-8
   port: 8080
-  servlet:
-    context-path: /H
+#  servlet:
+#    context-path: /H
 
 spring:
   # 环境 dev|test|prod

@@ -18,8 +18,13 @@ public class User extends BaseEntity {
 //   @TableId(type = IdType.UUID)//全局唯一id uuid
 //    @TableId(type = IdType.ID_WORKER_STR)//ID_WORKER 的字符串表示法
 //@TableId(type = IdType.AUTO)//自增ID 数据库也要id自增
-private String name;
-private int age;
-private String email;
+        private String name;
+        private int age;
+        private String email;
+    /**
+     *  盐值
+     */
+    private String salt;
+
 
 }
