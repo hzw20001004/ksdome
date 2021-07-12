@@ -6,6 +6,8 @@
         <option value="$PROJECT_DIR$/MyBatis-plus/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Shiro/pom.xml" />
+        <option value="$PROJECT_DIR$/common/pom.xml" />
+        <option value="$PROJECT_DIR$/Springboot/pom.xml" />
       </list>
     </option>
   </component>

@@ -7,20 +7,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MyBatis-plus" />
         <module name="Shiro" />
+        <module name="common" />
+        <module name="Springboot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="common" target="1.8" />
       <module name="KsDome" target="1.8" />
-      <module name="MyBatis-plus" target="1.8" />
       <module name="Shiro" target="1.8" />
+      <module name="Springboot" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="MyBatis-plus" options="-parameters" />
+      <module name="KsDome" options="-parameters" />
       <module name="Shiro" options="-parameters" />
+      <module name="Springboot" options="-parameters" />
+      <module name="common" options="-parameters" />
     </option>
   </component>
 </project>

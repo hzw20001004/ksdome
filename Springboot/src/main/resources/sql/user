@@ -1,0 +1,30 @@
+<-- 测试user的建表语句 -->
+DROP TABLE  sys_user;
+<--mysql的语句-->
+CREATE TABLE sys_user
+(
+    id BIGINT(20)  identity(1,1) NOT NULL COMMENT '主键ID',
+    name VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
+    age INT(11) NULL DEFAULT NULL COMMENT '年龄',
+    email VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱',
+    create_user INT NULLDEFAULT NULL COMMENT '添加人',
+    create_time datetime NULL DEFAULT NULL COMMENT '创建时间',
+    update_user VARCHAR(50) NULL DEFAULT NULL COMMENT '更新人',
+    update_time datetime NULL DEFAULT NULL COMMENT '更新时间',
+    ks Integer NULL DEFAULT NULL COMMENT '删除有效标识  只修改状态不做删除'
+    PRIMARY KEY (id)
+);
+<-- user插入数据 -->
+DELETE FROM sys_user;
+INSERT INTO sys_user (id, name, age, email,Ks) VALUES
+( 'Jone', 18, 'test1@baomidou.com',0),
+( 'Jack', 20, 'test2@baomidou.com',0),
+( 'Tom', 28, 'test3@baomidou.com',1),
+( 'Sandy', 21, 'test4@baomidou.com',1),
+( 'Billie', 24, 'test5@baomidou.com',0),
+( '韩泽炜', 19, '508578631@qq.com',1);
+
+
+
+
+

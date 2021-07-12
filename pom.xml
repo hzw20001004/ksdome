@@ -15,16 +15,15 @@
     <artifactId>KsDome</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>KsDome</name>
     <description>hzw - KsDome</description>
     <!-- 子模块 -->
     <modules>
-        <module>MyBatis-plus</module>
+        <module>Springboot</module>
+        <module>Shiro</module>
+        <module>common</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
-        <!--全局配置项目版本号-->
-        <version>1.0-SNAPSHOT</version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -33,24 +32,18 @@
         <!-- 子模块依赖 -->
         <dependency>
             <groupId>com.ks</groupId>
-            <artifactId>MyBatis-plus</artifactId>
+            <artifactId>Springboot</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>common</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>com.ks</groupId>
             <artifactId>Shiro</artifactId>
             <version>${version}</version>
-        </dependency>
-        <!-- 第三方依赖 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
         </dependency>
     </dependencies>
 </dependencyManagement>

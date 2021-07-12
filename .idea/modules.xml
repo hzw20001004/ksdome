@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/KsDome.iml" filepath="$PROJECT_DIR$/.idea/KsDome.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MyBatis-plus/MyBatis-plus.iml" filepath="$PROJECT_DIR$/MyBatis-plus/MyBatis-plus.iml" />
       <module fileurl="file://$PROJECT_DIR$/Shiro/Shiro.iml" filepath="$PROJECT_DIR$/Shiro/Shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Springboot/Springboot.iml" filepath="$PROJECT_DIR$/Springboot/Springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
     </modules>
   </component>
 </project>
