@@ -11,11 +11,10 @@ import org.springframework.context.annotation.ComponentScan;
 //@SpringBootApplication
 
 
-@SpringBootApplication(scanBasePackages = {"com.ks.*"})
+//@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+//@MapperScan("com.ks.dao")//扫描dao mapper
+@SpringBootApplication(scanBasePackages = {"com.ks"})
 @MapperScan("com.ks.dao")//扫描dao mapper
-//不初始化数据库
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
-@ComponentScan(basePackages = {"com.ks.Server.Impl"})
 public class SpringbootApplication {
 
     public static void main(String[] args) {
