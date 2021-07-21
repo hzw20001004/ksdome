@@ -1,6 +1,6 @@
 package com.ks.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ks.pojo.User;
+import com.ks.common.pojo.User;
 import org.springframework.stereotype.Repository;
 
 @Repository

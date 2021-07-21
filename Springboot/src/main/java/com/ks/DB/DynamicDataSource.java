@@ -3,7 +3,7 @@ package com.ks.DB;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.stat.DruidDataSourceStatManager;
 import com.alibaba.druid.util.StringUtils;
-import com.ks.pojo.DataSource1;
+import com.ks.common.pojo.DataSource1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;

@@ -94,3 +94,12 @@ mybatis-plus:
       #logic-delete-field: flag  # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+#jwt
+jwt:
+  header: Authorization
+  # 令牌前缀
+  token-start-with: Bearer
+  # 使用Base64对该令牌进行编码
+  base64-secret: XXXXXXXXXXXXXXXX(制定您的密钥)
+  # 令牌过期时间 此处单位/毫秒
+  token-validity-in-seconds: 14400000

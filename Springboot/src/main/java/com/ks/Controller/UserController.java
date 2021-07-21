@@ -2,7 +2,7 @@ package com.ks.Controller;
 import com.ks.Server.UserSrever;
 import com.ks.common.Base.BaseController;
 import com.ks.common.Base.Dto;
-import com.ks.pojo.User;
+import com.ks.common.pojo.User;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -19,7 +19,7 @@ public class UserController extends BaseController<UserSrever,User> {
     @ResponseBody
     public Dto findByCondition1() {
         try {
-            return Dto.OKmag(baseMapper.findByCondition(),"查询成功");
+            return Dto.OKdata(baseMapper.findByCondition(),"查询成功");
         } catch (Exception e) {
             return Dto.errorsystem("系统异常");
         }

@@ -7,9 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Shiro" />
         <module name="common" />
         <module name="Springboot" />
+        <module name="Shiro" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

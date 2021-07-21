@@ -1,4 +1,4 @@
-package com.ks.pojo;
+package com.ks.common.pojo;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
