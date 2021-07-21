@@ -10,6 +10,7 @@ spring:
   # 环境 dev|test|prod
   #  profiles:
   #    active: dev
+  swagger: true
   #Mysql 配置
   datasource:
     ##url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:dsfsdf}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
