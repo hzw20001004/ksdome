@@ -2,7 +2,7 @@ package com.ks.common.pojo;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.ks.common.Base.BaseEntity;
+import com.ks.common.Utils.Base.BaseEntity;
 import lombok.Data;
 
 /**

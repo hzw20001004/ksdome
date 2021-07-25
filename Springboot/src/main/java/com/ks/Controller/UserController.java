@@ -1,8 +1,9 @@
 package com.ks.Controller;
 import com.ks.Server.UserSrever;
-import com.ks.common.Base.BaseController;
-import com.ks.common.Base.Dto;
-import com.ks.common.pojo.User;
+import com.ks.common.Utils.Base.BaseController;
+import com.ks.common.Utils.Base.Dto;
+import com.ks.common.pojo.System.SysUser;
+import com.ks.common.pojo.System.User;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,14 +15,5 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/test")
-public class UserController extends BaseController<UserSrever,User> {
-    @GetMapping("/li")
-    @ResponseBody
-    public Dto findByCondition1() {
-        try {
-            return Dto.OKdata(baseMapper.findByCondition(),"查询成功");
-        } catch (Exception e) {
-            return Dto.errorsystem("系统异常");
-        }
-    }
+public class UserController extends BaseController<UserSrever, SysUser> {
 }
