@@ -1,4 +1,4 @@
-package com.ks.common.pojo.System;
+package com.ks.pojo.System;
 
 import lombok.Data;
 

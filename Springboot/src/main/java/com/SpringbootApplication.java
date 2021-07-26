@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 //@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 //@MapperScan("com.ks.dao")//扫描dao mapper
 @SpringBootApplication(scanBasePackages = {"com.ks"})
-@MapperScan("com.ks.dao")//扫描dao mapper
+@MapperScan("com.ks.Dao")//扫描dao mapper
 public class SpringbootApplication {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.ks.common.pojo.System;
+package com.ks.pojo.System;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ks.common.Utils.Base.BaseEntity;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -27,20 +26,18 @@ public class SysUser extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 用户ID */
-    private Long userId;
 
     /** 部门ID */
-    private Long deptId;
+    private Long deptid;
 
     /** 用户账号 */
     @NotBlank(message = "用户账号不能为空")
     @Size(min = 0, max = 30, message = "用户账号长度不能超过30个字符")
-    private String userName;
+    private String username;
 
     /** 用户昵称 */
     @Size(min = 0, max = 30, message = "用户昵称长度不能超过30个字符")
-    private String nickName;
+    private String nickname;
 
     /** 用户邮箱 */
     @Email(message = "邮箱格式不正确")
@@ -69,21 +66,25 @@ public class SysUser extends BaseEntity
     private String status;
 
     /** 最后登录IP */
-    private String loginIp;
+    private String loginip;
 
     /** 最后登录时间 */
-    private Date loginDate;
+    private Date logindate;
 
     /** 部门对象 */
+    @TableField(exist = false)
     private SysDept dept;
 
     /** 角色对象 */
+    @TableField(exist = false)
     private List<SysRole> roles;
 
     /** 角色组 */
+    @TableField(exist = false)
     private Long[] roleIds;
 
     /** 岗位组 */
+    @TableField(exist = false)
     private Long[] postIds;
 
     /**

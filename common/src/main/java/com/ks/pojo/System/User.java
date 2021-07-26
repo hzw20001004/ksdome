@@ -1,6 +1,5 @@
-package com.ks.common.pojo.System;
+package com.ks.pojo.System;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

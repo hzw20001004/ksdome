@@ -1,7 +1,7 @@
-package com.ks.dao;
+package com.ks.Dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ks.common.pojo.DataSource1;
+import com.ks.pojo.DataSource1;
 import org.springframework.stereotype.Repository;
 
 @Repository

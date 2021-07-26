@@ -1,1 +1,0 @@
-package com.ks.Server;import com.ks.common.Utils.Base.BaseService;import com.ks.common.pojo.System.SysUser;import com.ks.common.pojo.System.User;public interface UserSrever extends BaseService<SysUser> {}

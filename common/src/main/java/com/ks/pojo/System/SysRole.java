@@ -1,4 +1,4 @@
-package com.ks.common.pojo.System;
+package com.ks.pojo.System;
 
 import com.ks.common.Utils.Base.BaseEntity;
 import javax.validation.constraints.NotBlank;

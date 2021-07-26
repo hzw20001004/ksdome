@@ -82,8 +82,6 @@ spring:
         ## 连接池中的最小空闲连接
         #spring.redis.pool.min-idle=0
         min-idle: 0
-    ## 连接超时时间（毫秒）
-    timeout: 1200
 
 #mybatis puls 配置
 mybatis-plus:
