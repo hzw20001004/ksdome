@@ -23,4 +23,5 @@ public class LoginController {
         //重定向导main.html
         return "redirect:error.html";
     }
+
 }

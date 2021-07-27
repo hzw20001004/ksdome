@@ -1,8 +1,13 @@
 package com.ks.common.Config.Springsecurity;
 
+import com.ks.common.Config.Springsecurity.Filter.MyAccessDeniedHandler;
+import com.ks.common.Config.Springsecurity.Filter.MyAuthenticationFailureHandler;
+import com.ks.common.Config.Springsecurity.Filter.MyAuthenticationSuccessHandler;
+import io.github.classgraph.ClassGraph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,6 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Autowired
     private UserDetailsService userDetailsService;
+    /**
+     * 异常403 自定义逻辑处理
+     */
+    @Autowired
+    private MyAccessDeniedHandler myAccessDeniedHandler;
 //    /**
 //     * 认证失败处理类
 //     */
@@ -69,9 +79,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          //自定义登录逻辑
         .loginProcessingUrl("/login")
         //登录成功的主界面 必须为post请求
-        .successForwardUrl("/tomian")
+        //.successForwardUrl("/tomian")
+        //登录成功自定义转跳地址
+        .successHandler(new  MyAuthenticationSuccessHandler("https://www.baidu.com"))
         //登录失败转跳界面 必须为post请求
-        .failureForwardUrl("/toError");
+        //.failureForwardUrl("/toError")
+        //登录失败自定义转跳地址
+        .failureHandler(new MyAuthenticationFailureHandler("http://localhost:8080/swagger-ui.html"));
         //授权
         http
                 //关闭csrf防护策略  因为不使用session
@@ -81,9 +95,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login.html").permitAll()
                 //放行登录失败页面
                 .antMatchers("/error.html").permitAll()
-                //需认证
-                .anyRequest().authenticated();
-
+//                .antMatchers(
+//                        HttpMethod.GET,
+//                        "/*.html",
+//                        "/**/*.html",
+//                        "/**/*.css",
+//                        "/**/*.js"
+//                ).permitAll()
+//                .antMatchers("/profile/**").anonymous()
+//                .antMatchers("/common/download**").anonymous()
+//                .antMatchers("/common/download/resource**").anonymous()
+//                .antMatchers("/swagger-ui.html").anonymous()
+//                .antMatchers("/swagger-resources/**").anonymous()
+//                .antMatchers("/webjars/**").anonymous()
+//                .antMatchers("/*/api-docs").anonymous()
+//                .antMatchers("/druid/**").anonymous()
+                //需认证地址
+//                .antMatchers("/main.html").hasIpAddress("192.168.1.222")
+                //自定义权限过滤器
+                .anyRequest().access("@myAuthImpl.HasPermission(request,authentication)");
+                //.anyRequest().authenticated();
+        //异常403 处理
+        http.exceptionHandling()
+                .accessDeniedHandler(myAccessDeniedHandler);
     }
 
     @Bean

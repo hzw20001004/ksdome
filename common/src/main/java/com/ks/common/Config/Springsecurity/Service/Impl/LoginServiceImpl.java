@@ -1,4 +1,4 @@
-package com.ks.common.Config.Springsecurity.Service;
+package com.ks.common.Config.Springsecurity.Service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ks.Dao.SysUserDao;
@@ -40,7 +40,7 @@ public class LoginServiceImpl implements UserDetailsService {
         throw new UsernameNotFoundException("对不起，您的账号：" + name + " 已停用");
     }
 
-        return new User(name,pw.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("admin,normal"));
+        return new User(name,pw.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("admin,normal,/main.html"));
 
 
         //return createLoginUser(user);
