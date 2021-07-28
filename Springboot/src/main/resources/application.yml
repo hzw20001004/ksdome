@@ -7,6 +7,9 @@ server:
 #    context-path: /H
 
 spring:
+  main:
+    #当遇到同样名字的时候，是否允许覆盖注册
+    allow-bean-definition-overriding: true
   # 环境 dev|test|prod
   #  profiles:
   #    active: dev

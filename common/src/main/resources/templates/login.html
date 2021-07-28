@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>登录首页</title>
@@ -7,8 +8,12 @@
 <body>
 
 <form action="/login" method="post">
+    开启csrf 防护
+    <br/>
+    <input type="hidden" th:if="${_csrf}"name="_csrf" th:value="${_csrf.getToken()}">
     用户名: <input type="text" name="username"/><br/>
     密码: <input type="password" name="password"/><br/>
+    记住我: <input type="checkbox" name="remember-me" value="true"/><br/>
     <input type="submit" value="登录"/>
 </form>
 </body>

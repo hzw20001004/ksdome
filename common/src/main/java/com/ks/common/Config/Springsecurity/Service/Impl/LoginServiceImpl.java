@@ -40,7 +40,7 @@ public class LoginServiceImpl implements UserDetailsService {
         throw new UsernameNotFoundException("对不起，您的账号：" + name + " 已停用");
     }
 
-        return new User(name,pw.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("admin,normal,/main.html"));
+        return new User(name,pw.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("admin,ROLE_abc,/main.html,/haha,/select"));
 
 
         //return createLoginUser(user);

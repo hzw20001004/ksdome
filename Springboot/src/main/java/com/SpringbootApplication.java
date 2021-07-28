@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 //@SpringBootApplication
 
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 //@MapperScan("com.ks.dao")//扫描dao mapper
 @SpringBootApplication(scanBasePackages = {"com.ks"})
 @MapperScan("com.ks.Dao")//扫描dao mapper
+@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
 public class SpringbootApplication {
 
     public static void main(String[] args) {

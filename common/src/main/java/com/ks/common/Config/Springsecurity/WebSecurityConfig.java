@@ -3,7 +3,6 @@ package com.ks.common.Config.Springsecurity;
 import com.ks.common.Config.Springsecurity.Filter.MyAccessDeniedHandler;
 import com.ks.common.Config.Springsecurity.Filter.MyAuthenticationFailureHandler;
 import com.ks.common.Config.Springsecurity.Filter.MyAuthenticationSuccessHandler;
-import io.github.classgraph.ClassGraph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,13 +10,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.LogoutFilter;
-import org.springframework.web.filter.CorsFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 /**
  * Security的配置类
@@ -35,6 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Autowired
     private MyAccessDeniedHandler myAccessDeniedHandler;
+    /**
+     * 数据源
+     */
+    @Resource
+    private DataSource dataSource;
 //    /**
 //     * 认证失败处理类
 //     */
@@ -74,50 +80,58 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-                //自定义登录首页
-                .loginPage("/login.html")
-         //自定义登录逻辑
-        .loginProcessingUrl("/login")
-        //登录成功的主界面 必须为post请求
-        //.successForwardUrl("/tomian")
+         //自定义登录首页
+        .loginPage("/login")
+        //自定义登录成功地址
+//        .loginProcessingUrl("/tomain")
         //登录成功自定义转跳地址
-        .successHandler(new  MyAuthenticationSuccessHandler("https://www.baidu.com"))
-        //登录失败转跳界面 必须为post请求
-        //.failureForwardUrl("/toError")
+        .successHandler(new  MyAuthenticationSuccessHandler("/main"))
         //登录失败自定义转跳地址
-        .failureHandler(new MyAuthenticationFailureHandler("http://localhost:8080/swagger-ui.html"));
+        .failureHandler(new MyAuthenticationFailureHandler("/Error"));
+        //无权限 异常403 处理
+        http.exceptionHandling()
+                .accessDeniedHandler(myAccessDeniedHandler);
+        //记住我功能实现
+        http.rememberMe()
+                //自定义失效时间
+                .tokenValiditySeconds(3*24*60*60)
+                //自定义登录逻辑
+                .userDetailsService(userDetailsService)
+                //指定存储位置
+                .tokenRepository(tokenRepository());
+
         //授权
         http
                 //关闭csrf防护策略  因为不使用session
-                .csrf().disable()
+                //.csrf().disable()
                 .authorizeRequests()
                 //放行登录首页
-                .antMatchers("/login.html").permitAll()
+                .antMatchers("/login").permitAll()
                 //放行登录失败页面
-                .antMatchers("/error.html").permitAll()
-//                .antMatchers(
-//                        HttpMethod.GET,
-//                        "/*.html",
-//                        "/**/*.html",
-//                        "/**/*.css",
-//                        "/**/*.js"
-//                ).permitAll()
-//                .antMatchers("/profile/**").anonymous()
-//                .antMatchers("/common/download**").anonymous()
-//                .antMatchers("/common/download/resource**").anonymous()
-//                .antMatchers("/swagger-ui.html").anonymous()
-//                .antMatchers("/swagger-resources/**").anonymous()
-//                .antMatchers("/webjars/**").anonymous()
-//                .antMatchers("/*/api-docs").anonymous()
-//                .antMatchers("/druid/**").anonymous()
-                //需认证地址
-//                .antMatchers("/main.html").hasIpAddress("192.168.1.222")
+                .antMatchers("/error").permitAll()
+                .antMatchers(
+                        HttpMethod.GET,
+                        "/*.html",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js"
+                ).permitAll()
+                .antMatchers("/profile/**").anonymous()
+                .antMatchers("/common/download**").anonymous()
+                .antMatchers("/common/download/resource**").anonymous()
+                .antMatchers("/swagger-ui.html").anonymous()
+                .antMatchers("/swagger-resources/**").anonymous()
+                .antMatchers("/webjars/**").anonymous()
+                .antMatchers("/*/api-docs").anonymous()
+                .antMatchers("/druid/**").anonymous()
                 //自定义权限过滤器
-                .anyRequest().access("@myAuthImpl.HasPermission(request,authentication)");
-                //.anyRequest().authenticated();
-        //异常403 处理
-        http.exceptionHandling()
-                .accessDeniedHandler(myAccessDeniedHandler);
+                //.anyRequest().access("@myAuthImpl.HasPermission(request,authentication)");
+                .anyRequest().authenticated();
+        http.logout()
+                //退出登录url
+                .logoutUrl("/logout")
+                //退出成功到 登录首页
+                .logoutSuccessUrl("/login");
     }
 
     @Bean
@@ -128,8 +142,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * 身份认证接口
      */
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception
-    {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(PW());
+    }
+    @Bean
+    public PersistentTokenRepository tokenRepository(){
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        //配置数据源
+        jdbcTokenRepository.setDataSource(dataSource);
+        //创建基础表
+        //jdbcTokenRepository.setCreateTableOnStartup(true);
+        return jdbcTokenRepository;
     }
 }
