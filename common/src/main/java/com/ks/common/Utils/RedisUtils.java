@@ -77,20 +77,26 @@ public class RedisUtils {
     }
 
     /**
-     * 删除缓存
+     * 删除单个对象
      *
-     * @param key 可以传一个值 或多个
+     * @param key
      */
-    @SuppressWarnings("unchecked")
-    public void del(String... key) {
-        if (key != null && key.length > 0) {
-            if (key.length == 1) {
-                redisTemplate.delete(key[0]);
-            } else {
-                redisTemplate.delete((Collection<String>) CollectionUtils.arrayToList(key));
-            }
-        }
+    public boolean deleteObject(final String key)
+    {
+        return redisTemplate.delete(key);
     }
+
+    /**
+     * 删除集合对象
+     *
+     * @param collection 多个对象
+     * @return
+     */
+    public long deleteObject(final Collection collection)
+    {
+        return redisTemplate.delete(collection);
+    }
+
 
     // ============================String=============================
 

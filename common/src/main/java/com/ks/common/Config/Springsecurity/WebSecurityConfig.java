@@ -124,9 +124,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/webjars/**").anonymous()
                 .antMatchers("/*/api-docs").anonymous()
                 .antMatchers("/druid/**").anonymous()
+                .antMatchers("/oauth/**").anonymous()
                 //自定义权限过滤器
-                //.anyRequest().access("@myAuthImpl.HasPermission(request,authentication)");
-                .anyRequest().authenticated();
+                .anyRequest().access("@myAuthImpl.HasPermission(request,authentication)");
+                //.anyRequest().authenticated();
         http.logout()
                 //退出登录url
                 .logoutUrl("/logout")
@@ -135,7 +136,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder PW(){
+    public BCryptPasswordEncoder PW(){
         return new BCryptPasswordEncoder();
     }
     /**

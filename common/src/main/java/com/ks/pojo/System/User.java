@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -61,7 +62,7 @@ public class User implements UserDetails
     /**
      * 用户信息
      */
-    private User user;
+    private SysUser user;
 
     public String getToken()
     {
@@ -73,11 +74,7 @@ public class User implements UserDetails
         this.token = token;
     }
 
-    public User()
-    {
-    }
-
-    public User(User user, Set<String> permissions)
+    public User(SysUser user, Set<String> permissions)
     {
         this.user = user;
         this.permissions = permissions;

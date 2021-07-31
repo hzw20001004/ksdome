@@ -5,8 +5,7 @@ import com.ks.Dao.SysUserDao;
 import com.ks.common.Utils.String.StringUtils;
 import com.ks.common.enums.UserStatus;
 import com.ks.pojo.System.SysUser;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,14 +15,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class LoginServiceImpl implements UserDetailsService {
-    @Autowired
-    private PasswordEncoder pw;
     @Resource
     private SysUserDao sysUserDao;
-
+    @Resource
+    private PasswordEncoder passwordEncoder;
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         //判断用户是否存在
@@ -39,21 +39,21 @@ public class LoginServiceImpl implements UserDetailsService {
     } else if (UserStatus.DISABLE.getCode().equals(sysUser.getStatus())) {
         throw new UsernameNotFoundException("对不起，您的账号：" + name + " 已停用");
     }
-
-        return new User(name,pw.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("admin,ROLE_abc,/main.html,/haha,/select"));
-
-
-        //return createLoginUser(user);
-
+        return new User(name,passwordEncoder.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("/getuser1,admin,ROLE_abc,/main.html,/haha,/select"));
+       // return new User(sysUser, getMenuPermission(sysUser));
 }
-
-//    /**
-//     * 根据用户得权限
-//     * @param user
-//     * @return
-//     */
-//    public UserDetails createLoginUser(SysUser user)
-//    {
-//        return new User(user, permissionService.getMenuPermission(user));
-//    }
+    /**
+     * 获取菜单数据权限
+     *
+     * @param user 用户信息
+     * @return 菜单权限信息
+     */
+    public Set<String> getMenuPermission(SysUser user)
+    {
+        Set<String> perms = new HashSet<String>();
+        // 管理员拥有所有权限
+            perms.add("*:*:*");
+            perms.add("/getuser1");
+        return perms;
+    }
 }
