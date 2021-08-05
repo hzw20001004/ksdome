@@ -79,7 +79,6 @@ public class User implements UserDetails
         this.user = user;
         this.permissions = permissions;
     }
-
     @JsonIgnore
     @Override
     public String getPassword()

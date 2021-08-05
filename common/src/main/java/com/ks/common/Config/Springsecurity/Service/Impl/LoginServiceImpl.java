@@ -5,6 +5,7 @@ import com.ks.Dao.SysUserDao;
 import com.ks.common.Utils.String.StringUtils;
 import com.ks.common.enums.UserStatus;
 import com.ks.pojo.System.SysUser;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -23,6 +24,7 @@ public class LoginServiceImpl implements UserDetailsService {
     @Resource
     private SysUserDao sysUserDao;
     @Resource
+    @Lazy
     private PasswordEncoder passwordEncoder;
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
@@ -39,7 +41,7 @@ public class LoginServiceImpl implements UserDetailsService {
     } else if (UserStatus.DISABLE.getCode().equals(sysUser.getStatus())) {
         throw new UsernameNotFoundException("对不起，您的账号：" + name + " 已停用");
     }
-        return new User(name,passwordEncoder.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("/getuser1,admin,ROLE_abc,/main.html,/haha,/select"));
+        return new User(name,passwordEncoder.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("/token,/getuser,admin,ROLE_abc,/main,/spring,/select"));
        // return new User(sysUser, getMenuPermission(sysUser));
 }
     /**

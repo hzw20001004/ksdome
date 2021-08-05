@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -81,11 +82,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
          //自定义登录首页
-        .loginPage("/login")
+        //.loginPage("/login")
         //自定义登录成功地址
-//        .loginProcessingUrl("/tomain")
+        //.loginProcessingUrl("/tomain")
         //登录成功自定义转跳地址
-        .successHandler(new  MyAuthenticationSuccessHandler("/main"))
+        //.successHandler(new  MyAuthenticationSuccessHandler("/main"))
         //登录失败自定义转跳地址
         .failureHandler(new MyAuthenticationFailureHandler("/Error"));
         //无权限 异常403 处理
@@ -109,6 +110,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 //放行登录失败页面
                 .antMatchers("/error").permitAll()
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/user/**").anonymous()
                 .antMatchers(
                         HttpMethod.GET,
                         "/*.html",
@@ -125,6 +128,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*/api-docs").anonymous()
                 .antMatchers("/druid/**").anonymous()
                 .antMatchers("/oauth/**").anonymous()
+                .antMatchers("/oauth/**").permitAll()
                 //自定义权限过滤器
                 .anyRequest().access("@myAuthImpl.HasPermission(request,authentication)");
                 //.anyRequest().authenticated();
@@ -154,5 +158,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //创建基础表
         //jdbcTokenRepository.setCreateTableOnStartup(true);
         return jdbcTokenRepository;
+    }
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }

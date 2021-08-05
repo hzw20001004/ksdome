@@ -1,5 +1,6 @@
 package com.ks.common.Config;
 import com.ks.common.Utils.RedisUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +10,17 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 @Configuration
 public class RedisConfig {
+//    @Autowired
+//    private RedisConnectionFactory redisConnectionFactory;
+//    @Bean
+//    public TokenStore tokenStore(){
+//        return new RedisTokenStore(redisConnectionFactory);
+//    }
 
     /**
      * lettuce实现redis方式

@@ -17,15 +17,15 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 @Configuration
 @EnableAuthorizationServer
 public class ResourceConfig extends ResourceServerConfigurerAdapter {
-//    @Autowired
-//    private PasswordEncoder pw;
-//
-//    @Override
-//    public void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .requestMatchers().antMatchers("/user/**");
-//    }
+    @Autowired
+    private PasswordEncoder pw;
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .requestMatchers().antMatchers("/user/**");
+    }
 }
