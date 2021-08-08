@@ -65,19 +65,19 @@ class ApplicationTestsTest {
     /**
      * JWT解析token
      */
-    @Test
-    void parseToken(){
-        // String token=testJwt();
-         String token="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyMjIiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTYyODA4NTQyNSwiZXhwIjoxNjI4MDg1NDU1fQ.m8yMcvR93voluP5_a0YWJqk4X89ow3lfxXex6i_YLK0";
-         Claims xxxxxx = Jwts.parser()
-                 .setSigningKey("xxxxxx")
-                 .parseClaimsJws(token)
-                 .getBody();
-         System.out.println("jti"+xxxxxx.getId());//id
-         System.out.println("Subject"+xxxxxx.getSubject());//签发用户
-         System.out.println("IssuedAt"+xxxxxx.getIssuedAt());//签发时间
-         System.out.println("Exp"+new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(xxxxxx.getExpiration()));//过期时间
-     }
+//    @Test
+//    void parseToken(){
+//        // String token=testJwt();
+//         String token="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyMjIiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTYyODA4NTQyNSwiZXhwIjoxNjI4MDg1NDU1fQ.m8yMcvR93voluP5_a0YWJqk4X89ow3lfxXex6i_YLK0";
+//         Claims xxxxxx = Jwts.parser()
+//                 .setSigningKey("xxxxxx")
+//                 .parseClaimsJws(token)
+//                 .getBody();
+//         System.out.println("jti"+xxxxxx.getId());//id
+//         System.out.println("Subject"+xxxxxx.getSubject());//签发用户
+//         System.out.println("IssuedAt"+xxxxxx.getIssuedAt());//签发时间
+//         System.out.println("Exp"+new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(xxxxxx.getExpiration()));//过期时间
+//     }
 
     /**
      * JWT生成token  （自定义声明）

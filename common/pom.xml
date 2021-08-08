@@ -10,6 +10,7 @@
     <artifactId>common</artifactId>
     <packaging>jar</packaging>
     <description>基础类 </description>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -28,19 +29,15 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!-- springboot 安全框架 -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-security</artifactId>-->
-<!--        </dependency>-->
         <!--安全模块-->
-        <dependency>
-            <groupId>org.springframework.security.oauth.boot</groupId>
-            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-        </dependency>
 <!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-oauth2</artifactId>-->
+<!--            <groupId>org.springframework.security.oauth.boot</groupId>-->
+<!--            <artifactId>spring-security-oauth2-autoconfigure</artifactId>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!--jjwt-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
