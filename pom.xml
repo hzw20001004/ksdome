@@ -22,35 +22,10 @@
         <module>Springboot</module>
         <module>Shiro</module>
         <module>common</module>
+        <module>SpringSecurity</module>
+        <module>Mybatis-puls</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
-        <spring.cloud-version>2020.0.3</spring.cloud-version>
     </properties>
-
-    <!-- 依赖声明 -->
-<dependencyManagement>
-    <dependencies>
-        <!-- 子模块依赖 -->
-        <dependency>
-            <groupId>com.ks</groupId>
-            <artifactId>Springboot</artifactId>
-            <version>${version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com</groupId>
-            <artifactId>common</artifactId>
-            <version>${version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ks</groupId>
-            <artifactId>Shiro</artifactId>
-            <version>${version}</version>
-        </dependency>
-
-    </dependencies>
-</dependencyManagement>
-
-
-
 </project>

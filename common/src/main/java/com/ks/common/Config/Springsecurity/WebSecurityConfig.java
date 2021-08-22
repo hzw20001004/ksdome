@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -82,11 +81,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
          //自定义登录首页
-        //.loginPage("/login")
+        .loginPage("/login")
         //自定义登录成功地址
-        //.loginProcessingUrl("/tomain")
+        .loginProcessingUrl("/tomain")
         //登录成功自定义转跳地址
-        //.successHandler(new  MyAuthenticationSuccessHandler("/main"))
+        .successHandler(new  MyAuthenticationSuccessHandler("/main"))
         //登录失败自定义转跳地址
         .failureHandler(new MyAuthenticationFailureHandler("/Error"));
         //无权限 异常403 处理
@@ -109,28 +108,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //放行登录首页
                 .antMatchers("/login").permitAll()
                 //放行登录失败页面
-                .antMatchers("/error").permitAll()
-                .antMatchers("/user/**").permitAll()
-                .antMatchers("/user/**").anonymous()
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/*.html",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js"
-                ).permitAll()
-                .antMatchers("/profile/**").anonymous()
-                .antMatchers("/common/download**").anonymous()
-                .antMatchers("/common/download/resource**").anonymous()
-                .antMatchers("/swagger-ui.html").anonymous()
-                .antMatchers("/swagger-resources/**").anonymous()
-                .antMatchers("/webjars/**").anonymous()
-                .antMatchers("/*/api-docs").anonymous()
-                .antMatchers("/druid/**").anonymous()
-                .antMatchers("/oauth/**").anonymous()
-                .antMatchers("/oauth/**").permitAll()
+                .antMatchers("/error").permitAll();
+//                .antMatchers(
+//                        HttpMethod.GET,
+//                        "/*.html",
+//                        "/**/*.html",
+//                        "/**/*.css",
+//                        "/**/*.js"
+//                ).permitAll()
+//                .antMatchers("/profile/**").anonymous()
+//                .antMatchers("/common/download**").anonymous()
+//                .antMatchers("/common/download/resource**").anonymous()
+//                .antMatchers("/swagger-ui.html").anonymous()
+//                .antMatchers("/swagger-resources/**").anonymous()
+//                .antMatchers("/webjars/**").anonymous()
+//                .antMatchers("/*/api-docs").anonymous()
+//                .antMatchers("/druid/**").anonymous()
                 //自定义权限过滤器
-                .anyRequest().access("@myAuthImpl.HasPermission(request,authentication)");
+                //.anyRequest().access("@myAuthImpl.HasPermission(request,authentication)");
                 //.anyRequest().authenticated();
         http.logout()
                 //退出登录url

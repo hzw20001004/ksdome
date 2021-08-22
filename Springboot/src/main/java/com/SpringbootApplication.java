@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 //@MapperScan("com.ks.dao")//扫描dao mapper
 @SpringBootApplication(scanBasePackages = {"com.ks"})
 @MapperScan("com.ks.Dao")//扫描dao mapper
-@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
 public class SpringbootApplication {
 
     public static void main(String[] args) {
