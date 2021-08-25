@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DesignPatterns23/DesignPatterns23.iml" filepath="$PROJECT_DIR$/DesignPatterns23/DesignPatterns23.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/KsDome.iml" filepath="$PROJECT_DIR$/.idea/KsDome.iml" />
       <module fileurl="file://$PROJECT_DIR$/Mybatis-puls/Mybatis-puls.iml" filepath="$PROJECT_DIR$/Mybatis-puls/Mybatis-puls.iml" />
       <module fileurl="file://$PROJECT_DIR$/Shiro/Shiro.iml" filepath="$PROJECT_DIR$/Shiro/Shiro.iml" />
