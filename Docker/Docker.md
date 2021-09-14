@@ -113,12 +113,166 @@ COPY          #类似ADD,将我们的文件拷贝到镜像中
 ENY           #构建的时候设置环境变量!
 ```
 ![img_14.png](img_14.png)
+>实战测试
 
+Docker Hub 中99%的镜像都是从这个基础镜像过来的 FROM scratch,然后配置需要的软件和配置来进行的构建
+![img_15.png](img_15.png)
+>创建一个自己的centos
 
+```shell
+# 1.编写DockerFile的文件
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# cat mydockerfile-centos   # 查看文件
+FROM centos
+MAINTAINER HZW<508578631@qq.com>
 
+ENV MYPATH /usr/local
+WORKDIR $MYPATH
 
+RUN yum -y install vim
+RUN yum -y install net-tools
 
+EXPOSE 80
 
+CMD echo $MYPATH
+CMD echo "-----hzw----"
+CMD /bin/bash
+# 2.通过DockerFile文件进行构建镜像
+构建镜像命令 docker build -f "dockerfile文件路基" -t 镜像名:[version] .
+Successfully built a8724bb922cf
+Successfully tagged mycentos01:latest
+# 3.测试运行
+```
+###对比原生的centos
+![img_16.png](img_16.png)
+###自己用dockerfile编写的centos镜像
+![img_17.png](img_17.png)
+
+我们可以列出本地镜像的变更历史
+```shell
+查看镜像变更历史命令     docker history a8724bb922cf"镜像编号images"
+```
+![img_18.png](img_18.png)
+我们平时拿到一个镜像,可以研究一下它是怎么做的？
+
+> CMD 和 ENTRYPOINT 区别
+
+```shell
+CMD    # 指定这个容器启动的时候要运行的命令,最后一个会生效,可被替代
+ENTRYPOINT  #指定这个容器启动的时候要运行的命令,可以追加命令
+```
+测试CMD命令
+```shell
+# 1.编写dockerfile 文件
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# vim dockerfile-cmd-test
+FROM centos
+CMD ["ls","-a"]
+# 2.构建镜像
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker build -f dockerfile-cmd-test -t cmdtest .
+Sending build context to Docker daemon  3.072kB
+Step 1/2 : FROM centos
+ ---> 300e315adb2f
+Step 2/2 : CMD ["ls","-a"]
+ ---> Using cache
+ ---> b17fa96bc15b
+Successfully built b17fa96bc15b
+Successfully tagged cmdtest:latest
+# 3.run运行镜像   发现CMD命令执行了
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker run b17fa96bc15b
+.
+..
+.dockerenv
+bin
+dev
+etc
+home
+lib
+lib64
+lost+found
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+sys
+tmp
+usr
+var
+# 4.追加一个命令 -l  ls -al
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker run b17fa96bc15b -l
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: exec: "-l": executable file not found in $PATH: unknown.
+ERRO[0000] error waiting for container: context canceled 
+# cmd的清理下 -l 替换了CMD ["ls","-a"]命令, -l 不是命令所以报错
+```
+测试 ENTRYPOINT
+```shell
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# vim dockerfile-entrypoint
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# cat dockerfile-entrypoint
+FROM centos
+ENTRYPOINT ["ls","-a"]
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker build -f dockerfile-entrypoint -t entrypoint .
+Sending build context to Docker daemon  4.096kB
+Step 1/2 : FROM centos
+ ---> 300e315adb2f
+Step 2/2 : ENTRYPOINT ["ls","-a"]
+ ---> Running in 333ba18ccc23
+Removing intermediate container 333ba18ccc23
+ ---> 5c8ce108d276
+Successfully built 5c8ce108d276
+Successfully tagged entrypoint:latest
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker run 5c8ce108d276
+.
+..
+.dockerenv
+bin
+dev
+etc
+home
+lib
+lib64
+lost+found
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+sys
+tmp
+usr
+var
+
+# 我们追加命令, 是可以直接拼接在我们的 ENTRYPOINT 命令后面!
+[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker run 5c8ce108d276 -l
+total 56
+drwxr-xr-x   1 root root 4096 Sep 14 13:50 .
+drwxr-xr-x   1 root root 4096 Sep 14 13:50 ..
+-rwxr-xr-x   1 root root    0 Sep 14 13:50 .dockerenv
+lrwxrwxrwx   1 root root    7 Nov  3  2020 bin -> usr/bin
+drwxr-xr-x   5 root root  340 Sep 14 13:50 dev
+drwxr-xr-x   1 root root 4096 Sep 14 13:50 etc
+drwxr-xr-x   2 root root 4096 Nov  3  2020 home
+lrwxrwxrwx   1 root root    7 Nov  3  2020 lib -> usr/lib
+lrwxrwxrwx   1 root root    9 Nov  3  2020 lib64 -> usr/lib64
+drwx------   2 root root 4096 Dec  4  2020 lost+found
+drwxr-xr-x   2 root root 4096 Nov  3  2020 media
+drwxr-xr-x   2 root root 4096 Nov  3  2020 mnt
+drwxr-xr-x   2 root root 4096 Nov  3  2020 opt
+dr-xr-xr-x 113 root root    0 Sep 14 13:50 proc
+dr-xr-x---   2 root root 4096 Dec  4  2020 root
+drwxr-xr-x  11 root root 4096 Dec  4  2020 run
+lrwxrwxrwx   1 root root    8 Nov  3  2020 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4096 Nov  3  2020 srv
+dr-xr-xr-x  13 root root    0 Sep  8 12:19 sys
+drwxrwxrwt   7 root root 4096 Dec  4  2020 tmp
+drwxr-xr-x  12 root root 4096 Dec  4  2020 usr
+drwxr-xr-x  20 root root 4096 Dec  4  2020 var
+```
+DockerFile 中很多命令都十分的相似，我们需要了解它们的区别, 我们最好就是对比它们然后测试效果!
 
 
 
