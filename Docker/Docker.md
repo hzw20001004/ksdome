@@ -274,8 +274,69 @@ drwxr-xr-x  20 root root 4096 Dec  4  2020 var
 ```
 DockerFile 中很多命令都十分的相似，我们需要了解它们的区别, 我们最好就是对比它们然后测试效果!
 
+>实战：Tomcat 镜像
+1. 准备镜像文件 "tomcat压缩包","jdk压缩包".
+2. 编写dockerfile文件,官方命名Dockerfile ，build会自动寻找这个文件，就不需要-f 指定了
+```shell
+FROM centos
+MAINTAINET HZW<505878631@qq.com>
 
+COPY readme.txt /usr/local/readme.txt
+### ADD可以直接解压
+ADD JDK.zip /usr/local/
+ADD Tomcat8080.zip /usr/local/
 
+RUN yum -y install vim
+
+ENV MYPATH /usr/local
+WORKDIR $MYPATH
+
+ENV JAVA_HOME /usr/local/JDK
+ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+ENV CATALINA_HOME /usr/local/Tomcat8080
+ENV CATALINA_BASH /usr/local/Tomcat8080
+EVN PATH $PATH:JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin
+
+EXPOSE 8080
+
+CMD /usr/local/Tomcat8080/bin/startup.sh && tail -F /url/local/Tomcat8080/bin/logs/catalina.out
+```
+我们以后开发的步骤: 需要掌握Dockerfile命令的编写! 以后一起都是使用docker镜像进行发布运行!
+
+##发布自己的镜像
+>DockerHub
+1. 官方地址  https://hub.docker.com/
+2. 在自己服务器登录docker
+```shell
+[root@iZbp1bjhiosovua6v1vsclZ hzw]# docker login -u hzw20001004
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
+3. 发布镜像
+```shell
+[root@iZbp1bjhiosovua6v1vsclZ hzw]# 
+[root@iZbp1bjhiosovua6v1vsclZ hzw]# docker images
+REPOSITORY            TAG       IMAGE ID       CREATED             SIZE
+diytomcat8080         latest    fb16eb6c7c09   About an hour ago   545MB
+elasticsearch         7.14.0    e347b2b2d6c1   6 weeks ago         1.04GB
+portainer/portainer   latest    580c0e4e98b0   6 months ago        79.1MB
+centos                latest    300e315adb2f   9 months ago        209MB
+# tag 把镜像改名
+[root@iZbp1bjhiosovua6v1vsclZ /]# docker tag fb16eb6c7c09 hzw20001004/tomcat8080:1.5
+# 发布镜像
+[root@iZbp1bjhiosovua6v1vsclZ /]# docker push hzw20001004/tomcat8080:1.5
+# 提交也是一层一层的
+7992310e4a98: Pushing [==>                                                ]  3.869MB/69.49MB
+0c67f3d9dd5a: Pushing [===========>                                       ]  2.361MB/10.52MB
+9407822ffe80: Pushing [>                                                  ]  2.197MB/255.6MB
+b6cfaf7277af: Pushed 
+2653d992f4ef: Pushing [=>                                                 ]   4.36MB/209.3MB
+
+```
 
 
 
