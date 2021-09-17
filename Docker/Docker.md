@@ -1,15 +1,4 @@
-#Docker   常用命令和知识
-
-##docker 命令
-```shell
-docker run -it 镜像名 /bin/bash (运行容器)
-exit 或者 Ctrl+P+Q(退出容器不停止)
-docker images (查询全部容器的信息)
-docker ps -a (查看容器)
-docker ps (查看当前所有运行容器)
-docker inspect 3f7d139292ea(查看容器的信息,3f7d139292ea 为镜像名)
-
-```
+#Docker   常用的知识
 
 ##初始Dockerfile
 ```shell
@@ -335,14 +324,35 @@ centos                latest    300e315adb2f   9 months ago        209MB
 9407822ffe80: Pushing [>                                                  ]  2.197MB/255.6MB
 b6cfaf7277af: Pushed 
 2653d992f4ef: Pushing [=>                                                 ]   4.36MB/209.3MB
-
 ```
+>镜像云镜像服务上
 
+1.登录到阿里云
+2.找到容器镜像服务
+3.创建命名空间
+4.创建容器镜像
+![img_19.png](img_19.png)
+5.镜像推送到阿里云的的镜像仓库
+```shell
+# 登录
+[root@iZbp1bjhiosovua6v1vsclZ ~]# docker login --username=迷人酥酥 registry.cn-hangzhou.aliyuncs.com
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+Login Succeeded
+[root@iZbp1bjhiosovua6v1vsclZ ~]# docker images
+REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
+hzw/tomcat               1.5       fb16eb6c7c09   11 hours ago   545MB
+hzw20001004/tomcat8080   1.5       fb16eb6c7c09   11 hours ago   545MB
+diytomcat8080            latest    fb16eb6c7c09   11 hours ago   545MB
+[root@iZbp1bjhiosovua6v1vsclZ ~]# docker push hzw20001004/tomcat8080:1.5
+```
+具体操作到阿里云官网看看
 
-
-
-
-
+##小结
+![img_20.png](img_20.png)
+![img_21.png](img_21.png)
 
 
 

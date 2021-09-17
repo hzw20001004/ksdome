@@ -2,14 +2,17 @@
 
 ##docker 命令
 ```shell
+
 docker run -it 镜像名 /bin/bash         (运行容器)
 exit 或者 Ctrl+P+Q                      (退出容器不停止)
 docker images                          (查询全部容器的信息)
 docker ps -a                           (查看容器) 
 docker ps                              (查看当前所有运行容器)
 docker inspect 3f7d139292ea            (查看容器的信息,3f7d139292ea 为镜像名)
-
-
+docker rm 镜像名                        (删除镜像)
+docker rm -f $(docker ps -aq)          (清空所有的镜像)
+docker rmi -f $(docker images -aq)     (强制删除本地镜像)
+docker network ls                      (查看docker所有网络)
 ```
 ### Docker File 命令
 ```shell

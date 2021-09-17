@@ -4,7 +4,9 @@
 
 ###基础操作命令
 ```shell
-mkdir dockerfile   #创建文件
+--help                                                          #查看使用命令
+mkdir dockerfile                                                #创建文件夹
+ip addr                                                         #获取当前IP地址
 ```
 
 ###操作文件命令
