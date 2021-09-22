@@ -27,8 +27,53 @@ ENTTRYPOINT   #指定这个容器启动的时候要运行的命令,可以追加�
 NOBUILD       #当构建一个被继承DockerFile 这个时候就会运行NOBUILD的指令。触发指令。
 COPY          #类似ADD,将我们的文件拷贝到镜像中
 ENY           #构建的时候设置环境变量!
+```
+```shell
+# 创建redis 集群
+# 创建reids网卡
+[root@iZbp1bjhiosovua6v1vsclZ ~]# docker network create redis --subnet 127.38.0.0/16
+d21a529198a5e63d221786094bd6056b6a96b86d774d6f5df48fd39ff0e76293
+# 通过脚本创建 6个redis 配置
+for port in $(seq 1 6); \     #循环创建6个reids
+do \
+mkdir -p /mydata/redis/node-${port}/conf    #创建reids配置文件
+touch /mydata/redis/node-${port}/conf/redis.conf
+cat << EOF >/mydata/redis/node-${port}/conf/redis.conf
+port 6379      # reids端口
+bind 0.0.0.0
+cluster-enabled yes    # 开启这个redis 容器
+cluster-config-file nodes.conf
+cluster-node-timeout 5000
+cluster-announce-ip 172.38.0.1${port}
+cluster-announce-port 6379
+cluster-announce-bus-port 16379
+appendonly yes
+EOF
+done 
+# 启动reids
+docker run -p 6371:6379 -p 16371/16379 --name redis-1 \ 
+-v /mydata/redis/node-1/data:/data \
+-v /mydata/reids/node-1/conf/redis.conf:/etc/reids/reids.conf \
+-d --net reids --ip 172.38.0.11 redis:5.0.9-alpine3.11 redis-server /etc/reids/redis.conf; \
 
 ```
+
+
+
+```shell
+for port in $(seq 1 6); \   
+do \
+docker run -p 637${port}:6379 -p 1637${port}/16379 --name redis-${port} \ 
+-v /mydata/redis/node-${port}/data:/data \ 
+-v /mydata/reids/node-${port}/conf/redis.conf:/etc/reids/reids.conf \ 
+-d --net reids --ip 172.38.0.1${port} redis:5.0.9-alpine3.11 redis-server /etc/reids/redis.conf; \
+done
+
+```
+命令有问题
+
+
+##SpringBoot 放到docker里跑起来
 
 
 

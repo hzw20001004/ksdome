@@ -181,6 +181,81 @@ mysql: 不同集群使用不同的网络, 保证了集群的健康和安全
 
 >网络连接
 
+```shell
+# 查看命令
+[root@iZbp1bjhiosovua6v1vsclZ ~]# docker network --help
+Usage:  docker network COMMAND
+Manage networks
+Commands:
+  connect     Connect a container to a network   # 连接一个容器到一个网络
+  create      Create a network
+  disconnect  Disconnect a container from a network
+  inspect     Display detailed information on one or more networks
+  ls          List networks
+  prune       Remove all unused networks
+  rm          Remove one or more networks
+Run 'docker network COMMAND --help' for more information on a command.
+
+```
+```shell
+# 测试打通 toncat容器 与 自己创建的网络连接
+[root@iZbp1bjhiosovua6v1vsclZ ~]# docker network connect mynet tomcat01   自己创建的网络和tomcat容器连接
+[root@iZbp1bjhiosovua6v1vsclZ ~]# docker network inspect mynet            查看网络状态
+[
+    {
+        "Name": "mynet",
+        "Id": "63a13588da77ecc306c6b95d786992b5ed8ae499456cb62b4d56b11a705dbce3",
+        "Created": "2021-09-17T21:44:25.977560027+08:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "192.168.0.0/16",
+                    "Gateway": "192.168.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "3f73541dee2975d22f34742ed14247e85b773d7b604295114b51834e0d68a31d": {
+                "Name": "tomcat-net-01",
+                "EndpointID": "4a2de173ed17df38f89e141ba44280412595e6b9cc7100cc26b2619a4a683fb0",
+                "MacAddress": "02:42:c0:a8:00:02",
+                "IPv4Address": "192.168.0.2/16",
+                "IPv6Address": ""
+            },
+            "575746362dd2ac4384ece94d9367eec018de859e339b728580c67284b1e33a21": {
+                "Name": "tomcat-net-02",
+                "EndpointID": "f8b5a2277239dbb3078d1390a8e1c50f99872298147387401ecb76d7193609ef",
+                "MacAddress": "02:42:c0:a8:00:03",
+                "IPv4Address": "192.168.0.3/16",
+                "IPv6Address": ""
+            },
+            "d90b31e328b5eab24d620627c2ba1b390d2fa85beba6e181175b3fa768b64dc5": {  # tomcat加入到了自己网络了
+                "Name": "tomcat01",
+                "EndpointID": "f08f70fa6b64b6a37dc29fa7ba51f7980ebe3adcc1dd4a08b881f8a2b078aae7",
+                "MacAddress": "02:42:c0:a8:00:04",
+                "IPv4Address": "192.168.0.4/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+# 打通网络以后 一个容器可以拥有二个ip
+```
+
 
 
 

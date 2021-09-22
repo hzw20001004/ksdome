@@ -11,14 +11,16 @@
         <module name="Shiro" />
         <module name="Mybatis-puls" />
         <module name="common" />
-        <module name="Springboot" />
         <module name="SpringSecurity" />
+        <module name="Java8" />
+        <module name="Springboot" />
         <module name="DesignPatterns23" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
       <module name="DesignPatterns23" target="1.8" />
+      <module name="Java8" target="1.8" />
       <module name="KsDome" target="1.8" />
       <module name="Mybatis-puls" target="1.8" />
       <module name="Shiro" target="1.8" />
@@ -30,6 +32,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="DesignPatterns23" options="-parameters" />
+      <module name="Java8" options="-parameters" />
       <module name="KsDome" options="-parameters" />
       <module name="Mybatis-puls" options="-parameters" />
       <module name="Shiro" options="-parameters" />
