@@ -11,11 +11,9 @@ import java.util.stream.Stream;
  * @Classname StreamAPITest1
  * @Date 2021/9/22 21:31
  * 一. Stream 流的操作
- *    1. 创建流
+ *    1. 创建流        （实战）
  *    2. 中间操作
- *    3.终止操作
- *
- *
+ *    3. 终止操作
  * @Created Ks
  */
 public class StreamAPITest1 {
