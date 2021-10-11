@@ -1,9 +1,11 @@
 package com.Ks.Controller;
 
-import com.Ks.Entities.Payment;
+
 import com.Ks.Service.PaymentService;
+import com.Ks.Entities.Payment;
 import com.Ks.Utils.Dto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/consumer/payment")
 public class PayMentController {
+    @Value("${server.port}")
+    private String serverPort;
     @Autowired
     private PaymentService restTemplate;
     /**
@@ -21,22 +25,14 @@ public class PayMentController {
      * @param payment
      * @return
      * postman 请求参数
-     * {
-     *     "payment": [
-     *         {
-     *             "id": "1",
-     *             "serial": "韩"
-     *         }
-     *     ]
-     *  }
      */
     @PostMapping("/create")
-    public Dto create(@RequestBody Payment payment) {
+    public Dto<Integer> create(@RequestBody Payment payment) {
         int i = restTemplate.create(payment);
         if (i>0){
-            return new Dto(null,200,"成功");
+            return new Dto(i,200,"成功"+serverPort);
         }
-        return new Dto(null,200,"失败");
+        return new Dto(i,200,"失败"+serverPort);
     }
 
     /**
@@ -45,8 +41,8 @@ public class PayMentController {
      * @return
      */
     @GetMapping("/get/{id}")
-    public Dto getPayment(@PathVariable("id") Long id) {
-        Payment paymentById = restTemplate.getPaymentById(id);
-        return new Dto(paymentById,200,"成功1");
+    public Dto<Payment> getPayment(@PathVariable("id") Long id) {
+        Payment paymentById =restTemplate.getPaymentById(id);
+        return new Dto(paymentById,200,"成功1"+serverPort);
     }
 }

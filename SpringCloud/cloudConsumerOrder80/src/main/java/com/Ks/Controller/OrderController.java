@@ -4,7 +4,9 @@ import com.Ks.Entities.Payment;
 import com.Ks.Utils.Dto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -15,7 +17,10 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @Slf4j
 public class OrderController {
-    public static final String PayMent_URL="Http://localhost:8001";
+    //单机版url
+//    public static final String PayMent_URL="Http://localhost:8001";
+    //集群版url
+    public static final String PayMent_URL="Http://CLOUD-PAYMENT-SERVICE-8001";
     @Autowired
     private RestTemplate restTemplate;
     /**
@@ -24,7 +29,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/consumer/payment/create")
-    public Dto<Payment> create(@RequestBody Payment payment) {
+    public Dto<Payment> create(Payment payment) {
         return restTemplate.postForObject(PayMent_URL+"/consumer/payment/create", payment, Dto.class);
     }
     /**
@@ -34,6 +39,7 @@ public class OrderController {
      */
     @GetMapping("/consumer/payment/get/{id}")
     public  Dto<Payment> getPayMent(@PathVariable("id") Long id){
-        return restTemplate.getForObject(PayMent_URL+"/consumer/payment/get/"+id, Dto.class);
+        Dto forObject = restTemplate.getForObject(PayMent_URL + "/consumer/payment/get/" + id, Dto.class);
+        return forObject;
     }
 }

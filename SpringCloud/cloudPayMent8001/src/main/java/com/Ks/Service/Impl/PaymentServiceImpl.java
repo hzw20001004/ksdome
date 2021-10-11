@@ -1,8 +1,7 @@
 package com.Ks.Service.Impl;
 
-import com.Ks.Dao.PaymentDao;
+import com.Ks.Dao.PaymentDao;import com.Ks.Service.PaymentService;
 import com.Ks.Entities.Payment;
-import com.Ks.Service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

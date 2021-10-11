@@ -13,6 +13,10 @@
     <modules>
         <module>cloudPayMent8001</module>
         <module>cloudConsumerOrder80</module>
+        <module>cloudApiCommons</module>
+        <module>cloudEurekaServer7001</module>
+        <module>cloudEurekaServer7002</module>
+        <module>cloudPayMent8002</module>
     </modules>
 
     <!--统一管理 jar 包版本-->

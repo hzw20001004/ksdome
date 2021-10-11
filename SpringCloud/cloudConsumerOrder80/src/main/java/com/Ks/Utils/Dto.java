@@ -1,1 +1,0 @@
-package com.Ks.Utils;import lombok.*;/** * HZW 2021-06-18 13:47 * 顶级Dto 返回JSON层 */@Data@AllArgsConstructor@NoArgsConstructorpublic class Dto<T> {    /**     * 返回具体的数据内容（pojo/自定义的VO/其他内容）     */    public T data;    /**     * 错误码，自定义     */    public Integer code;    /**     * 对应的提示信息     */    public String msg;    /**     *成功操作 状态码     */}

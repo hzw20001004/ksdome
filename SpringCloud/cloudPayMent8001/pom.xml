@@ -12,22 +12,23 @@
     <artifactId>cloudPayMent8001</artifactId>
 
     <dependencies>
-<!--        &lt;!&ndash; 包含了 sleuth + zipkin &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-zipkin</artifactId>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; eureka-client &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; 引入自己定义的 api 通用包，可以使用 Payment 支付 Entity &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.sgj.springcloud</groupId>-->
-<!--            <artifactId>cloud-api-commons</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--        </dependency>-->
+        <!-- 包含了 sleuth + zipkin -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+        <!-- eureka-client -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+<!--    引入自己定义的 api 通用包，可以使用 Payment 支付 Entity -->
+        <dependency>
+            <groupId>com.Ks</groupId>
+            <artifactId>cloudApiCommons</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- web 和 actuator 基本上都是同时出现-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -37,13 +38,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!--热部署-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
