@@ -12,9 +12,11 @@ eureka:
     fetch-registry: false
     service-url:
       # 设置与 Eureka Server 交互的地址查询服务和注册服务都需要依赖这个地址
-      defaultZone: http://eureka7002.com:7002/eureka/
+      #defaultZone: http://eureka7002.com:7002/eureka/
       # 恢复单机版 Eureka
-      #defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://localhost:7001/eureka/
+# 关闭自我保护机制，保证不可用的服务即使剔除 false  默认为 true
   server:
-    enable-self-preservation: true
+    enable-self-preservation: false
+    #剔除服务时间
     eviction-interval-timer-in-ms: 2000

@@ -15,6 +15,8 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka/
       # 恢复单机版 Eureka
       #defaultZone: http://localhost:7002/eureka/
+# 关闭自我保护机制，保证不可用的服务即使剔除 false  默认为 true
   server:
     enable-self-preservation: true
+    #剔除服务时间
     eviction-interval-timer-in-ms: 2000

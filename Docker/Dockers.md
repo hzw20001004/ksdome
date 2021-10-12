@@ -28,6 +28,16 @@ NOBUILD       #当构建一个被继承DockerFile 这个时候就会运行NOBUIL
 COPY          #类似ADD,将我们的文件拷贝到镜像中
 ENY           #构建的时候设置环境变量!
 ```
+
+
+
+
+
+
+
+
+
+
 ```shell
 # 创建redis 集群
 # 创建reids网卡
