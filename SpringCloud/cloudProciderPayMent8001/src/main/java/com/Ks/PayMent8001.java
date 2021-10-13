@@ -12,7 +12,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient   //注册服务
-@EnableDiscoveryClient //查看服务基础信息
+@EnableDiscoveryClient    //查看服务基础信息  该注解用于使用consul或者zookeeper作为注册中心时注册服务
 public class PayMent8001 {
     public static void main(String[] args) {
         SpringApplication.run(PayMent8001.class,args);

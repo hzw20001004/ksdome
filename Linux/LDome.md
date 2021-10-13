@@ -4,9 +4,11 @@
 
 ###基础操作命令
 ```shell
+source /etc/profile                                             #重启环境 生效命令
 --help                                                          #查看使用命令
 mkdir dockerfile                                                #创建文件夹
 ip addr                                                         #获取当前IP地址
+ping -c4 192.168.0.5                                            #ping语法 解决ping端口停不了
 ```
 
 ###操作文件命令

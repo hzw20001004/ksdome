@@ -13,6 +13,7 @@ docker rm 镜像名                        (删除镜像)
 docker rm -f $(docker ps -aq)          (清空所有的镜像)
 docker rmi -f $(docker images -aq)     (强制删除本地镜像)
 docker network ls                      (查看docker所有网络)
+systemctl enable docker                (把docker设置为自启动)
 ```
 ### Docker File 命令
 ```shell
