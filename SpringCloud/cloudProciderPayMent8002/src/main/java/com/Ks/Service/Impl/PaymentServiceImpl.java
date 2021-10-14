@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * @Classname PaymentServiceImpl
  * @Date 2021/10/8 20:34
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class PaymentServiceImpl implements PaymentService {
-    @Autowired
+    @Resource
     private PaymentDao paymentDao;
     @Override
     @Transactional

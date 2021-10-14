@@ -11,6 +11,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient   //注册服务
+
 public class PayMent8002 {
     public static void main(String[] args) {
         SpringApplication.run(PayMent8002.class,args);

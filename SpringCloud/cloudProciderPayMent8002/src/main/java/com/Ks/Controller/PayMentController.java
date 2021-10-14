@@ -4,9 +4,10 @@ package com.Ks.Controller;
 import com.Ks.Entities.Payment;
 import com.Ks.Service.PaymentService;
 import com.Ks.Utils.Dto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @Classname PayMentController
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class PayMentController {
     @Value("${server.port}")
     private String serverPort;
-    @Autowired
+    @Resource
     private PaymentService restTemplate;
     /**
      * 新增订单

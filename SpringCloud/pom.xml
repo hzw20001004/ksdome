@@ -12,6 +12,7 @@
 
     <modules>
 
+        <module>cloudConsumerZkOrder80</module>
         <module>cloudConsumerOrder80</module>
         <module>cloudApiCommons</module>
         <module>cloudEurekaServer7001</module>
@@ -19,6 +20,9 @@
         <module>cloudProciderPayMent8001</module>
         <module>cloudProciderPayMent8002</module>
         <module>cloudProciderPayMent8004</module>
+        <module>cloudConsumerZkOrder80</module>
+        <module>cloudprociderpayment8006</module>
+        <module>cloudconsumerconsulorder80</module>
     </modules>
 
     <!--统一管理 jar 包版本-->
