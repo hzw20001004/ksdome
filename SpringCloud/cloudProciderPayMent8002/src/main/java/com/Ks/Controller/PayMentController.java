@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Classname PayMentController
@@ -46,4 +47,21 @@ public class PayMentController {
         Payment paymentById =restTemplate.getPaymentById(id);
         return new Dto(paymentById,200,"成功1"+serverPort);
     }
+
+    @GetMapping(value = "/pay/lb")
+    public String getPsylb(){
+        return "端口为   "+serverPort;
+    }
+
+    @GetMapping(value = "Feign")
+    public String getFeign(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "端口为   "+serverPort;
+    }
+
+
 }

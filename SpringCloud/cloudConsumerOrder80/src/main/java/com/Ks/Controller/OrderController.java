@@ -2,13 +2,19 @@ package com.Ks.Controller;
 
 import com.Ks.Entities.Payment;
 import com.Ks.Utils.Dto;
+import com.Ks.lb.LoadBalancer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
+import java.net.URI;
+import java.util.List;
 
 /**
  * @Classname PayMentController
@@ -24,6 +30,11 @@ public class OrderController {
     public static final String PayMent_URL="Http://CLOUD-PAYMENT-SERVICE-8001";
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private LoadBalancer loadBalancer;
+    @Resource
+    private org.springframework.cloud.client.discovery.DiscoveryClient discoveryClient;
     /**
      * 新增订单
      * @param payment
@@ -70,5 +81,17 @@ public class OrderController {
         }else {
             return new Dto<>(null,444,"失败");
         }
+    }
+    @GetMapping("pay/lb")
+    public String getPaylb(){
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        if (instances==null){
+            return "为空";
+        }
+        ServiceInstance instance = loadBalancer.INSTANCE(instances);
+        URI uri = instance.getUri();
+        String forObject = restTemplate.getForObject(uri + "/consumer/payment/pay/lb", String.class);
+        return forObject;
+
     }
 }

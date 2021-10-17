@@ -23,6 +23,7 @@
         <module>cloudConsumerZkOrder80</module>
         <module>cloudprociderpayment8006</module>
         <module>cloudconsumerconsulorder80</module>
+        <module>cloudConsumerFeignoOrder80</module>
     </modules>
 
     <!--统一管理 jar 包版本-->

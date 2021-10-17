@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Classname PayMentController
@@ -75,9 +76,19 @@ public class PayMentController {
         return this.discoveryClient;
     }
 
-
-
-
+    @GetMapping(value = "/pay/lb")
+    public String getPsylb(){
+        return "端口为   "+serverPort;
+    }
+@GetMapping(value = "Feign")
+public String getFeign(){
+    try {
+        TimeUnit.SECONDS.sleep(3);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    return "端口为   "+serverPort;
+}
 
 
 
