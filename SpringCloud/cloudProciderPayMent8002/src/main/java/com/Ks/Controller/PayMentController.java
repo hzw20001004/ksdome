@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
  * @Created Ks
  */
 @RestController
-@RequestMapping("/consumer/payment")
 public class PayMentController {
     @Value("${server.port}")
     private String serverPort;

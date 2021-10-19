@@ -8,4 +8,5 @@ package com.Ks.Service;
 public interface PayMentService {
     String paymentIntfo(Integer id);
     String paymentIntfo1(Integer id);
+    String paymentCircuitBreaker(Integer id);
 }

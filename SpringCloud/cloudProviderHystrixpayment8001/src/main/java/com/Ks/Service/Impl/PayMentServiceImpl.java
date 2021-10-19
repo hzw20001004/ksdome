@@ -47,7 +47,7 @@ public class PayMentServiceImpl implements PayMentService {
             // 请求次数
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
             // 时间窗口期
-            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "1000"),
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
             // 失败率达到多少后跳闸
             @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),
     })

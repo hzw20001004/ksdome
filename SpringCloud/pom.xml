@@ -26,6 +26,8 @@
         <module>cloudConsumerFeignoOrder80</module>
         <module>cloudProviderHystrixpayment8001</module>
         <module>cloudConsumerfeignhystrixorder80</module>
+        <module>cloudConsumerHystrixdashboard9001</module>
+        <module>cloudGateway9527</module>
     </modules>
 
     <!--统一管理 jar 包版本-->

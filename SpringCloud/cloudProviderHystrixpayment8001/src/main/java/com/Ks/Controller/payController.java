@@ -29,4 +29,19 @@ public class payController {
         String s = payMentService.paymentIntfo1(id);
         return s+ "          "+serverport;
     }
+    //服务垄断
+    @GetMapping(value = "breaker/{id}")
+    public String payBreaker(@PathVariable("id")Integer id ) {
+        String s = payMentService.paymentCircuitBreaker(id);
+        System.out.println(s);
+        return s;
+    }
+
+
+
+
+
+
+
+
 }

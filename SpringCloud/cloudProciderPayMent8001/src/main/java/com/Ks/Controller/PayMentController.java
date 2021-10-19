@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit;
  * @Created Ks
  */
 @RestController
-@RequestMapping("/consumer/payment")
 @Slf4j
 public class PayMentController {
     @Value("${server.port}")
@@ -41,9 +40,9 @@ public class PayMentController {
     public Dto<Integer> create(@RequestBody Payment payment) {
         int i = pay.create(payment);
         if (i>0){
-            return new Dto(i,200,"成功"+serverPort);
+            return new Dto(i,200,"成功          "+serverPort);
         }
-        return new Dto(i,200,"失败"+serverPort);
+        return new Dto(i,200,"失败        "+serverPort);
     }
 
     /**
@@ -54,7 +53,7 @@ public class PayMentController {
     @GetMapping("/get/{id}")
     public Dto<Payment> getPayment(@PathVariable("id") Long id) {
         Payment paymentById =pay.getPaymentById(id);
-        return new Dto(paymentById,200,"成功1"+serverPort);
+        return new Dto(paymentById,200,"成功          "+serverPort);
     }
 
     /**
