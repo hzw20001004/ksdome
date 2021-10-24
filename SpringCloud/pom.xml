@@ -30,6 +30,11 @@
         <module>cloudGateway9527</module>
         <module>cloudConfig3344</module>
         <module>cloudConfig3355</module>
+        <module>cloudConfig3366</module>
+        <module>cloudalibaba-provider-payment9001</module>
+        <module>cloudalibaba-provider-payment9002</module>
+        <module>cloudalibaba-consumer-nacos-order83</module>
+        <module>cloudalibaba-config-nacos-client3377</module>
     </modules>
 
     <!--统一管理 jar 包版本-->
