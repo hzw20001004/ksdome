@@ -1,8 +1,11 @@
 ## SpringCloud Alibaba 学习
 
 >##SpringCloud Alibaba
+>最新版本安装地址   https://github.com/alibaba/nacos/releases
 
 >SpringCloud Alibaba 介绍
+
+
 
 ```shell
    #为什么会出现 SpringCloud alibaba
@@ -140,9 +143,39 @@ Service 就是微服务；一个 Service 可以包含多个 Cluster（集群）�
 ```
 ![img_4.png](img_4.png)
 
+>Nacos 集群和持久化配置 （超级重要）
+
+```shell
+官网  "https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html"
+1. Nacos 默认自带的是嵌入式数据库 derby
+	https://github.com/alibaba/nacos/blob/develop/config/pom.xml
+2.Nacos 持久化配置解释
+	Nacos 默认自带的是嵌入式数据库 derby
+		https://github.com/alibaba/nacos/blob/develop/config/pom.xml
+	derby 到 mysql 切换配置步骤
+		nacos-server-1.1.4\nacos\conf 目录下找到 sql 脚本
+			nacos-mysql.sql
+	  
+		nacos-server-1.1.4\nacos\conf 目录下找到 application.properties
+		  
+		注意，这里需要最少 5.6 以上的 mysql，如果为8.0 以上，建议更换 nacos 版本为 1.3.1 以上
+	启动 Nacos，可以看到是个全新的空记录界面，以前是记录进 derby
+	新添加的所有配置都会进入对应的数据库中
+	
+直接双击startup.cmd=startup命令 此时是以集群模式启动服务->失败（"nacos is starting with cluster"）
+使用命令行添加启动模式 startup -m standalone->成功("nacos is starting with standalone")	
+3.Linux 版 Nacos + MySQL 生产环境配置
+预计需要，1 个 Nginx + 3 个 Nacos 注册中心 + 1 个 mysql
+Nacos Linux 下载 "https://github.com/alibaba/nacos/releases/tag/1.1.4"
+4. 
 
 
 
+
+
+```
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
 
 
 
