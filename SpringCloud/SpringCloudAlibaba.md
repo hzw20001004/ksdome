@@ -167,7 +167,6 @@ Service 就是微服务；一个 Service 可以包含多个 Cluster（集群）�
 3.Linux 版 Nacos + MySQL 生产环境配置
 预计需要，1 个 Nginx + 3 个 Nacos 注册中心 + 1 个 mysql
 Nacos Linux 下载 "https://github.com/alibaba/nacos/releases/tag/1.1.4"
-4. 
 
 
 
@@ -177,10 +176,57 @@ Nacos Linux 下载 "https://github.com/alibaba/nacos/releases/tag/1.1.4"
 ![img_5.png](img_5.png)
 ![img_6.png](img_6.png)
 
+>Sentinel   实现熔断与限流
 
+>Sentinel 是什么
 
+```shell
+官网 "https://github.com/alibaba/Sentinel"
+一句话 ：就是Hystrix
+解决的问题
+服务雪崩
+服务降级
+服务熔断
+服务限流
+下载地址 "https://github.com/alibaba/Sentinel/releases"
 
+流控模式
+当关联的资源达到阈值时，就限流自己
+当与 A 关联的资源 B 达到阈值后，就限流自己
+B 惹事，A 挂了
 
+流控效果
+直接失败
+预热  限流 冷启动 10/3 在一定时间内到10
+排队等待  
+
+熔断降级
+RT    平均响应时间   超出阈值  且  在时间窗口内通过的请求 >= 5，两个条件同时满足后触发降级
+异常比例   QPS >= 5 且异常比例（秒级统计）超过阈值时，触发降级；时间窗口结束后，关闭降级
+异常数    异常数（分钟统计）超过阈值时，触发降级；时间窗口结束后，关闭降级。
+
+@SentinelResource
+分为系统默认和客户自定义，两种
+	之前的 case，限流出问题后，都是用 sentinel 系统默认的提示： Blocked by Sentinel（flow limiting）
+	我们能不能自定义，类似 Hystrix，某个方法出问题了，就找对应的兜底降级方法？
+从 HystrixCommand 到 @SentinelResource
+
+热点key
+案例演示了第一个参数 p1，当 QPS 超过 1 秒 1 次点击后马上被限流
+
+参数例外项
+	特例情况
+		普通
+			超过 1 秒钟 1 个后，达到阈值 1 后马上被限流
+		我们期望 p1 参数当它是某个特殊值时，它的限流值和平时不一样
+		特例
+			假如当 p1 的值等于 5 时，它的阈值可以达到 200
+	
+系统规则
+配置全局 QPS 尝试即可，一般不会具体配置，容易被修改掉
+```
+![img_7.png](img_7.png)
+![img_8.png](img_8.png)
 
 
 

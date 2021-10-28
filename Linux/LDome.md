@@ -58,6 +58,21 @@ cat dockerfile01 (打开查看文件内容)
 
 
 
+docker run -d \
+-e PREFER_HOST_MODE=hostname \
+-e MODE=cluster \
+-e NACOS_SERVER_PORT=8846 \
+-e NACOS_SERVERS="192.168.0.1:3333 192.168.0.1:4444 192.168.0.1:5555" \
+-e SPRING_DATASOURCE_PLATFORM=mysql \
+-e MYSQL_SERVICE_HOST=192.168.1.131 \
+-e MYSQL_SERVICE_PORT=3306 \
+-e MYSQL_SERVICE_USER=root \
+-e MYSQL_SERVICE_PASSWORD=123456 \
+-e MYSQL_SERVICE_DB_NAME=nacos_config \
+-e NACOS_SERVER_IP=192.168.1.131 \
+-p 8846:8846 \
+--name my-nacos1 \
+nacos/nacos-server:1.4.2
 
 
 

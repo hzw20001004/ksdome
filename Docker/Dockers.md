@@ -7,6 +7,7 @@ docker run -it 镜像名 /bin/bash         (运行容器)
 exit 或者 Ctrl+P+Q                      (退出容器不停止)
 docker images                          (查询全部容器的信息)
 docker ps -a                           (查看容器) 
+docker stop 镜像名                      (停止容器) 
 docker ps                              (查看当前所有运行容器)
 docker inspect 3f7d139292ea            (查看容器的信息,3f7d139292ea 为镜像名)
 docker rm 镜像名                        (删除镜像)
@@ -121,11 +122,54 @@ done
 
 
 
+docker run -d \
+-e PREFER_HOST_MODE=hostname \
+-e MODE=cluster \
+-e NACOS_SERVER_PORT=3333 \
+-e NACOS_SERVERS="121.199.39.50:3333 121.199.39.50:4444 121.199.39.50:5555" \
+-e SPRING_DATASOURCE_PLATFORM=mysql \
+-e MYSQL_SERVICE_HOST=121.199.39.50 \
+-e MYSQL_SERVICE_PORT=3306 \
+-e MYSQL_SERVICE_USER=root \
+-e MYSQL_SERVICE_PASSWORD=123456 \
+-e MYSQL_SERVICE_DB_NAME=nacos \
+-e NACOS_SERVER_IP=121.199.39.50 \
+-p 3333:3333 \
+--name my-nacos1 \
+nacos/nacos-server:1.4.2
+
+docker run -d \
+-e PREFER_HOST_MODE=hostname \
+-e MODE=cluster \
+-e NACOS_SERVER_PORT=4444 \
+-e NACOS_SERVERS="121.199.39.50:3333 121.199.39.50:4444 121.199.39.50:5555" \
+-e SPRING_DATASOURCE_PLATFORM=mysql \
+-e MYSQL_SERVICE_HOST=121.199.39.50 \
+-e MYSQL_SERVICE_PORT=3306 \
+-e MYSQL_SERVICE_USER=root \
+-e MYSQL_SERVICE_PASSWORD=123456 \
+-e MYSQL_SERVICE_DB_NAME=nacos \
+-e NACOS_SERVER_IP=121.199.39.50 \
+-p 4444:4444 \
+--name my-nacos2 \
+nacos/nacos-server:1.4.2
 
 
-
-
-
+docker run -d \
+-e PREFER_HOST_MODE=hostname \
+-e MODE=cluster \
+-e NACOS_SERVER_PORT=5555 \
+-e NACOS_SERVERS="121.199.39.50:3333 121.199.39.50:4444 121.199.39.50:5555" \
+-e SPRING_DATASOURCE_PLATFORM=mysql \
+-e MYSQL_SERVICE_HOST=121.199.39.50 \
+-e MYSQL_SERVICE_PORT=3306 \
+-e MYSQL_SERVICE_USER=root \
+-e MYSQL_SERVICE_PASSWORD=123456 \
+-e MYSQL_SERVICE_DB_NAME=nacos \
+-e NACOS_SERVER_IP=121.199.39.50 \
+-p 5555:5555 \
+--name my-nacos3 \
+nacos/nacos-server:1.4.2
 
 
 
