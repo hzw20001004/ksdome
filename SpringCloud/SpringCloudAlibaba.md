@@ -224,6 +224,23 @@ RT    平均响应时间   超出阈值  且  在时间窗口内通过的请求 
 	
 系统规则
 配置全局 QPS 尝试即可，一般不会具体配置，容易被修改掉
+
+@SentinelResource 使用
+资源名称锁定限流 @SentinelResource(value = "byResource", blockHandler = "handleException") 
+也可以用请求地址 限流 @GetMapping("/byResource")
+com.alibaba.csp.sentinel.slots.block.flow.FlowException  兜底异常底层类
+
+指定 自定义兜底方法 
+@SentinelResource(value = "customerBlockHandler", 
+blockHandlerClass = CustomerBlockHandler.class, blockHandler = "handlerException2")
+
+@SentinelResource 的简单运用
+// @SentinelResource(value = "fallback") // 没有配置
+// @SentinelResource(value = "fallback", fallback = "handlerFallback") // fallback 只负责业务异常
+// @SentinelResource(value = "fallback", blockHandler = "blockHandler") // blockHandler 只负责 Sentinel 控制台配置违规
+// @SentinelResource(value = "fallback", fallback = "handlerFallback", blockHandler = "blockHandler")  //业务和控制台 
+@SentinelResource(value = "fallback", fallback = "handlerFallback", blockHandler = "blockHandler", exceptionsToIgnore = {IllegalArgumentException.class})  //忽略异常
+
 ```
 ![img_7.png](img_7.png)
 ![img_8.png](img_8.png)
