@@ -241,16 +241,23 @@ blockHandlerClass = CustomerBlockHandler.class, blockHandler = "handlerException
 // @SentinelResource(value = "fallback", fallback = "handlerFallback", blockHandler = "blockHandler")  //业务和控制台 
 @SentinelResource(value = "fallback", fallback = "handlerFallback", blockHandler = "blockHandler", exceptionsToIgnore = {IllegalArgumentException.class})  //忽略异常
 
+规则持久化
+一旦我们重启应用，sentinel 规则将消失，生产环境需要将配置规则进行持久化
 ```
 ![img_7.png](img_7.png)
 ![img_8.png](img_8.png)
+![img_9.png](img_9.png)
 
+>##Seata 处理分布式事务
 
+>Seata 处理分布式事务 是什么
 
+```shell
+单体应用被拆分成微服务应用，原来的三个模块被拆分成三个独立的应用，分别使用三个独立的数据源，
+业务操作需要调用三个服务来完成。此时每个服务内部的数据一致性由本地事务来保证，但是全局的数据一致性问题没法保证。
 
-
-
-
+一次业务操作需要跨多个数据源或需要多个系统进行远程调用，就会产生分布式事务问题
+```
 
 
 
