@@ -253,15 +253,41 @@ blockHandlerClass = CustomerBlockHandler.class, blockHandler = "handlerException
 >Seata 处理分布式事务 是什么
 
 ```shell
+Seata 是一款开源的分布式事务解决方案，致力于在微服务架构下提供高性能和简单易用的分布式事务服务。
+官网地址    "http://seata.io/zh-cn/"
+下载地址    "https://github.com/seata/seata/releases"
 单体应用被拆分成微服务应用，原来的三个模块被拆分成三个独立的应用，分别使用三个独立的数据源，
 业务操作需要调用三个服务来完成。此时每个服务内部的数据一致性由本地事务来保证，但是全局的数据一致性问题没法保证。
 
 一次业务操作需要跨多个数据源或需要多个系统进行远程调用，就会产生分布式事务问题
+
+分布式事务处理过程的一ID + 三组件模型
+	Transaction ID XID   全局唯一的事务 ID
+3 组件概念
+	Transaction Coordinator（TC）
+		事务协调器，维护全局事务的运行状态，复制协调并驱动全局事务的提交或回滚；
+	Transaction Manager（TM）
+		控制全局事务的边界，负责开启一个全局事务，并最终发起全局提交或全局回滚的决议；
+	Resource Manager（RM）
+		控制分支事务，负责分支注册、状态汇报，并接收事务协调器的指令，驱动分支（本地）事务的提交和回滚。
+1. TM 向 TC 申请开启一个全局事务，全局事务创建成功并生成一个全局唯一的 XID；
+2. XID 在微服务调用链路的上下文中传播；
+3. RM 向 TC 注册分支事务，将其纳入 XID 对应全局事务的管辖；
+4. TM 向 TC 发起针对 XID 的全局提交或回滚决议；
+5. TC 调度 XID 下管辖的全部分支事务完成提交或回滚请求。	
+		
+单机注解  本地 @Transactional	
+分布式    全局 @GlobalTransactional	
+
+启动若发生闪退，可能是因为内存不足，编辑 seata-server.bat 文件，修改以下内容以修改启动内存
+
+2019 年 1 月份 蚂蚁金服和阿里巴巴共同开源的分布式事务解决方案
+Simple Extensible Autonomous Transaction Architecture，简单可扩展自治事务框架
+2020 起始，参加工作后用 1.0 以后的版本
 ```
-
-
-
-
+![img_10.png](img_10.png)
+![img_11.png](img_11.png)
+![img_12.png](img_12.png)
 
 
 

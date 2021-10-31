@@ -25,6 +25,7 @@
         <module>SpringSecurity</module>
         <module>Mybatis-puls</module>
         <module>SpringCloud</module>
+        <module>SpringCloud/seata-order-service2001</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

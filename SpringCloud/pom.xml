@@ -39,6 +39,8 @@
         <module>cloud-Sentinel-Service8401</module>
         <module>cloudalibaba-provider-payment9004</module>
         <module>cloudalibaba-consumer-nacos-order84</module>
+        <module>seata-order-service2002</module>
+        <module>seata-order-service2003</module>
     </modules>
 
     <!--统一管理 jar 包版本-->
