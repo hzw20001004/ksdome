@@ -89,7 +89,7 @@ https://github.com/alibaba/nacos/releases
 命令运行成功后直接访问 http://localhost:8848/nacos
 默认账号密码都是 nacos
 ```
-![img.png](img.png)
+![img.png](ali-img/img.png)
 > Nacos 作为服务注册中心演示
 
 ```shell
@@ -141,7 +141,7 @@ Service 就是微服务；一个 Service 可以包含多个 Cluster（集群）�
 可配置为 DEV_GROUP 或 TEST_GROUP
 3.Namespace 方案
 ```
-![img_4.png](img_4.png)
+![img_4.png](ali-img/img_4.png)
 
 >Nacos 集群和持久化配置 （超级重要）
 
@@ -173,8 +173,8 @@ Nacos Linux 下载 "https://github.com/alibaba/nacos/releases/tag/1.1.4"
 
 
 ```
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
+![img_5.png](ali-img/img_5.png)
+![img_6.png](ali-img/img_6.png)
 
 >Sentinel   实现熔断与限流
 
@@ -244,9 +244,9 @@ blockHandlerClass = CustomerBlockHandler.class, blockHandler = "handlerException
 规则持久化
 一旦我们重启应用，sentinel 规则将消失，生产环境需要将配置规则进行持久化
 ```
-![img_7.png](img_7.png)
-![img_8.png](img_8.png)
-![img_9.png](img_9.png)
+![img_7.png](ali-img/img_7.png)
+![img_8.png](ali-img/img_8.png)
+![img_9.png](ali-img/img_9.png)
 
 >##Seata 处理分布式事务
 
@@ -285,9 +285,9 @@ Seata 是一款开源的分布式事务解决方案，致力于在微服务架�
 Simple Extensible Autonomous Transaction Architecture，简单可扩展自治事务框架
 2020 起始，参加工作后用 1.0 以后的版本
 ```
-![img_10.png](img_10.png)
-![img_11.png](img_11.png)
-![img_12.png](img_12.png)
+![img_10.png](ali-img/img_10.png)
+![img_11.png](ali-img/img_11.png)
+![img_12.png](ali-img/img_12.png)
 
 
 
