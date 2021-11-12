@@ -4,6 +4,7 @@
 
 ###基础操作命令
 ```shell
+su - root                                                       #切换用户
 source /etc/profile                                             #重启环境 生效命令
 --help                                                          #查看使用命令
 mkdir dockerfile                                                #创建文件夹

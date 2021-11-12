@@ -1,0 +1,1 @@
+package com.ks.CSD.Service.Impl;import com.ks.CSD.Dao.UserDao;import com.ks.CSD.Service.UserSrever;import com.ks.GJ.Test.BaseServiceImpl;import com.ks.GJ.Test.Bases;import org.springframework.stereotype.Service;/** * HZW 2021-06-18 15:46 */@Servicepublic class UserSreverImpl extends BaseServiceImpl<UserDao, Bases> implements UserSrever {}

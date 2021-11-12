@@ -18,38 +18,38 @@ CMD /bin/bash
 
 # 上面每个命令都是镜像的一层.
 ```
-![img.png](img.png)
+![img.png](img/img.png)
 ```shell
 #启动下自己写的容器
 ```
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 ```shell
 这卷和外部一定有一个同步的目录
 ```
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
 ```shell
 查看一下卷挂载的路径
 ```
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
 ```shell
 验证一下文件是否同步出去了
 这种方式未来使用的十分多,因为我们通常会构建自己的镜像
 假设构建镜像的时候没有挂载卷,要手动自动挂载 -v 卷名 容器内路径!
 ```
-![img_4.png](img_4.png)
+![img_4.png](img/img_4.png)
 ##数据卷容器
 ```shell
 多个MySQL同步数据
 ```
-![img_5.png](img_5.png)
+![img_5.png](img/img_5.png)
 ```shell
 # 启动3个容器进行测试, 通过刚刚自己的写的镜像启动
 ```
-![img_6.png](img_6.png)
-![img_8.png](img_8.png)
-![img_7.png](img_7.png)
-![img_9.png](img_9.png)
-![img_10.png](img_10.png)
+![img_6.png](img/img_6.png)
+![img_8.png](img/img_8.png)
+![img_7.png](img/img_7.png)
+![img_9.png](img/img_9.png)
+![img_10.png](img/img_10.png)
 ```shell
 得出结论,相互共享的容器,删除其中任何一个容器,不影响其他容器数据
 ```
@@ -63,8 +63,8 @@ CMD /bin/bash
 4.docker push 发布镜像 (发布到DockerHub 阿里云镜像仓库!)
 ```
 ###查看官方是怎么做镜像的？
-![img_11.png](img_11.png)
-![img_12.png](img_12.png)
+![img_11.png](img/img_11.png)
+![img_12.png](img/img_12.png)
 ###很多官方镜像都是基础包,很多功能都不是很完善,我们通常会自己搭建自己的镜像!
 ###官方既然可以做镜像，那我们也可以做一个属于自己的镜像!
 >DockerFile 构建过程
@@ -76,7 +76,7 @@ CMD /bin/bash
 3.# 表示注释
 4.每个指令都会生成新的镜像层,并提交!
 ```
-![img_13.png](img_13.png)
+![img_13.png](img/img_13.png)
 ```shell
 dockerfile都是面向开发的,我们以后要发布项目,就需要编写dockerfile文件,这个文件十分简单
 以前交付  jar war
@@ -101,11 +101,11 @@ NOBUILD       #当构建一个被继承DockerFile 这个时候就会运行NOBUIL
 COPY          #类似ADD,将我们的文件拷贝到镜像中
 ENY           #构建的时候设置环境变量!
 ```
-![img_14.png](img_14.png)
+![img_14.png](img/img_14.png)
 >实战测试
 
 Docker Hub 中99%的镜像都是从这个基础镜像过来的 FROM scratch,然后配置需要的软件和配置来进行的构建
-![img_15.png](img_15.png)
+![img_15.png](img/img_15.png)
 >创建一个自己的centos
 
 ```shell
@@ -132,15 +132,15 @@ Successfully tagged mycentos01:latest
 # 3.测试运行
 ```
 ###对比原生的centos
-![img_16.png](img_16.png)
+![img_16.png](img/img_16.png)
 ###自己用dockerfile编写的centos镜像
-![img_17.png](img_17.png)
+![img_17.png](img/img_17.png)
 
 我们可以列出本地镜像的变更历史
 ```shell
 查看镜像变更历史命令     docker history a8724bb922cf"镜像编号images"
 ```
-![img_18.png](img_18.png)
+![img_18.png](img/img_18.png)
 我们平时拿到一个镜像,可以研究一下它是怎么做的？
 
 > CMD 和 ENTRYPOINT 区别
@@ -331,7 +331,7 @@ b6cfaf7277af: Pushed
 2.找到容器镜像服务
 3.创建命名空间
 4.创建容器镜像
-![img_19.png](img_19.png)
+![img_19.png](img/img_19.png)
 5.镜像推送到阿里云的的镜像仓库
 ```shell
 # 登录
@@ -351,8 +351,8 @@ diytomcat8080            latest    fb16eb6c7c09   11 hours ago   545MB
 具体操作到阿里云官网看看
 
 ##小结
-![img_20.png](img_20.png)
-![img_21.png](img_21.png)
+![img_20.png](img/img_20.png)
+![img_21.png](img/img_21.png)
 
 
 

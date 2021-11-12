@@ -1,7 +1,7 @@
 ##Docker 网络 (铺垫 容器编排 集群部署 !)
 >理解网络
 
-![img_22.png](img_22.png)   
+![img_22.png](img/img_22.png)   
 ###三个网络
 ```shell
 1.docker 是如何处理容器网络问题 # 问题
@@ -29,7 +29,7 @@ OpenStac,docker容器之间的连接,OVS的连接,都是使用 ecth-pair 技术
 
 Docker使用的是Linux的桥接, 宿主机中就一个Docker容器的网桥 docker0;
 
-![img_23.png](img_23.png)
+![img_23.png](img/img_23.png)
 Docker 中所有网络接口都是虚拟的,虚拟的转发效率高! (内网传递文件!)
 
 ##--link

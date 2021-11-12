@@ -16,7 +16,9 @@ docker rmi -f $(docker images -aq)     (强制删除本地镜像)
 docker network ls                      (查看docker所有网络)
 systemctl enable docker                (把docker设置为自启动)
 docker start 59ec(镜像CONTAINER ID)     (启动一个已经启动过的镜像) 
-docker exec -it 4ade58503598 /bin/bash  (进入容器后开启一个新的终端,可以在里面操作  "常用" )
+docker restart mysql                   (重启容器)
+docker update redis --restart=always   (容器随docker启动自动运行)
+docker exec -it 4ade58503598 /bin/bash (进入容器后开启一个新的终端,可以在里面操作  "常用" )
 ```
 ### Docker File 命令
 ```shell
@@ -32,6 +34,87 @@ NOBUILD       #当构建一个被继承DockerFile 这个时候就会运行NOBUIL
 COPY          #类似ADD,将我们的文件拷贝到镜像中
 ENY           #构建的时候设置环境变量!
 ```
+
+
+##阿里云镜像加速
+```shell
+# 创建文件
+sudo mkdir -p /etc/docker
+# 修改配置, 设置镜像
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://vw9qapdy.mirror.aliyuncs.com"]
+}
+EOF
+# 重启后台线程
+sudo systemctl daemon-reload
+# 重启docker
+sudo systemctl restart docker
+```
+
+##mysql 启动 和 配置
+```shell
+docker 上 拉取mysql
+sudo docker pull mysql:5.7
+启动mysql
+sudo docker run -p 3306:3306 --name mysql \
+-v /mydata/mysql/log:/var/log/mysql \
+-v /mydata/mysql/data:/var/lib/mysql \
+-v /mydata/mysql/conf:/etc/mysql \
+-e MYSQL_ROOT_PASSWORD=root \
+-d mysql:5.7
+
+1. 进入挂载的mysql配置目录
+cd /mydata/mysql/conf
+
+2. 修改配置文件 my.cnf
+vi my.cnf
+加入内容
+[client]
+default-character-set=utf8
+[mysql]
+default-character-set=utf8
+[mysqld]
+init_connect='SET collation_connection = utf8_unicode_ci'
+init_connect='SET NAMES utf8'
+character-set-server=utf8
+collation-server=utf8_unicode_ci
+skip-character-set-client-handshake
+skip-name-resolve
+
+3. docker重启mysql使配置生效
+docker restart mysql
+
+4.容器随docker启动自动运行
+# mysql
+docker update mysql --restart=always
+```
+##redis 启动 和 配置
+```shell
+1.docker 拉取 redis
+docker pull redis
+
+2.docker启动redis
+因为没有 redis.conf文件, 得先创建文件夹 再进行启动挂载
+mkdir -p /mydata/redis/conf
+touch /mydata/redis/conf/redis.conf
+启动redis 命令
+docker run -p 6379:6379 --name redis \
+-v /mydata/redis/data:/data \
+-v /mydata/redis/conf/redis.conf:/etc/redis/redis.conf \
+-d redis redis-server /etc/redis/redis.conf
+
+3.redis 持久化配置
+echo "appendonly yes"  >> /mydata/redis/conf/redis.conf
+# 重启生效
+docker restart redis
+
+4.容器随docker启动自动运行
+# redis
+docker update redis --restart=always
+```
+
+
 
 
 
@@ -88,24 +171,6 @@ done
 
 
 ##SpringBoot 放到docker里跑起来
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,1 @@
+package com.ks.CSD.Service;import com.ks.GJ.Test.BaseService;import com.ks.GJ.Test.Bases;public interface UserSrever extends BaseService<Bases> {}
