@@ -1,4 +1,4 @@
-package com.ks.GJ.Mapper;
+package com.ks.GJ.Mapper.Select.selectByIdKs;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
@@ -8,13 +8,12 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
 
 /**
- * @Classname InsertBatchMethod
- * @Date 2021/8/20 20:33
- * @Created by hzw
- * 批量新增
+ * @Classname selectByIdKs
+ * @Date 2021/11/14 20:36
+ * @Created Ks
  */
 @Slf4j
-public class InsertBatchMethod extends AbstractMethod {
+public class selectByIdKs extends AbstractMethod {
     /**
      * insert into user(id, name, age) values (1, "a", 17), (2, "b", 18);
      <script>
@@ -35,7 +34,6 @@ public class InsertBatchMethod extends AbstractMethod {
         // 第三个参数必须和RootMapper的自定义方法名一致
         return this.addInsertMappedStatement(mapperClass, modelClass, "insertBatch", sqlSource, new NoKeyGenerator(), null, null);
     }
-
     private String prepareFieldSql(TableInfo tableInfo) {
         StringBuilder fieldSql = new StringBuilder();
         fieldSql.append(tableInfo.getKeyColumn()).append(",");

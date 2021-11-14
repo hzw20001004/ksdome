@@ -1,7 +1,7 @@
-package com.ks.GJ.Mapper;
+package com.ks.GJ.Mapper.Select.selectByIdKs;
 
 /**
- * @Classname ksSqlInjector
+ * @Classname InsertBatchKsSql
  * @Date 2021/8/20 20:36
  * @Created by hzw
  * sql注入器
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 自定义方法SQL注入器
  */
-public class ksSqlInjector extends DefaultSqlInjector {
+public class selectByIdKsSql extends DefaultSqlInjector {
     /**
      * 如果只需增加方法，保留mybatis plus自带方法，
      * 可以先获取super.getMethodList()，再添加add
@@ -23,7 +23,7 @@ public class ksSqlInjector extends DefaultSqlInjector {
     @Override
     public List<AbstractMethod> getMethodList(Class<?> mapperClass) {
         List<AbstractMethod> methodList = super.getMethodList(mapperClass);
-        methodList.add(new InsertBatchMethod());
+        methodList.add(new selectByIdKs());
         return methodList;
     }
 }

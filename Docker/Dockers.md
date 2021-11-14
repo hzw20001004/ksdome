@@ -55,17 +55,14 @@ sudo systemctl restart docker
 ##mysql 启动 和 配置
 ```shell
 docker 上 拉取mysql
-sudo docker pull mysql:5.7
+sudo docker pull mysql:8.0
 启动mysql
-sudo docker run -p 3306:3306 --name mysql \
--v /mydata/mysql/log:/var/log/mysql \
--v /mydata/mysql/data:/var/lib/mysql \
--v /mydata/mysql/conf:/etc/mysql \
--e MYSQL_ROOT_PASSWORD=root \
--d mysql:5.7
+docker run -p 3306:3306 --name mysql8 -v /usr/mydata/mysql/log:/var/log/mysql -v /usr/mydata/mysql/data:/var/lib/mysql -v /usr/mydata/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0
+
+
 
 1. 进入挂载的mysql配置目录
-cd /mydata/mysql/conf
+cd usr/mydata/mysql/conf    根据自己挂载路径来
 
 2. 修改配置文件 my.cnf
 vi my.cnf
@@ -83,11 +80,11 @@ skip-character-set-client-handshake
 skip-name-resolve
 
 3. docker重启mysql使配置生效
-docker restart mysql
+docker restart mysql8
 
 4.容器随docker启动自动运行
 # mysql
-docker update mysql --restart=always
+docker update mysql8 --restart=always
 ```
 ##redis 启动 和 配置
 ```shell
