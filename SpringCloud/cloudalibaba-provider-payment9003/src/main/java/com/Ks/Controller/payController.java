@@ -19,7 +19,7 @@ public class payController {
     @Value("${server.port}")
     private String serverPort;
 
-    public static HashMap<Long, Payment> hashMap = new HashMap<>();
+    public static HashMap<Long, Payment> hashMap = new HashMap< >();
 
     static {
         hashMap.put(1L, new Payment(1L, "bba8c1e3bc2742d8848569891fb42181"));

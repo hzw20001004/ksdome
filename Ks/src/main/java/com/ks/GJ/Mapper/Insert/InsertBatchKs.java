@@ -1,4 +1,4 @@
-package com.ks.GJ.Mapper.Select.selectByIdKs;
+package com.ks.GJ.Mapper.Insert;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
@@ -8,12 +8,13 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
 
 /**
- * @Classname selectByIdKs
- * @Date 2021/11/14 20:36
+ * @Classname InsertBatchKs
+ * @Date 2021/8/20 20:33
  * @Created Ks
+ * 批量新增
  */
 @Slf4j
-public class selectByIdKs extends AbstractMethod {
+public class InsertBatchKs extends AbstractMethod {
     /**
      * insert into user(id, name, age) values (1, "a", 17), (2, "b", 18);
      <script>

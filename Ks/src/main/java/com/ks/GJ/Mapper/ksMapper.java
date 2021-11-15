@@ -3,6 +3,7 @@ package com.ks.GJ.Mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -25,12 +26,12 @@ public interface ksMapper<T> extends BaseMapper<T> {
 //     */
 //    int updateBatch(@Param("list") List<T> list);
 //
-//    /**
-//     * 查询单条数据
-//     * @param id 单据的id
-//     * @return   返回的值
-//     */
-//    T selectByIdKs(Serializable id,String Ks);
+    /**
+     * 查询单条数据
+     * @param id 单据的id
+     * @return   返回的值
+     */
+    T selectByIdKs(Serializable id, String Ks);
 
 
 
