@@ -1,6 +1,6 @@
 # Sql 基础语法 Dome
 
->数据库操作语法
+>数据库操作
 ```sql
 -- 创建数据库
 create DATABASE 数据库名称;
@@ -11,8 +11,21 @@ drop DATABASE 数据库名;
 
 ```
 
+>表操作
+```sql
+-- 基础建表语句
+CREATE TABLE `表名` (
+                      `id`  int auto_increment primary key,
+                      `create_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+                      `create_time` datetime DEFAULT NULL COMMENT '创建日期',
+                      `update_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+                      `update_time` datetime DEFAULT NULL COMMENT '更新日期'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC
+```
 
->表操作语法
+
+
+>表数据操作
 
 ```sql
 查询语句
