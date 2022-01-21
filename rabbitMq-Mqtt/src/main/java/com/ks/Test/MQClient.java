@@ -37,7 +37,7 @@ public class MQClient {
         options.setAutomaticReconnect(true);
         options.setKeepAliveInterval(1);
         mqttClient.setCallback(new MQTTCallback());
-        topic = mqttClient.getTopic("topic_001");
+        topic = mqttClient.getTopic("artemis/event_face/3187675137/admin");
         mqttClient.connect(options);
     }
     public void subscribe(String[] topic,int[] qos) throws MqttException {
@@ -45,7 +45,7 @@ public class MQClient {
     }
     public static void main(String[] args) throws MqttException {
         MQClient mqClient = new MQClient();
-        String[] topic = {"topic_001"};
+        String[] topic = {"artemis/event_face/3187675137/admin"};
         int[] qos = {0};
         mqClient.subscribe(topic, qos);
     }

@@ -62,7 +62,7 @@ public class MQTTCallback implements MqttCallback, MqttCallbackExtended {
     public void connectComplete(boolean reconnect, String serverURI) {
         //每次连接成功需指定topic 和 qos
         log.warn(serverURI);
-        String[] topic = {"topic_001"};
+        String[] topic = {"artemis/event_face/3187675137/admin"};
         int[] qos = {0};
         try {
             MQClient.getClient().subscribe(topic,qos);//具体订阅代码

@@ -29,6 +29,9 @@ rabbitmq-plugins enable rabbitmq_mqtt
 
 #mqtt websocket:
 rabbitmq-plugins enable rabbitmq web mqtt
-3.启动 
+3.启动 rabbitmq 命令
+rabbitmq-server -detached 后台启动
+
+
 ```
 

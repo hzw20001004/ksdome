@@ -1,10 +1,9 @@
 package com.Ks.common.Config.Springsecurity.Service.Impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.Ks.Dao.SysUserDao;
-import com.Ks.common.Utils.String.StringUtils;
 import com.Ks.common.enums.UserStatus;
 import com.Ks.pojo.System.SysUser;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -33,7 +32,7 @@ public class LoginServiceImpl implements UserDetailsService {
         queryWrapper
                 .eq("username", name);
         SysUser sysUser =sysUserDao.selectOne(queryWrapper);
-        if (StringUtils.isNull(sysUser)) {
+        if (sysUser==null) {
         throw new UsernameNotFoundException("登录用户：" + name + " 不存在");
     } else if (UserStatus.DELETED.getCode().equals(sysUser.getKs())) {
         throw new UsernameNotFoundException("对不起，您的账号：" + name + " 已被删除");

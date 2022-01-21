@@ -21,6 +21,10 @@ CREATE TABLE `表名` (
                       `update_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
                       `update_time` datetime DEFAULT NULL COMMENT '更新日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC
+-- 加个字段
+alter table JDYY_APP  add isdel  nvarchar(255)
+
+
 ```
 
 
