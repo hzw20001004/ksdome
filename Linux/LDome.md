@@ -10,7 +10,7 @@ source /etc/profile                                             #重启环境 �
 mkdir dockerfile                                                #创建文件夹
 ip addr                                                         #获取当前IP地址
 ping -c4 192.168.0.5                                            #ping语法 解决ping端口停不了
-
+/etc/init.d/bt default                                          #宝塔地址账号密码       
 
 ```
 
@@ -175,6 +175,12 @@ mysql -u root -p
 
 6.第六步：修改密码
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'yournewpassword';
+
+mysql -u root -h 127.0.0.1 -p    本地连接  
+
+备份数据库
+mysqldump -u root -h 127.0.0.1 -p chengtou >/home/chengtou2022.2.9.sql
+
 
 如果爆出 ERROR 1819 (HY000): Your password does not satisfy the current policy requirements 错误，原因是你的密码不安全，要包含大小写，数字和字符
 

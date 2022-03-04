@@ -7,7 +7,7 @@ create DATABASE 数据库名称;
 -- 指定用那个数据
 use 数据库名称 
 -- 删除数据库
-drop DATABASE 数据库名;
+drop DATABASE ;
 
 ```
 
@@ -32,10 +32,15 @@ alter table JDYY_APP  add isdel  nvarchar(255)
 >表数据操作
 
 ```sql
-查询语句
+-- 查询语句
 select * from 表名 where 字段名 = 条件值 
 -- 修改语句
 UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+-- 插入语句
+INSERT INTO table_name (列1, 列2,...全列)
+INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
+
+
 ```
 
 
