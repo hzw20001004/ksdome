@@ -23,7 +23,8 @@ CREATE TABLE `表名` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC
 -- 加个字段
 alter table JDYY_APP  add isdel  nvarchar(255)
-
+-- 改变该列的数据类型
+alter table custom_target modify column target longtext;
 
 ```
 
@@ -42,8 +43,12 @@ INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
 
 
 ```
-
-
+>sql函数
+```sql
+COUNT(*)                      总条数
+CONCAT('%',4534,'%');         字符拼接
+between 1 and 2               区间查询
+```
 
 
 

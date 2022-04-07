@@ -29,7 +29,8 @@ public class LoginServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("登录用户：" + name + " 不存在");
         }
         //返回用户权限
-        return new User(name,passwordEncoder.encode(sysUser.getPassword()), AuthorityUtils.commaSeparatedStringToAuthorityList("/token,/getuser,admin,ROLE_abc,/main,/spring,/select"));
+        return new User(name,passwordEncoder.encode(sysUser.getPassword()),
+                AuthorityUtils.commaSeparatedStringToAuthorityList("/token,/getuser,admin,ROLE_abc,/main,/spring,/select"));
 }
     /**
      * 获取菜单数据权限

@@ -1,10 +1,12 @@
 package com.Ks.Config;
+import com.Ks.Config.Filter.CustomPasswordEncoder;
 import com.Ks.Config.Filter.MyAccessDeniedHandler;
 import com.Ks.Config.Filter.MyAuthenticationFailureHandler;
 import com.Ks.Config.Filter.MyAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -39,6 +41,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Resource
     private DataSource dataSource;
+
+
+    @Bean
+    @Order(0)
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new CustomPasswordEncoder();
+    }
+
     /**
      * anyRequest          |   匹配所有请求路径
      * access              |   SpringEl表达式结果为true时可以访问
