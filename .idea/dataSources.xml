@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="mybatis_puls@localhost" uuid="c67487c9-c665-4d7a-a717-eb1cff48f0ad">
-      <driver-ref>sqlserver.jtds</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:jtds:sqlserver://localhost/mybatis_puls</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="ks@localhost" uuid="380d616e-e072-4093-962c-f15404d24257">
+    <data-source source="LOCAL" name="@localhost" uuid="58d2041e-54fd-472f-855d-a3586452531f">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/ks</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
-      <driver-properties>
-        <property name="serverTimezone" value="GMT" />
-      </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="@121.199.39.50" uuid="f002238a-6af4-42ff-a893-0ecaeb6a2810">
+    <data-source source="LOCAL" name="sys@121.199.39.50" uuid="4ba413cb-2b1d-4494-8702-8c36fe243914">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://121.199.39.50:3310</jdbc-url>
+      <jdbc-url>jdbc:mysql://121.199.39.50:3306/sys</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

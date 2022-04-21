@@ -23,7 +23,8 @@ CREATE TABLE `表名` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC
 -- 加个字段
 alter table JDYY_APP  add isdel  nvarchar(255)
-
+--改变字段类型
+alter table ms_comment CHANGE article_id article_id bigint;　
 
 ```
 

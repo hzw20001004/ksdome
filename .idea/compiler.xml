@@ -8,38 +8,126 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cloudConsumerfeignhystrixorder80" />
+        <module name="cloudConsumerZkOrder80" />
+        <module name="cloudConfig3355" />
+        <module name="Ks" />
+        <module name="seata-order-service2001" />
+        <module name="seata-order-service2002" />
+        <module name="seata-order-service2003" />
+        <module name="cloudalibaba-consumer-nacos-order84" />
+        <module name="rabbitMq-Mqtt" />
+        <module name="cloudProciderPayMent8001" />
+        <module name="cloudProciderPayMent8002" />
+        <module name="cloudApiCommons" />
         <module name="Shiro" />
+        <module name="cloudProciderPayMent8004" />
         <module name="Mybatis-puls" />
         <module name="common" />
-        <module name="SpringSecurity" />
-        <module name="Java8" />
+        <module name="cloudprociderpayment8006" />
         <module name="Springboot" />
+        <module name="cloudconsumerconsulorder80" />
         <module name="DesignPatterns23" />
+        <module name="cloudalibaba-config-nacos-client3377" />
+        <module name="cloudConsumerFeignoOrder80" />
+        <module name="cloudConfig3344" />
+        <module name="cloudConfig3366" />
+        <module name="cloudGateway9527" />
+        <module name="cloud-Sentinel-Service8401" />
+        <module name="SpringSecurity" />
+        <module name="cloudConsumerOrder80" />
+        <module name="Redis" />
+        <module name="cloudstreamrabbitmq8801" />
+        <module name="cloudalibaba-provider-payment9004" />
+        <module name="cloudConsumerHystrixdashboard9001" />
+        <module name="cloudalibaba-provider-payment9003" />
+        <module name="cloudalibaba-provider-payment9002" />
+        <module name="cloudEurekaServer7001" />
+        <module name="cloudalibaba-provider-payment9001" />
+        <module name="cloudEurekaServer7002" />
+        <module name="cloudalibaba-consumer-nacos-order83" />
+        <module name="Java8" />
+        <module name="cloudPayMent8001" />
+        <module name="cloudPayMent8002" />
+        <module name="cloudProviderHystrixpayment8001" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Cache" target="1.8" />
+      <module name="cloud-Sentinel-Service8401" target="1.8" />
+      <module name="cloudalibaba-config-nacos-client3377" target="1.8" />
+      <module name="cloudalibaba-consumer-nacos-order83" target="1.8" />
+      <module name="cloudalibaba-consumer-nacos-order84" target="1.8" />
+      <module name="cloudalibaba-provider-payment9001" target="1.8" />
+      <module name="cloudalibaba-provider-payment9002" target="1.8" />
+      <module name="cloudalibaba-provider-payment9003" target="7" />
+      <module name="cloudalibaba-provider-payment9004" target="7" />
+      <module name="cloudApiCommons" target="1.8" />
+      <module name="cloudConfig3344" target="1.8" />
+      <module name="cloudConfig3355" target="1.8" />
+      <module name="cloudConfig3366" target="1.8" />
+      <module name="cloudconsumerconsul-order80" target="1.8" />
+      <module name="cloudconsumerconsulorder80" target="1.8" />
+      <module name="cloudConsumerfeignhystrixorder80" target="1.8" />
+      <module name="cloudConsumerFeignoOrder80" target="1.8" />
+      <module name="cloudConsumerHystrixdashboard9001" target="1.8" />
+      <module name="cloudConsumerOrder80" target="7" />
+      <module name="cloudConsumerZkOrder80" target="1.8" />
+      <module name="cloudConsumZkOrder80" target="1.8" />
+      <module name="cloudEurekaServer7001" target="1.8" />
+      <module name="cloudEurekaServer7001 (1)" target="1.5" />
+      <module name="cloudEurekaServer7002" target="1.8" />
+      <module name="cloudGateway9527" target="8" />
+      <module name="cloudPayMent8001" target="1.8" />
+      <module name="cloudPayMent8002" target="1.8" />
+      <module name="cloudProciderPayMent8001" target="1.8" />
+      <module name="cloudProciderPayMent8002" target="1.8" />
+      <module name="cloudProciderPayMent8004" target="1.8" />
+      <module name="cloudprociderpayment8006" target="1.8" />
+      <module name="cloudProviderHystrixpayment8001" target="1.8" />
+      <module name="cloudstreamrabbitmq8801" target="1.8" />
       <module name="common" target="1.8" />
       <module name="DesignPatterns23" target="1.8" />
       <module name="Java8" target="1.8" />
+      <module name="Ks" target="1.8" />
       <module name="KsDome" target="1.8" />
       <module name="Mybatis-puls" target="1.8" />
+      <module name="rabbitMq-Mqtt" target="1.8" />
+      <module name="Redis" target="1.8" />
+      <module name="seata-order-service2001" target="1.8" />
+      <module name="seata-order-service2002" target="7" />
+      <module name="seata-order-service2003" target="1.8" />
       <module name="Shiro" target="1.8" />
       <module name="Springboot" target="1.8" />
+      <module name="SpringCloud" target="1.8" />
       <module name="SpringSecurity" target="1.8" />
       <module name="SpringSso" target="1.8" />
+      <module name="wrapper" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Cache" options="-parameters" />
       <module name="DesignPatterns23" options="-parameters" />
       <module name="Java8" options="-parameters" />
+      <module name="Ks" options="-parameters" />
       <module name="KsDome" options="-parameters" />
       <module name="Mybatis-puls" options="-parameters" />
+      <module name="Redis" options="-parameters" />
       <module name="Shiro" options="-parameters" />
+      <module name="SpringCloud" options="" />
       <module name="SpringSecurity" options="-parameters" />
       <module name="SpringSso" options="-parameters" />
       <module name="Springboot" options="-parameters" />
+      <module name="cloudApiCommons" options="" />
+      <module name="cloudConsumZkOrder80" options="-parameters" />
+      <module name="cloudGateway9527" options="" />
+      <module name="cloudProciderPayMent8004" options="" />
+      <module name="cloudalibaba-provider-payment9003" options="" />
+      <module name="cloudconsumerconsul-order80" options="-parameters" />
       <module name="common" options="-parameters" />
+      <module name="rabbitMq-Mqtt" options="-parameters" />
+      <module name="seata-order-service2001" options="" />
     </option>
   </component>
 </project>

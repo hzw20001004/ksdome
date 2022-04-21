@@ -2,7 +2,17 @@
 
 
 
-
+##安装docker
+```shell
+安装命令
+yum install docker
+启动docker
+service docker start 
+查看版本 验证是否安装成功
+docker version
+设置开机自启
+sudo systemctl enable docker
+```
 
 
 ##阿里云镜像加速
