@@ -31,6 +31,9 @@ docker start 59ec(镜像CONTAINER ID)     (启动一个已经启动过的镜像)
 docker restart mysql                   (重启容器)
 docker update redis --restart=always   (容器随docker启动自动运行)
 docker exec -it 4ade58503598 /bin/bash (进入容器后开启一个新的终端,可以在里面操作  "常用" )
+容器内部安装vim命令
+apt-get update
+apt-get install vim
 ```
 
 

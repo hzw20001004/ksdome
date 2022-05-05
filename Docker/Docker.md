@@ -36,7 +36,7 @@ sudo systemctl restart docker
 docker 上 拉取mysql
 sudo docker pull mysql:8.0
 启动mysql
-docker run -p 3306:3306 --name mysql8 -v /usr/mydata/mysql/log:/var/log/mysql -v /usr/mydata/mysql/data:/var/lib/mysql -v /usr/mydata/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0
+docker run -p 3300:3300 --name mysql8 -v /usr/mydata/mysql/log:/var/log/mysql -v /usr/mydata/mysql/data:/var/lib/mysql -v /usr/mydata/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0
 
 
 
@@ -64,6 +64,34 @@ docker restart mysql8
 4.容器随docker启动自动运行
 # mysql
 docker update mysql8 --restart=always
+
+5.外部连接不上mysql
+
+进入mysql容器，并登陆mysql:
+docker exec -it mysqlserver bash
+mysql -uroot -p
+
+开启远程访问权限(镜像里面 root用户已经有远程连接权限在里面，所以不需要去设置，只是模式不一样才导致无法连接，把root用户的密码改成 mysql_native_password 模式，即可远程连接)
+use mysql;
+select host,user from user;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+flush privileges;
+
+登录MySQL并查看端口号,如下图(若查出来的端口号是自己配置的mysql端口号，证明端口设置成功，无需往下看)
+show global variables like 'port';
+
+打开文件my.cnf,然后增加端口参数，设定端口
+vim etc/mysql/my.cnf
+加入内容
+port=启动时设置的端口
+
+
+
+
+mysql安装vim命令
+apt-get update
+apt-get install vim
+
 ```
 ##redis 启动 和 配置
 ```shell
