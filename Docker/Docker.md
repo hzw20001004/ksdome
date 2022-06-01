@@ -118,9 +118,35 @@ docker restart redis
 docker update redis --restart=always
 ```
 
-
-
-
+##mongoDB 启动配置
+```shell
+1. 拉取 mongoDB 镜像
+   docker pull mongo
+2. 启动 mongoDB
+   docker run -itd --name mongo -p 27017:27017 mongo --auth
+-p 27017:27017 : 映射容器服务的 27017 端口到宿主机的 27017 端口
+   外部可以直接通过 宿主机 ip:27017 访问到 mongo 的服务
+--auth:需要密码才能访问容器服务
+3. 进入mongo admin库
+   docker exec -it mongo  mongo admin
+4. 创建一个名为 root 密码为 1417的用户
+   db.createUser({ user:'root',pwd:'140017',roles:[ { role:'userAdminAnyDatabase', db: 'admin'}]});
+5. 确认用户是否安装成功
+   db.auth('root','140017')
+6. 角色权限
+Read：允许用户读取指定数据库
+readWrite：允许用户读写指定数据库
+dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile
+userAdmin：允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户
+clusterAdmin：只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。
+readAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读权限
+readWriteAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读写权限
+userAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的userAdmin权限
+dbAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。
+root：只在admin数据库中可用。超级账号，超级权限
+7. idea创建连接 
+```
+![img.png](img.png)
 
 
 
@@ -232,227 +258,10 @@ ENY           #构建的时候设置环境变量!
 ![img_14.png](img/img_14.png)
 >实战测试
 
-Docker Hub 中99%的镜像都是从这个基础镜像过来的 FROM scratch,然后配置需要的软件和配置来进行的构建
-![img_15.png](img/img_15.png)
->创建一个自己的centos
 
-```shell
-# 1.编写DockerFile的文件
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# cat mydockerfile-centos   # 查看文件
-FROM centos
-MAINTAINER HZW<508578631@qq.com>
 
-ENV MYPATH /usr/local
-WORKDIR $MYPATH
 
-RUN yum -y install vim
-RUN yum -y install net-tools
 
-EXPOSE 80
-
-CMD echo $MYPATH
-CMD echo "-----hzw----"
-CMD /bin/bash
-# 2.通过DockerFile文件进行构建镜像
-构建镜像命令 docker build -f "dockerfile文件路基" -t 镜像名:[version] .
-Successfully built a8724bb922cf
-Successfully tagged mycentos01:latest
-# 3.测试运行
-```
-###对比原生的centos
-![img_16.png](img/img_16.png)
-###自己用dockerfile编写的centos镜像
-![img_17.png](img/img_17.png)
-
-我们可以列出本地镜像的变更历史
-```shell
-查看镜像变更历史命令     docker history a8724bb922cf"镜像编号images"
-```
-![img_18.png](img/img_18.png)
-我们平时拿到一个镜像,可以研究一下它是怎么做的？
-
-> CMD 和 ENTRYPOINT 区别
-
-```shell
-CMD    # 指定这个容器启动的时候要运行的命令,最后一个会生效,可被替代
-ENTRYPOINT  #指定这个容器启动的时候要运行的命令,可以追加命令
-```
-测试CMD命令
-```shell
-# 1.编写dockerfile 文件
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# vim dockerfile-cmd-test
-FROM centos
-CMD ["ls","-a"]
-# 2.构建镜像
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker build -f dockerfile-cmd-test -t cmdtest .
-Sending build context to Docker daemon  3.072kB
-Step 1/2 : FROM centos
- ---> 300e315adb2f
-Step 2/2 : CMD ["ls","-a"]
- ---> Using cache
- ---> b17fa96bc15b
-Successfully built b17fa96bc15b
-Successfully tagged cmdtest:latest
-# 3.run运行镜像   发现CMD命令执行了
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker run b17fa96bc15b
-.
-..
-.dockerenv
-bin
-dev
-etc
-home
-lib
-lib64
-lost+found
-media
-mnt
-opt
-proc
-root
-run
-sbin
-srv
-sys
-tmp
-usr
-var
-# 4.追加一个命令 -l  ls -al
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker run b17fa96bc15b -l
-docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: exec: "-l": executable file not found in $PATH: unknown.
-ERRO[0000] error waiting for container: context canceled 
-# cmd的清理下 -l 替换了CMD ["ls","-a"]命令, -l 不是命令所以报错
-```
-测试 ENTRYPOINT
-```shell
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# vim dockerfile-entrypoint
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# cat dockerfile-entrypoint
-FROM centos
-ENTRYPOINT ["ls","-a"]
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker build -f dockerfile-entrypoint -t entrypoint .
-Sending build context to Docker daemon  4.096kB
-Step 1/2 : FROM centos
- ---> 300e315adb2f
-Step 2/2 : ENTRYPOINT ["ls","-a"]
- ---> Running in 333ba18ccc23
-Removing intermediate container 333ba18ccc23
- ---> 5c8ce108d276
-Successfully built 5c8ce108d276
-Successfully tagged entrypoint:latest
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker run 5c8ce108d276
-.
-..
-.dockerenv
-bin
-dev
-etc
-home
-lib
-lib64
-lost+found
-media
-mnt
-opt
-proc
-root
-run
-sbin
-srv
-sys
-tmp
-usr
-var
-
-# 我们追加命令, 是可以直接拼接在我们的 ENTRYPOINT 命令后面!
-[root@iZbp1bjhiosovua6v1vsclZ dockerfile]# docker run 5c8ce108d276 -l
-total 56
-drwxr-xr-x   1 root root 4096 Sep 14 13:50 .
-drwxr-xr-x   1 root root 4096 Sep 14 13:50 ..
--rwxr-xr-x   1 root root    0 Sep 14 13:50 .dockerenv
-lrwxrwxrwx   1 root root    7 Nov  3  2020 bin -> usr/bin
-drwxr-xr-x   5 root root  340 Sep 14 13:50 dev
-drwxr-xr-x   1 root root 4096 Sep 14 13:50 etc
-drwxr-xr-x   2 root root 4096 Nov  3  2020 home
-lrwxrwxrwx   1 root root    7 Nov  3  2020 lib -> usr/lib
-lrwxrwxrwx   1 root root    9 Nov  3  2020 lib64 -> usr/lib64
-drwx------   2 root root 4096 Dec  4  2020 lost+found
-drwxr-xr-x   2 root root 4096 Nov  3  2020 media
-drwxr-xr-x   2 root root 4096 Nov  3  2020 mnt
-drwxr-xr-x   2 root root 4096 Nov  3  2020 opt
-dr-xr-xr-x 113 root root    0 Sep 14 13:50 proc
-dr-xr-x---   2 root root 4096 Dec  4  2020 root
-drwxr-xr-x  11 root root 4096 Dec  4  2020 run
-lrwxrwxrwx   1 root root    8 Nov  3  2020 sbin -> usr/sbin
-drwxr-xr-x   2 root root 4096 Nov  3  2020 srv
-dr-xr-xr-x  13 root root    0 Sep  8 12:19 sys
-drwxrwxrwt   7 root root 4096 Dec  4  2020 tmp
-drwxr-xr-x  12 root root 4096 Dec  4  2020 usr
-drwxr-xr-x  20 root root 4096 Dec  4  2020 var
-```
-DockerFile 中很多命令都十分的相似，我们需要了解它们的区别, 我们最好就是对比它们然后测试效果!
-
->实战：Tomcat 镜像
-1. 准备镜像文件 "tomcat压缩包","jdk压缩包".
-2. 编写dockerfile文件,官方命名Dockerfile ，build会自动寻找这个文件，就不需要-f 指定了
-```shell
-FROM centos
-MAINTAINET HZW<505878631@qq.com>
-
-COPY readme.txt /usr/local/readme.txt
-### ADD可以直接解压
-ADD JDK.zip /usr/local/
-ADD Tomcat8080.zip /usr/local/
-
-RUN yum -y install vim
-
-ENV MYPATH /usr/local
-WORKDIR $MYPATH
-
-ENV JAVA_HOME /usr/local/JDK
-ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-ENV CATALINA_HOME /usr/local/Tomcat8080
-ENV CATALINA_BASH /usr/local/Tomcat8080
-EVN PATH $PATH:JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin
-
-EXPOSE 8080
-
-CMD /usr/local/Tomcat8080/bin/startup.sh && tail -F /url/local/Tomcat8080/bin/logs/catalina.out
-```
-我们以后开发的步骤: 需要掌握Dockerfile命令的编写! 以后一起都是使用docker镜像进行发布运行!
-
-##发布自己的镜像
->DockerHub
-1. 官方地址  https://hub.docker.com/
-2. 在自己服务器登录docker
-```shell
-[root@iZbp1bjhiosovua6v1vsclZ hzw]# docker login -u hzw20001004
-Password: 
-WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
-Configure a credential helper to remove this warning. See
-https://docs.docker.com/engine/reference/commandline/login/#credentials-store
-
-Login Succeeded
-```
-3. 发布镜像
-```shell
-[root@iZbp1bjhiosovua6v1vsclZ hzw]# 
-[root@iZbp1bjhiosovua6v1vsclZ hzw]# docker images
-REPOSITORY            TAG       IMAGE ID       CREATED             SIZE
-diytomcat8080         latest    fb16eb6c7c09   About an hour ago   545MB
-elasticsearch         7.14.0    e347b2b2d6c1   6 weeks ago         1.04GB
-portainer/portainer   latest    580c0e4e98b0   6 months ago        79.1MB
-centos                latest    300e315adb2f   9 months ago        209MB
-# tag 把镜像改名
-[root@iZbp1bjhiosovua6v1vsclZ /]# docker tag fb16eb6c7c09 hzw20001004/tomcat8080:1.5
-# 发布镜像
-[root@iZbp1bjhiosovua6v1vsclZ /]# docker push hzw20001004/tomcat8080:1.5
-# 提交也是一层一层的
-7992310e4a98: Pushing [==>                                                ]  3.869MB/69.49MB
-0c67f3d9dd5a: Pushing [===========>                                       ]  2.361MB/10.52MB
-9407822ffe80: Pushing [>                                                  ]  2.197MB/255.6MB
-b6cfaf7277af: Pushed 
-2653d992f4ef: Pushing [=>                                                 ]   4.36MB/209.3MB
-```
 >镜像云镜像服务上
 
 1.登录到阿里云
