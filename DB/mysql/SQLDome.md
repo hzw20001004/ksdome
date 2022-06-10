@@ -24,7 +24,7 @@ CREATE TABLE `表名` (
 -- 加个字段
 alter table JDYY_APP  add isdel  nvarchar(255)
 --改变字段类型
-alter table ms_comment CHANGE article_id article_id bigint;　
+alter table custom_target modify column target longtext;
 
 ```
 

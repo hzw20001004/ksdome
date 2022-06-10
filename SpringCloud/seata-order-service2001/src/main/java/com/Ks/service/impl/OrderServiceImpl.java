@@ -28,8 +28,9 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private AccountService accountService;
 
-    @Override
+
     @GlobalTransactional(name = "fsp-create-order", rollbackFor = Exception.class)
+    @Override
     public void create(Order order) {
         log.info("-----> 开始新建订单");
         orderDao.create(order);
