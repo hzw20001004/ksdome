@@ -1,5 +1,11 @@
-Git 日常命令记录
+##Git 日常命令记录
 
+###基础命令
+```shell
+
+```
+
+###提交命令
 ```shell
 git  status   状态
 git  switch -c dev  创建分支并切换
