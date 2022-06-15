@@ -11,13 +11,13 @@ yum install -y git
 2. wget https://nodejs.org/dist/v16.14.2/node-v16.14.2-linux-x64.tar.xz  # 下载 node.js 软件压缩包
 3. tar -vxf node-v16.14.2-linux-x64.tar.xz   # 解压node.js软件压缩软件包
 4. mv node-v16.14.2-linux-x64 /usr/local/bin  # 移动node到/usr/local/bin目录下
-5. # cd /usr/local/bin/  # 进入/usr/local/bin
+5. cd /usr/local/bin/  # 进入/usr/local/bin
 6. ll  # 查看当前目录下的文件、目录
 7. mv node-v16.14.2-linux-x64/ node  #修改node-v16.14.2-linux-x64 名称为 node
 8. vi /etc/profile  # vi修改配置文件 添加node.j2软件环境变量
 9. 加入内容
    export NODE_HOEM=/usr/local/bin/node  # 设置node软件家目录的环境变量
-   export PATH=$PATH:$NODE_HOEM/bin  # 设置node软件到bin目录下环境变量  实现bin目录下命令的全局使用 
+   export PATH=$PATH:$NODE_HOEM/bin      # 设置node软件到bin目录下环境变量  实现bin目录下命令的全局使用 
 10. source /etc/profile   # 使配置文件生效
 11. 查看node版本 
     node -v

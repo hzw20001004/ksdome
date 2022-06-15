@@ -2,6 +2,9 @@
 
 ###基础命令
 ```shell
+git config --global user.name "阿炜" 修改用户名(可以中文)
+git config --global user.email "508578631@qq.com" 修改git账户登录名
+git config --global user.password "AW" 修改git账户密码
 
 ```
 
