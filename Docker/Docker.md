@@ -148,6 +148,56 @@ root：只在admin数据库中可用。超级账号，超级权限
 ```
 ![img.png](img.png)
 
+## ElasticSearch
+```shell
+1. 拉取 ElasticSearch
+   docker pull elasticsearch:7.7.0
+2. 启动 ElasticSearch 容器
+   docker run --name elasticsearch -d -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -e "discovery.type=single-node" -p 9200:9200 -p 9300:9300 elasticsearch:7.7.0
+3. 外网ip + 9200 确认是否能看到版本号
+```
+## Sentinel
+```shell
+1. 拉取 Sentinel
+docker pull bladex/sentinel-dashboard
+2. 启动 ElasticSearch 容器
+   docker run --restart always  --name sentinel  -d -p 8858:8858 -d  bladex/sentinel-dashboard:latest
+3. 外网ip + 8858 确认是否能到登录页
+
+```
+
+## Nacos
+```shell
+1. 拉取 Nacos
+   docker pull nacos/nacos-server
+2. 创建配置文件 日志文件夹
+   # 配置文件
+   touch /nacos/application.properties
+   # 日志文件
+   touch /nacos/logs
+3. 启动命令  数据库配置自己调整
+docker run -d \
+--name nacos \
+-e PREFER_HOST_MODE=hostname \
+-e MODE=standalone \
+-e SPRING_DATASOURCE_PLATFORM=mysql \
+-e MYSQL_SERVICE_HOST=121.199.39.50 \
+-e MYSQL_SERVICE_PORT=3300 \
+-e MYSQL_SERVICE_USER=root \
+-e MYSQL_SERVICE_PASSWORD=123456 \
+-e MYSQL_SERVICE_DB_NAME=nacos_config \
+--network=host \
+nacos/nacos-server
+4. 访问 ip+ 8848/nacos
+   
+```
+
+
+
+
+
+
+
 
 
 

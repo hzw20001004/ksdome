@@ -94,7 +94,7 @@
       <module name="Mybatis-puls" target="1.8" />
       <module name="rabbitMq-Mqtt" target="1.8" />
       <module name="Redis" target="1.8" />
-      <module name="seata-order-service2001" target="1.8" />
+      <module name="seata-order-service2001" target="6" />
       <module name="seata-order-service2002" target="7" />
       <module name="seata-order-service2003" target="1.8" />
       <module name="Shiro" target="1.8" />
