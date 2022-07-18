@@ -160,7 +160,7 @@ root：只在admin数据库中可用。超级账号，超级权限
 ```shell
 1. 拉取 Sentinel
 docker pull bladex/sentinel-dashboard
-2. 启动 ElasticSearch 容器
+2. 启动 Sentinel 容器
    docker run --restart always  --name sentinel  -d -p 8858:8858 -d  bladex/sentinel-dashboard:latest
 3. 外网ip + 8858 确认是否能到登录页
 
@@ -196,6 +196,11 @@ nacos/nacos-server
 
 
 
+
+OPTIONS='--selinux-enabled=false -H unix:///var/run/docker.sock'
+if [ -z "${DOCKER_CERT_PATH}" ]; then
+DOCKER_CERT_PATH=/etc/docker
+fi
 
 
 
