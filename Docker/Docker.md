@@ -170,14 +170,8 @@ docker pull bladex/sentinel-dashboard
 ```shell
 1. 拉取 Nacos
    docker pull nacos/nacos-server
-2. 创建配置文件 日志文件夹
-   # 配置文件
-   touch /nacos/application.properties
-   # 日志文件
-   touch /nacos/logs
-3. 启动命令  数据库配置自己调整
+2. 启动命令  数据库配置自己调整
 docker run -d \
---name nacos \
 -e PREFER_HOST_MODE=hostname \
 -e MODE=standalone \
 -e SPRING_DATASOURCE_PLATFORM=mysql \
@@ -186,14 +180,26 @@ docker run -d \
 -e MYSQL_SERVICE_USER=root \
 -e MYSQL_SERVICE_PASSWORD=123456 \
 -e MYSQL_SERVICE_DB_NAME=nacos_config \
---network=host \
+-p 8848:8848 \
+--name myNacos \
+--restart=always \
 nacos/nacos-server
-4. 访问 ip+ 8848/nacos
-   
+3. 访问 ip+ 8848/nacos
 ```
 
+## Portainer
+```shell
+1. 拉取 Portainer
+   docker pull lihaixin/portainer
+2. 启动命令 
+   # 启动镜像
+docker run -d -p 9000:9000 --restart=always \
+-v /var/run/docker.sock:/var/run/docker.sock \
+--name portainer lihaixin/portainer
+3. 访问 ip+ 9000
+```
 
-
+配置docker远程访问 https://cloud.tencent.com/developer/article/1657953
 
 
 
