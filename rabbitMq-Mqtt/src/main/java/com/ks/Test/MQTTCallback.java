@@ -22,13 +22,13 @@ public class MQTTCallback implements MqttCallback, MqttCallbackExtended {
             try {
                 System.out.println("isConn"+MQClient.getClient().isConnected());
                 if (MQClient.getClient().isConnected()) {
-                    log.warn("成功");
+//                    log.warn("成功");
                     return;
                 }
-                log.info("mqtt reconnect times = {} try again...", reconnectTimes++);
+//                log.info("mqtt reconnect times = {} try again...", reconnectTimes++);
                 MQClient.getClient().reconnect();
             } catch (MqttException e) {
-                log.error("", e);
+//                log.error("", e);
             }
             try {
                 Thread.sleep(1000);
@@ -61,7 +61,7 @@ public class MQTTCallback implements MqttCallback, MqttCallbackExtended {
     @Override
     public void connectComplete(boolean reconnect, String serverURI) {
         //每次连接成功需指定topic 和 qos
-        log.warn(serverURI);
+//        log.warn(serverURI);
         String[] topic = {"artemis/event_face/3187675137/admin"};
         int[] qos = {0};
         try {
