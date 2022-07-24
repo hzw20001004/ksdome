@@ -195,23 +195,37 @@ nacos/nacos-server
 ```shell
 1. 拉取 Portainer
    docker pull lihaixin/portainer
-2. 启动命令 
-   # 启动镜像
+2. 启动命令 Portainer
 docker run -d -p 9000:9000 --restart=always \
 -v /var/run/docker.sock:/var/run/docker.sock \
 --name portainer lihaixin/portainer
 3. 访问 ip+ 9000
 ```
 
-配置docker远程访问 https://cloud.tencent.com/developer/article/1657953
+##  Jenkins
+```shell
+1. 拉取 Jenkins
+   docker pull jenkins/jenkins
+   docker pull jenkins/jenkins:latest-jdk8
+2. 创建 Jenkins 挂载目录
+   mkdir -p /usr/local/jenkins
+   chmod 777 /usr/local/jenkins   
+   注意： 创建挂载目录的同时要给该目录配置权限 777，
+    如果权限不足的话，到时进行目录挂载的时候会失败导致无法启动 Jenkins 容器。
+3. 启动命令 Jenkins
+   docker run -d \
+    -p 8888:8080 \
+    -p 50000:50000 \
+    -v /usr/local/jenkins:/var/jenkins_home \
+    -v /etc/localtime:/etc/localtime \
+    --restart=always \
+    --name=jenkins \
+    jenkins/jenkins
+3. 访问 ip+ 9000
 
+4. 获取初始登录密码 docker logs jenkins   18edf62f870d479aad883c987b169a1c
 
-
-OPTIONS='--selinux-enabled=false -H unix:///var/run/docker.sock'
-if [ -z "${DOCKER_CERT_PATH}" ]; then
-DOCKER_CERT_PATH=/etc/docker
-fi
-
+```
 
 
 
