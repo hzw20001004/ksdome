@@ -166,6 +166,10 @@ docker pull bladex/sentinel-dashboard
 
 ```
 
+
+
+
+
 ## Nacos
 ```shell
 1. 拉取 Nacos

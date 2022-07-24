@@ -3,11 +3,16 @@
 ##docker 命令
 ```shell
 启动        systemctl start docker
-守护进程重启   sudo systemctl daemon-reload
+更新配置     sudo systemctl daemon-reload
 重启docker服务   systemctl restart  docker
 重启docker服务  sudo service docker restart
 关闭docker   service docker stop   
 关闭docker  systemctl stop docker
+更新配置 并 重启docker  systemctl daemon-reload && systemctl restart docker
+#这二个命令是一起用的
+停用Docker自动唤醒机制  systemctl stop docker.socket
+查看Docker自动唤醒机制是否关闭  systemctl status docker
+
 ```
 
 
