@@ -226,6 +226,56 @@ docker run -d -p 9000:9000 --restart=always \
 4. 获取初始登录密码 docker logs jenkins   18edf62f870d479aad883c987b169a1c
 
 ```
+## Nginx
+```shell
+1. 拉取 Nginx
+   docker pull nginx
+2. 创建挂载目录
+   mkdir -p /home/nginx/conf
+   mkdir -p /home/nginx/log
+   mkdir -p /home/nginx/html
+3. 启动命令 Nginx
+   docker run \
+   -p 9002:80 \
+   --name nginx \
+   -v /home/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
+   -v /home/nginx/conf/conf.d:/etc/nginx/conf.d \
+   -v /home/nginx/log:/var/log/nginx \
+   -v /home/nginx/html:/usr/share/nginx/html \
+   -d nginx:latest
+4. 
+   
+   
+       curl https://dockeraw:2345/info --cert /data/cert/docker/cert.pem --key /data/cert/docker/key.pem --cacert /data/cert/docker/ca.pem
+       curl https://101.34.67.170:2345/info --cert /data/cert/docker/cert.pem --key /data/cert/docker/key.pem --cacert /data/cert/docker/ca.pem
+    
+    
+    
+   
+   
+   server {
+        listen     80;
+        server_name  localhost;
+
+        location / {
+            root /usr/share/nginx/html; # nginx工作目录是容器的而非宿主机
+            index index.html index.htm;
+	}
+        # 代理转发请求至网关，prod-api标识解决跨域问题
+        location /dockeraw/ {
+            proxy_pass https://dockeraw:2345/info;
+	}
+    }
+   
+   
+   
+   
+   
+   
+```
+
+
+
 
 
 
