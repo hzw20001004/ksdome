@@ -72,9 +72,14 @@ key.pem
 
 ![img_8.png](img_8.png)
 
-
-
-
+>Maven 连接 Docker
+```shell
+<!--远程Docker的地址-->
+<dockerHost>https://43.142.243.64:12345</dockerHost>
+<!--tls证书-->
+<dockerCertPath>D:\h-my\pem</dockerCertPath>
+```
+![img_9.png](img_9.png)
 
 
 
