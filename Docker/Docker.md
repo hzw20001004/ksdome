@@ -146,7 +146,6 @@ dbAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库
 root：只在admin数据库中可用。超级账号，超级权限
 7. idea创建连接 
 ```
-![img.png](img.png)
 
 ## ElasticSearch
 ```shell
@@ -168,8 +167,6 @@ docker pull bladex/sentinel-dashboard
 
 
 
-
-
 ## Nacos
 ```shell
 1. 拉取 Nacos
@@ -184,6 +181,8 @@ docker run -d \
 -e MYSQL_SERVICE_USER=root \
 -e MYSQL_SERVICE_PASSWORD=123456 \
 -e MYSQL_SERVICE_DB_NAME=nacos_config \
+-e JVM_XMS=256m \
+-e JVM_XMX=256m \
 -p 8848:8848 \
 --name myNacos \
 --restart=always \
