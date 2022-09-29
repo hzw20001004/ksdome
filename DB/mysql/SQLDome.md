@@ -28,6 +28,8 @@ alter table JDYY_APP  add isdel  nvarchar(255)
 alter table custom_target modify column target longtext;
 --改变列名称 key关键字
 ALTER TABLE test CHANGE `key` keysss  VARCHAR(50);
+--删除表里的某个字段
+ALTER TABLE t_xcxshuffling DROP COLUMN sharing_type
 ```
 
 
