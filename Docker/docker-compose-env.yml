@@ -1,5 +1,14 @@
 version: '3'
 services:
+  frp:
+    image: snowdreamtech/frps
+    container_name: frp
+    restart: always
+    ports:
+      - 7000:7000 # 里的端口与 frps.ini 中 bind_port 保持一致
+    volumes:
+      - /mydata/frps.ini:/etc/frp/frps.ini
+
   mysql:
     image: mysql:8
     container_name: mysql
@@ -130,6 +139,8 @@ services:
       MYSQL_SERVICE_USER: root
       MYSQL_SERVICE_PASSWORD: Hzw20011004.
       MYSQL_SERVICE_DB_NAME: nacos_config
+
+
 
 
 

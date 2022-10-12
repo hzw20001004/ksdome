@@ -11,6 +11,7 @@ ping -c4 192.168.0.5                                            #ping语法 解�
 /etc/init.d/bt default                                          #宝塔地址账号密码     
 netstat -nltp | grep 9083  查看端口是否占用
 kill -9 1321  杀端口  
+touch frps.ini                                                  #创建文件 比vim好用 
 
 对外开放端口 
 查看想开的端口是否已开：firewall-cmd --query-port=6379/tcp
