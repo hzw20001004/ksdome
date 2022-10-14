@@ -99,14 +99,33 @@ services:
       - "elasticsearch.hosts=http://es:9200" #设置访问elasticsearch的地址
     ports:
       - 5601:5601
-#  mongo:
-#    image: mongo:4
-#    container_name: mongo
-#    restart: always
-#    volumes:
-#      - /mydata/mongodb/db:/data/db #数据文件挂载
-#    ports:
-#      - 27017:27017
+  mongo:
+    image: mongo:4
+    container_name: mongo
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: Hzw20011004.
+    volumes:
+      - /mydata/mongodb/db:/data/db #数据文件挂载
+      - /mydata/mongodb/log:/var/log/mongodb #日志文件挂载
+      - /mydata/mongodb/config:/etc/mongo #日志文件挂载
+    ports:
+      - 27017:27017
+  mongo-express:
+    links:
+      - mongo
+    image: mongo-express
+    restart: always
+    ports:
+      - 27018:27018
+    environment:
+      ME_CONFIG_OPTIONS_EDITORTHEME: 3024-night
+      ME_CONFIG_BASICAUTH_USERNAME: mongoexpress
+      ME_CONFIG_BASICAUTH_PASSWORD: mongoexpress
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: Hzw20011004.
   minio:
     image: minio/minio:latest
     container_name: minio
