@@ -4,11 +4,12 @@
 
 >前置调整
 ```shell
-1. 一台云服务器
+1. 一台有公网ip的服务器
 
 2. 记得在服务器安全组开放对应端口 7000 7500 8888 9999 8080 8081 80 443
 
-3. 域名(配置https用 非强制需要)
+3. 公网服务器绑定域名1个(配置https用 非强制需要)
+   教程 "https://baijiahao.baidu.com/s?id=1735338179545582206&wfr=spider&for=pc"
 ```
 frp-server --service-install frpc.exe
 
@@ -159,5 +160,90 @@ brew install go
 # 通过 服务器ip + remote_port 访问对应服务即可
 ```
 ## 使用Nginx 来配置Https
+
+
+
+> 修改Nginx配置
+```shell
+# 编辑nginx配置
+vim /mydata/nginx/nginx.conf
+```
+
+>加入内容
+```yml
+server {
+    #SSL 默认访问端口号为 443
+    listen 443 ssl;
+    #请填写绑定证书的域名
+    server_name www.awei.press;
+    underscores_in_headers on;
+    #请填写证书文件的相对路径或绝对路径  私钥我是放到html文件夹下面
+    ssl_certificate     /usr/share/nginx/html/crt/awei.press_bundle.crt;
+    ssl_certificate_key  /usr/share/nginx/html/crt/awei.press.key;
+
+    ssl_session_timeout 5m;
+    ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3; #表示使用的TLS协议的类型。
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_prefer_server_ciphers on;
+    add_header X-Cache $upstream_cache_status;expires 12h;
+
+    location /aaa {
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        #proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Protocol $scheme;
+        proxy_set_header X-Url-Scheme $scheme;
+
+        #以下三行配置wss
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        #代理地址 
+        proxy_pass http://43.142.243.64/;
+        #frp代理日志
+        access_log /var/log/nginx/frps.access.log;
+        error_log  /var/log/nginx/frps.error.log;
+    }
+}
+```
+
+
+> 重启Nginx
+```
+docker restart nginx
+```
+> 访问网页效果
+ 
+![img_7.png](img_7.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
