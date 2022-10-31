@@ -1,4 +1,5 @@
-## Docker+Frp+NGinx+云服务器 实现HTTPS内网穿透
+﻿## Docker+Frp+NGinx+云服务器 实现HTTPS内网穿透
+
 
 ### 服务端搭建 (用docker-compose 服务器端搭建)
 
@@ -11,8 +12,6 @@
 3. 公网服务器绑定域名1个(配置https用 非强制需要)
    教程 "https://baijiahao.baidu.com/s?id=1735338179545582206&wfr=spider&for=pc"
 ```
-frp-server --service-install frpc.exe
-
 >创建目录和文件
 ```shell
 # 创建存放配置文件夹
@@ -98,7 +97,9 @@ services:
 
 > 外网浏览器输入 服务器ip:7500, 输入配置文件中的账号密码, 登录 dashboard ,确认是否启动成功
 > 
-![img.png](img.png)
+
+![请添加图片描述](https://img-blog.csdnimg.cn/957660eac65a4f328b880c2078e31c9c.png)
+
 
 ## 客户端搭建(本地搭建)
 
@@ -141,16 +142,18 @@ local_port = 8081
 # local_port映射的远程端口(外网端口)，也就是映射的服务端的端口
 remote_port = 8081
 ```
-![img_1.png](img_1.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/44b035d1d32940b1bbf216673fc54568.png)
 > 通过命令行启动 frpc
 
-* windows,通过cmd窗口执行
+* windows,通过安装根目录 cmd窗口执行
 ```shell
 # 输入执行命令
 frpc.exe
-# 通过 服务器ip + remote_port 访问对应服务即可
 ```
-![img_4.png](img_4.png)
+>  通过 服务器ip + remote_port 访问对应服务即可
+
+![请添加图片描述](https://img-blog.csdnimg.cn/b79d4d9222144b1b83ec3867ec543000.png)
+
 
 * macos 通过终端执行，这里需要去 设置 -> 安全与隐私 -> 通用 -> 允许从以下位置下载的APP 点击允许才可继续执行命令
 ```shell
@@ -159,7 +162,7 @@ frpc.exe
 brew install go
 # 通过 服务器ip + remote_port 访问对应服务即可
 ```
-## 使用Nginx 来配置Https
+## 使用Nginx 来配置Https + 域名
 
 
 
@@ -171,6 +174,12 @@ vim /mydata/nginx/nginx.conf
 
 >加入内容
 ```yml
+# 重定向，http跳转https
+server{
+	listen 80 default;
+	server_name sgj.asia;
+	rewrite ^(.*) https://$server_name$1 permanent;
+}
 server {
     #SSL 默认访问端口号为 443
     listen 443 ssl;
@@ -202,7 +211,7 @@ server {
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
-    #代理端口
+    # 代理本地端口
     proxy_pass "http://43.142.243.64:8080";
     }
  
@@ -215,7 +224,8 @@ docker restart nginx
 ```
 > https+域名 访问网页效果
  
-![img_9.png](img_9.png)
+![请添加图片描述](https://img-blog.csdnimg.cn/dc04e7dc37b34ebbb4a866dd5938ad89.png)
+
 
 
 
