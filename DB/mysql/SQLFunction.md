@@ -6,6 +6,9 @@
 like  CONCAT('%',#{id},'%')
 -- 替换内容  把用户名称包含人员 替换经办人
 update sys_user set name=replace(name,'人员','经办人')
+-- 解析一个字段维护json解析  取下标为0 里tenantry
+tenantries_json ->> '$[0].tenantry' as '最终承租方名称',
+
 
 ```
 
