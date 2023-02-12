@@ -12,7 +12,7 @@ services:
   mysql:
     image: mysql:8
     container_name: mysql
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default_authentication_plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Hzw20011004. #设置root帐号密码
