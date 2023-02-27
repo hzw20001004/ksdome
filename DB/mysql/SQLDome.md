@@ -35,7 +35,10 @@ ALTER TABLE test CHANGE `key` keysss  VARCHAR(50);
 -- 就是避免在同一语句中，先select出同一表中的某些值，再update这个表
 --修改 同个表的数据
 update 表A set 字段=值 where id in (select id from (select 表A.id from wp_posts a left join ......一大长串查询......) 别名);
-    
+
+--修改 表名称
+ALTER TABLE QRTZ_LOCKS rename to qrtz_locks
+
 ```
 
 
