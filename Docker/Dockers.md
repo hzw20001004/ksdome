@@ -61,8 +61,8 @@ COPY          #类似ADD,将我们的文件拷贝到镜像中
 ENY           #构建的时候设置环境变量!
 ```
 
-
-
+#无法正常停止docker进程
+![img.png](img.png)
 
 ##SpringBoot 放到docker里跑起来
 
