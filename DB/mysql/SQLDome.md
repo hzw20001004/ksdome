@@ -39,6 +39,10 @@ update 表A set 字段=值 where id in (select id from (select 表A.id from wp_p
 --修改 表名称
 ALTER TABLE QRTZ_LOCKS rename to qrtz_locks
 
+
+--加索引
+ALTER TABLE `jinlangtou`.`t_member_credit` 
+ADD INDEX `idx_new_amount`(`new_amount`) USING BTREE;
 ```
 
 
@@ -52,6 +56,8 @@ select * from 表名 where 字段名 = 条件值
 UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
 -- 插入语句
 INSERT INTO table_name (列1, 列2,...全列)
+--查询插入
+INSERT INTO table_name (列1, 列2,...全列) select * from
 INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
 
 
