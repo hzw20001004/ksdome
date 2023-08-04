@@ -25,6 +25,12 @@ touch frps.ini                                                  #创建文件 �
 
 
 
+###进程操作
+```
+查看前10 项目内存情况
+ ps aux | sort -k4,4nr | head -n 10 
+```
+
 
 
 ###操作tomcat
