@@ -14,6 +14,10 @@ nohup java -jar shareniu.jar >temp.txt &
 netstat -nlp | grep :8080
 kill -s 9 24204
 ``` 
+> nginx 文件目录
+```text
+whereis nginx
+```
 
 
 kill -9 nginx
