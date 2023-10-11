@@ -1,5 +1,27 @@
 version: '3'
 services:
+  nacos:
+    image: nacos/nacos-server
+    container_name: nacos
+    ports:
+      - 8848:8848
+      - 9848:9848
+    restart: always
+    environment:
+      JVM_XMS: 512m
+      JVM_XMX: 512m
+      PREFER_HOST_MODE: hostname
+      MODE: standalone
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: 122.51.246.201
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: Qpalzm13579.
+      MYSQL_SERVICE_DB_NAME: xy-config
+      NACOS_AUTH_ENABLE: true
+      NACOS_AUTH_TOKEN: SecretKey012345678901234567890123456789012345678901234567890123456789
+      NACOS_AUTH_IDENTITY_KEY: serverIdentity
+      NACOS_AUTH_IDENTITY_VALUE: security
 
   #服务名称
   sqlserver-db:
@@ -164,23 +186,7 @@ services:
     volumes:
       - /mydata/minio/data:/data
       - /mydata/minio/config:/root/.minio
-  nacos:
-    image: nacos/nacos-server
-    container_name: nacos
-    ports:
-      - 8848:8848
-    restart: always
-    environment:
-      JVM_XMS: 512m
-      JVM_XMX: 512m
-      PREFER_HOST_MODE: hostname
-      MODE: standalone
-      SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_SERVICE_HOST: 43.142.243.64
-      MYSQL_SERVICE_PORT: 3300
-      MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: Hzw20011004.
-      MYSQL_SERVICE_DB_NAME: nacos_config
+
 
 
 

@@ -12,8 +12,8 @@ tenantries_json ->> '$[0].tenantry' as '最终承租方名称',
 select id,GROUP_CONCAT(adds,':',name) as addsname,GROUP_CONCAT(name) as name
 from coupon_activity 
 group by id
-
-
+-- 日期格式函数
+DATE_FORMAT(wo.ks_create_time, '%Y年%m月%d日')
 
 
 ```
