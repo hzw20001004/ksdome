@@ -21,6 +21,8 @@ mysql> flush privileges;
 9. 注销系统，再进入，使用用户名root和刚才设置的新密码123登录。
 ``` 
 
+
+
 >远程授权
 
 ```text
@@ -28,6 +30,7 @@ mysql> flush privileges;
 Enter password:  （输入密码）
 2. 执行授权命令
 mysql> grant all privileges on *.* to root@'%' identified by '123';  （注意语句后面的“；”）
+
 Query OK, 0 rows affected (0.07 sec)
 3. 退出再试：  mysql> quit
 4、再试登录：    mysql -u root -h 192.168.194.142 -p
@@ -37,6 +40,11 @@ Your MySQL connection id is 3
 表示成功
 ```
 
+
+指定用户的访问ip
+```text
+update user set host =’%’ where user=‘root’;
+```
 
 
 
