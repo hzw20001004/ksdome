@@ -41,12 +41,20 @@ Your MySQL connection id is 3
 ```
 
 
-指定用户的访问ip
+>指定用户的访问ip
 ```text
 update user set host =’%’ where user=‘root’;
 ```
 
-
+> 8.0 改变登录身份验证 
+```
+# 查看当前的认证插件
+select user,plugin from user where user='root';
+# 更改该用户的加密方式
+alter user 'root'@'localhost' identified with mysql_native_password by 'Ab123654';
+# 刷新生效
+flush privileges;
+```
 
 
 
