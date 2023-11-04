@@ -1,13 +1,17 @@
 部署命令
 >后台启动
 ```text
-nohup java -jar jqApi.jar &
 nohup java -jar chengfa.jar &
+nohup java -jar wh-1.0.1.jar &
+nohup java -jar parent-services-0.0.1-SNAPSHOT.jar &
+java -jar station.jar > stationLog.txt 2>&1 &
 ```
+
+
 
 > 指定文件
 ```text
-nohup java -jar shareniu.jar >temp.txt &
+nohup java -jar chengfa.jar >temp.txt &
 ``` 
 > 端口进程查看 进程杀除
 ```text
@@ -18,12 +22,11 @@ kill -s 9 24204
 ```text
 whereis nginx
 ```
-
-
 kill -9 nginx
 
 
 
+docker-compose build && docker-compose docker-compose-tomcat.yml up -d
 
 
 

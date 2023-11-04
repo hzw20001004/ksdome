@@ -1,0 +1,23 @@
+version: '3'
+services:
+  tomcat:
+    image: donglsheng/tomcat9_jdk8
+    container_name: tom
+    ports:
+      - "8182:8080"
+    privileged: true
+    volumes:
+      - ./target:/usr/local/soft/tomcat/webapps
+
+
+
+
+
+
+
+
+
+
+
+
+
