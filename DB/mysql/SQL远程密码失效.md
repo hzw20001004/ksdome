@@ -51,15 +51,14 @@ update user set host =’%’ where user=‘root’;
 # 查看当前的认证插件
 select user,plugin from user where user='root';
 # 更改该用户的加密方式
-alter user 'root'@'localhost' identified with mysql_native_password by 'Ab123654';
+alter user 'root'@'localhost' identified with mysql_native_password by 'sigsoft';
 # 刷新生效
 flush privileges;
 ```
 
 
 
-
-
+update user set password=password('sigsoft') where user='root' and host='%';
 
 
 

@@ -4,10 +4,17 @@ services:
     image: donglsheng/tomcat9_jdk8
     container_name: tom
     ports:
-      - "8182:8080"
+      - "8182:9090"
     privileged: true
     volumes:
       - ./target:/usr/local/soft/tomcat/webapps
+      - ./upload:/upload
+    network_mode: host
+
+
+
+
+
 
 
 
