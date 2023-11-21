@@ -61,6 +61,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Hzw20011004. #设置root帐号密码
+      MYSQL_ROOT_WORD: %
     ports:
       - 3300:3306
     volumes:
