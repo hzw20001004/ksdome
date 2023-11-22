@@ -12,6 +12,8 @@ service docker start
 docker version
 设置开机自启
 sudo systemctl enable docker
+安装docker-compose
+sudo yum install docker-compose-plugin
 ```
 
 

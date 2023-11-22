@@ -39,7 +39,7 @@ chmod -v 0444 ca.pem server-cert.pem cert.pem
 
 ```shell
 #示例 sh /mydata/cert/script/cert.sh 192.168.1.1
-sh /mydata/cert/script/cert.sh +(服务器ip 和上面命令的一致) 
+sh /mydata/cert/script/cert.sh    (服务器ip 和上面命令的一致) 
 ```
 ![img_3.png](img_3.png)
 > 按照提示输入相关信息,密码随便输入一致就行,其他信息可留空,等脚本指定完成之后
@@ -94,7 +94,10 @@ key.pem
 
 
 
-
+curl https://192.168.31.105:12345/images/json \
+--cert /mydata/cert/docker/cert.pem \
+--key /mydata/cert/docker/key.pem \
+--cacert /mydata/cert/docker/ca.pem
 
 
 

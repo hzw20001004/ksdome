@@ -13,11 +13,11 @@ services:
       PREFER_HOST_MODE: hostname
       MODE: standalone
       SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_SERVICE_HOST: 122.51.246.201
+      MYSQL_SERVICE_HOST: 192.168.31.105
       MYSQL_SERVICE_PORT: 3306
       MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: Qpalzm13579.
-      MYSQL_SERVICE_DB_NAME: xy-config
+      MYSQL_SERVICE_PASSWORD: root
+      MYSQL_SERVICE_DB_NAME: nacos_config
       NACOS_AUTH_ENABLE: true
       NACOS_AUTH_TOKEN: SecretKey012345678901234567890123456789012345678901234567890123456789
       NACOS_AUTH_IDENTITY_KEY: serverIdentity
@@ -50,18 +50,23 @@ services:
       - /mydata/frps.ini:/etc/frp/frps.ini
 
   mysql:
-    image: mysql:8
-    container_name: mysql
+    image: mysql:8.0.32
+    container_name: mysql8
     command:
-    - "--character-set-server=utf8mb4"
-    - "--collation-server=utf8mb4_unicode_ci"
-    - "--lower_case_table_names=1"   #数据库大小写
-    - "--max_connections=1000" #最大连接数
-    - "--wait_timeout=28800" #最大连接数
+      # 将mysql8.0默认密码策略 修改为 原先 策略 (mysql8.0对其默认策略做了更改 会导致密码无法匹配)
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Hzw20011004. #设置root帐号密码
-      MYSQL_ROOT_HOST: %
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: nacos_config
+      MYSQL_USER: nacos
+      MYSQL_PASSWORD: nacos
     ports:
       - 3300:3306
     volumes:
