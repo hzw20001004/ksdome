@@ -8,7 +8,7 @@
 重启docker服务  sudo service docker restart
 关闭docker   service docker stop   
 关闭docker  systemctl stop docker
-更新配置 并 重启docker  systemctl daemon-reload && systemctl restart docker
+更新配置 并 重启docker systemctl daemon-reload && systemctl restart docker
 #这二个命令是一起用的
 停用Docker自动唤醒机制  systemctl stop docker.socket
 查看Docker自动唤醒机制是否关闭  systemctl status docker
@@ -35,16 +35,11 @@ systemctl enable docker                (把docker设置为自启动)
 docker start 59ec(镜像CONTAINER ID)     (启动一个已经启动过的镜像) 
 docker restart mysql                   (重启容器)
 docker update redis --restart=always   (容器随docker启动自动运行)
-docker exec -it 4ade58503598 /bin/bash (进入容器后开启一个新的终端,可以在里面操作  "常用" )
+docker exec -it c5a715a1c74b /bin/bash (进入容器后开启一个新的终端,可以在里面操作  "常用" )
 容器内部安装vim命令
 apt-get update
 apt-get install vim
 ```
-
-
-
-
-
 
 ### Docker File 命令
 ```shell
@@ -61,21 +56,22 @@ COPY          #类似ADD,将我们的文件拷贝到镜像中
 ENY           #构建的时候设置环境变量!
 ```
 
-#无法正常停止docker进程
-![img.png](img.png)
+### Docker 内外文件拷贝
+```shell
+docker cp 容器ID:容器内文件路径 宿主机路径
 
-##SpringBoot 放到docker里跑起来
+docker cp 宿主机文件路径 容器ID:容器内文件路径
 
-
-
-
-
-
+docker cp /mydata/sql c5a715a1c74b:/sql
+```
 
 
 
 
 
+
+
+docker cp /mydata 768de823c49f:/home/sigx_cps.sql
 
 
 

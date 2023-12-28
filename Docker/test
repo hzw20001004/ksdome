@@ -1,4 +1,14 @@
-docker-compose -f docker-compose-env.yml up -d
+docker-compose -f docker-compose-tomcat.yml up -d
 
 
 docker-compose -f docker-compose-env.yml up -d kibana logstash elasticsearch
+
+
+
+docker-compose build && docker-compose docker-compose-tomcat.yml up -d
+
+
+
+
+
+docker-compose -f docker-compose.yml up -d pigx-mysql pigx-redis

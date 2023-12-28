@@ -63,7 +63,16 @@ cat dockerfile01 (打开查看文件内容)
 :e! 放弃所有修改,从上次保存文件开始再编辑
 ```
 
+### Linux时间同步
+```agsl
+ntpdate ntp1.aliyun.com
 
+service ntpd stop
+
+ntpdate ntp1.aliyun.com
+
+date
+```
 
 
 

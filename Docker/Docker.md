@@ -5,7 +5,7 @@
 ##安装docker
 ```shell
 安装命令
-yum install docker
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 启动docker
 service docker start 
 查看版本 验证是否安装成功
@@ -14,6 +14,11 @@ docker version
 sudo systemctl enable docker
 安装docker-compose
 sudo yum install docker-compose-plugin
+
+curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose  
+docker-compose version
 ```
 
 

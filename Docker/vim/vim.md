@@ -18,6 +18,7 @@ apt-get install vim
 ```shell 
 #进入容器加入  -u 0
 docker exec -it -u 0 容器名称或者Id /bin/bash
+docker exec -it -u 0 e1516e4cd239 /bin/bash
 
 #先进行apt-get 更新
 apt-get update
@@ -31,7 +32,7 @@ vim test.yml
 ![img_1.png](img_1.png)
 
 
-
+touch  /mydata/mysql/conf/my.cnf
 
 
 

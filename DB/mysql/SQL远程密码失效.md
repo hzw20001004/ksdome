@@ -43,7 +43,8 @@ Your MySQL connection id is 3
 
 >指定用户的访问ip
 ```text
-update user set host =’%’ where user=‘root’;
+update user set host = '%' where user = 'root'; 
+flush privileges;
 ```
 
 > 8.0 改变登录身份验证 

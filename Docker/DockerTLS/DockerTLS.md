@@ -94,14 +94,6 @@ key.pem
 
 
 
-curl https://192.168.31.105:12345/images/json \
---cert /mydata/cert/docker/cert.pem \
---key /mydata/cert/docker/key.pem \
---cacert /mydata/cert/docker/ca.pem
-
-
-
-
 
 
 

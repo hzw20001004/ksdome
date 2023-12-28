@@ -7,12 +7,19 @@ mysql -h 127.0.0.1 -P 3300 -u root -p
 
 -- 执行sql脚本
 source /home/20220221.sql
+source /sql/sigx.sql
+                      
+  source /var/log/mysql/111.sql
+                      
+                  
 
 -- docker容器外 执行sql脚本
 docker exec -i ba46824c3dd2 mysql -uroot -pHzw20011004. jinlangtou > /mydata/jinlangtou.sql;
 
 -- 导出指定数据库 并指定导出位置
-mysqldump -h 127.0.0.1 -u root  > /usr/2023831.sql
+mysqldump -u root -p    sigx_cps  > /sql/sigx_cps.sql
+
+mysqldump -u root -p    sigx_cps  > /var/log/mysql/sigx_cps.sql
 
 -- 查看日志
 
