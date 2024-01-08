@@ -6,7 +6,7 @@ nohup java -jar wh-1.0.1.jar &
 nohup java -jar parent-services-0.0.1-SNAPSHOT.jar &
 java -jar station.jar > stationLog.txt 2>&1 &
 ```
-
+nohup java -jar warehouse-0.1.0.jar &
 
 
 > 指定文件

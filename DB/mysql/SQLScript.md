@@ -9,7 +9,7 @@ mysql -h 127.0.0.1 -P 3300 -u root -p
 source /home/20220221.sql
 source /sql/sigx.sql
                       
-  source /var/log/mysql/111.sql
+  source /var/log/mysql/111.sql;
                       
                   
 
