@@ -10,6 +10,7 @@ source /home/20220221.sql
 source /sql/sigx.sql
                       
   source /var/log/mysql/111.sql;
+  source /var/log/mysql/test.sql;
   source /var/log/mysql/sigx_config.sql;
                       
                   
@@ -22,6 +23,7 @@ mysqldump -u root -p    sigx_cps  > /sql/sigx_cps.sql
 
 mysqldump -uroot -proot sigx_cps  > /var/log/mysql/sigx_cps.sql
 mysqldump -u root -p sigx  > /var/log/mysql/sigx.sql
+mysqldump -u root -p sigx_config  > /var/log/mysql/sigx_config.sql
 
 -- 查看日志
 
