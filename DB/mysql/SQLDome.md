@@ -8,6 +8,8 @@ create DATABASE 数据库名称;
 use 数据库名称 
 -- 删除数据库
 drop DATABASE ;
+-- 存在删除 不存在不执行
+drop table if exists movable_tool;
 
 ```
 
