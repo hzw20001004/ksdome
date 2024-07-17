@@ -43,6 +43,8 @@ ALTER TABLE QRTZ_LOCKS rename to qrtz_locks
 --加索引
 ALTER TABLE `jinlangtou`.`t_member_credit` 
 ADD INDEX `idx_new_amount`(`new_amount`) USING BTREE;
+-- 删除索引
+ALTER TABLE wms_sales_out DROP INDEX idx_new_stockin_time;
 ```
 
 
