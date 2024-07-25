@@ -6,6 +6,8 @@
 npm install  --registry=https://registry.npmmirror.com
 -- 安装依赖 跳过问题依赖
 npm install --legacy-peer-deps
+-- 安装yarn
+npm install yarn -g
 ```
 
 
