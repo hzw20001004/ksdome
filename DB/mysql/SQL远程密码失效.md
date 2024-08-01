@@ -21,7 +21,14 @@ mysql> flush privileges;
 9. 注销系统，再进入，使用用户名root和刚才设置的新密码123登录。
 ``` 
 
+>开启远程访问权限(镜像里面 root用户已经有远程连接权限在里面，所以不需要去设置，只是模式不一样才导致无法连接，把root用户的密码改成 mysql_native_password 模式，即可远程连接)
 
+```text
+use mysql;
+select host,user from user;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+flush privileges;
+```
 
 >远程授权
 
