@@ -23,8 +23,12 @@ touch frps.ini                                                  #创建文件 �
 
 ```
 
+###永久修改服务器名称
 
-
+```shell
+hostnamectl set-hostname brace #永久设置用户名，关机后不失效
+hostname
+brace
 ###进程操作
 ```
 查看前10 项目内存情况
