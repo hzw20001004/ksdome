@@ -21,5 +21,7 @@ public interface mapper extends BaseMapper {
     @Select("  ${ew.customSqlSegment}  " )
     Page todayRank(Page p, @Param(Constants.WRAPPER) QueryWrapper betwee);
 
+
+
 }
 

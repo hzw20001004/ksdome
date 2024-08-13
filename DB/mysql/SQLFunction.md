@@ -19,8 +19,8 @@ DATE_FORMAT(wo.ks_create_time, '%Y年%m月%d日')
 select owner_no,short_name , ww.warehouse_no,ww.name
 from wms_owner wo left join wms_warehouse ww  ON FIND_IN_SET(warehouse_no,owner_warehouse) > 0;          
 
---
-
+--序号分发器 123456
+ROW_NUMBER() OVER (ORDER BY some_column) AS row_num,  -- 根据需要排序的列进行排序
 
 
 ```
