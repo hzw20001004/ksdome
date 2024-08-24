@@ -32,13 +32,14 @@ sudo mkdir -p /etc/docker
 # 修改配置, 设置镜像
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
-  "registry-mirrors": ["https://vw9qapdy.mirror.aliyuncs.com"]
+  "registry-mirrors": ["https://vw9qapdy.mirror.aliyuncs.com"],
 }
 EOF
-# 重启后台线程
+# 重启后台线程  # 重启docker
 sudo systemctl daemon-reload
-# 重启docker
 sudo systemctl restart docker
+# 查看docker  是否配置成功
+docker info
 ```
 
 
