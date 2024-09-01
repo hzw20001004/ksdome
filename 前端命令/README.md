@@ -8,6 +8,9 @@ npm install  --registry=https://registry.npmmirror.com
 npm install --legacy-peer-deps
 -- 安装yarn
 npm install yarn -g
+
+    --清除yarn缓存
+    yarn config set ignore-engines true
 ```
 
 
