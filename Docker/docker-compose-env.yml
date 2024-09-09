@@ -23,6 +23,22 @@ services:
       NACOS_AUTH_IDENTITY_KEY: serverIdentity
       NACOS_AUTH_IDENTITY_VALUE: security
 
+  oracle:
+    image: docker.io/truevoly/oracle-12c  # 使用 Oracle 官方镜像，实际使用时可能需要替换为阿里云镜像或自定义镜像
+    container_name: oracle
+    privileged: true
+    restart: always
+    ports:
+      - "1522:1522"
+    environment:
+      ORACLE_SID: helowin
+      ORACLE_PDB: TICKET
+      ORACLE_PWD: root
+      # 初始化脚本（可选）
+      # INIT_SCRIPTS: /u01/app/oracle/scripts/init.sql
+    volumes:
+      - oracle-data:/u01/app/oracle/oradata
+
   #服务名称
   sqlserver-db:
     #容器名称

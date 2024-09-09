@@ -20,7 +20,6 @@ docker exec -i ba46824c3dd2 mysql -uroot -pHzw20011004. jinlangtou > /mydata/jin
 
 -- 导出指定数据库 并指定导出位置
 mysqldump -u root -p    sigx_cps  > /sql/sigx_cps.sql
-
 mysqldump -uroot -proot sigx_cps  > /var/log/mysql/sigx_cps.sql
 mysqldump -u root -p sigx  > /var/log/mysql/sigx.sql
 mysqldump -u root -p sigx_config  > /var/log/mysql/sigx_config.sql

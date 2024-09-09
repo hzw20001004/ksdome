@@ -32,8 +32,14 @@ sudo mkdir -p /etc/docker
 # 修改配置, 设置镜像
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
+  "log-opts": {
+    "max-size": "5m",
+    "max-file":"3"
+  },
   "registry-mirrors": ["https://vw9qapdy.mirror.aliyuncs.com"],
+  "exec-opts": ["native.cgroupdriver=systemd"]
 }
+
 EOF
 # 重启后台线程  # 重启docker
 sudo systemctl daemon-reload
