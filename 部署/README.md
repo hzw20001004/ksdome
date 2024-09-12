@@ -16,6 +16,7 @@ nohup java -jar chengfa.jar >temp.txt &
 > 端口进程查看 进程杀除
 ```text
 netstat -nlp | grep :9083
+netstat -nlp | grep :8848
 
 netstat -nlp | grep :7077
 

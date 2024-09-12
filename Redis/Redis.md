@@ -20,6 +20,9 @@ Redis 特性
 
 ```
 
+
+
+
 ###Docker安装redis
 ```shell
 ##redis 启动 和 配置
