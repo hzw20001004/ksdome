@@ -9,9 +9,9 @@ mysql -h 127.0.0.1 -P 3300 -u root -p
 source /home/20220221.sql
 source /sql/sigx.sql
                       
-  source /var/log/mysql/111.sql;
-  source /var/log/mysql/test.sql;
-  source /var/log/mysql/sigx_config.sql;
+source /var/log/mysql/111.sql;
+source /var/log/mysql/test.sql;
+source /var/log/mysql/sigx_config.sql;
                       
                   
 
@@ -23,6 +23,12 @@ mysqldump -u root -p    sigx_cps  > /sql/sigx_cps.sql
 mysqldump -uroot -proot sigx_cps  > /var/log/mysql/sigx_cps.sql
 mysqldump -u root -p sigx  > /var/log/mysql/sigx.sql
 mysqldump -u root -p sigx_config  > /var/log/mysql/sigx_config.sql
+          
+          
+          
+mysqldump -uroot -proot sigx_job  > /var/log/mysql/sigx_job.sql
+mysqldump -uroot -proot sigx_zmn  > /var/log/mysql/sigx_zmn.sql
+mysqldump -uroot -proot sigx_cps  > /var/log/mysql/sigx_cps.sql
 
 -- 查看日志
 
