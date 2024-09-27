@@ -65,7 +65,7 @@ flush privileges;
 ```
 
 
-
+改密码
 update user set password=password('sigsoft') where user='root' and host='%';
 
 
