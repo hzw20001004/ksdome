@@ -28,6 +28,11 @@ whereis nginx
 ```
 kill -9 nginx
 
+>操作tomcat 启动命令
+```shell
+sh startup.sh  启动
+sh shutdown.sh 停止
+```
 
 
 docker-compose build && docker-compose docker-compose-tomcat.yml up -d
