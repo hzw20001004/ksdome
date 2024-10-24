@@ -7,6 +7,14 @@ redis-cli FLUSHALL
 如果你想清空特定的数据库，可以使用-n选项来指定数据库编号（编号从0开始）：
 redis-cli -n 1 FLUSHDB
 
+登录
+redis-cli
+密码登录
+redis-cli -a your_password
+
+插入key
+SET mykey "myvalue"
+SET lottery:stock 1
 
 ```
 
