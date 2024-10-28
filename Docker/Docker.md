@@ -32,12 +32,9 @@ sudo mkdir -p /etc/docker
 # 修改配置, 设置镜像
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
-  "log-opts": {
-    "max-size": "5m",
-    "max-file":"3"
-  },
-  "registry-mirrors": ["https://vw9qapdy.mirror.aliyuncs.com"],
-  "exec-opts": ["native.cgroupdriver=systemd"]
+{
+  "registry-mirrors": ["https://lqsf4g9t.mirror.aliyuncs.com"]
+}
 }
 
 EOF

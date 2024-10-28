@@ -37,6 +37,7 @@ flush privileges;
 Enter password:  （输入密码）
 2. 执行授权命令
 mysql> grant all privileges on *.* to root@'%' identified by '123';  （注意语句后面的“；”）
+mysql> grant all privileges on *.* to marketing@'%' identified by '123';  （注意语句后面的“；”）
 
 Query OK, 0 rows affected (0.07 sec)
 3. 退出再试：  mysql> quit
@@ -47,7 +48,7 @@ Your MySQL connection id is 3
 表示成功
 ```
 
-
+ALTER USER 'marketing'@'%' IDENTIFIED WITH mysql_native_password BY 'rMwbrNDZGMetN47n';
 >指定用户的访问ip
 ```text
 update user set host = '%' where user = 'root'; 
@@ -59,6 +60,7 @@ flush privileges;
 # 查看当前的认证插件
 select user,plugin from user where user='root';
 # 更改该用户的加密方式
+alter user 'marketing'@'localhost' identified with mysql_native_password by 'sigsoft';
 alter user 'root'@'localhost' identified with mysql_native_password by 'sigsoft';
 # 刷新生效
 flush privileges;
@@ -71,14 +73,16 @@ update user set password=password('sigsoft') where user='root' and host='%';
 
 
 
+update user set password=password('rMwbrNDZGMetN47n') where user='marketing' and host='%';
 
 
 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'ip_address' IDENTIFIED BY 'd81dceea33d5e0b9';
+FLUSH PRIVILEGES;
 
 
 
-
-
+update user set password=password('d81dceea33d5e0b9') where user='root' and host='localhost';
 
 
 

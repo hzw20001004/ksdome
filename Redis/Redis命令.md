@@ -16,6 +16,12 @@ redis-cli -a your_password
 SET mykey "myvalue"
 SET lottery:stock 1
 
+删除key
+DEL key 
+
+
+
+
 ```
 
 
