@@ -66,27 +66,16 @@ alter user 'root'@'localhost' identified with mysql_native_password by 'sigsoft'
 flush privileges;
 ```
 
+> 修改访问权限
 
-改密码
-update user set password=password('sigsoft') where user='root' and host='%';
+```text
+CREATE USER 'root'@'%' identified by 'root';
+GRANT ALL PRIVILEGES ON *.* to 'root'@'%';
 
-
-
-
-update user set password=password('rMwbrNDZGMetN47n') where user='marketing' and host='%';
-
-
-
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'ip_address' IDENTIFIED BY 'd81dceea33d5e0b9';
 FLUSH PRIVILEGES;
 
 
-
-update user set password=password('d81dceea33d5e0b9') where user='root' and host='localhost';
-
-
-
-
+```
 
 
 
