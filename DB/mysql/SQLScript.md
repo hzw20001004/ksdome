@@ -24,6 +24,7 @@ mysqldump -uroot -proot sigx_cps  > /var/log/mysql/sigx_cps.sql
 mysqldump -u root -p sigx  > /var/log/mysql/sigx.sql
 mysqldump -u root -p sigx_config  > /var/log/mysql/sigx_config.sql
           
+
           
           
 mysqldump -uroot -proot sigx_job  > /var/log/mysql/sigx_job.sql

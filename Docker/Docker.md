@@ -37,6 +37,7 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 }
 }
 
+
 EOF
 # 重启后台线程  # 重启docker
 sudo systemctl daemon-reload
@@ -44,7 +45,30 @@ sudo systemctl restart docker
 # 查看docker  是否配置成功
 docker info
 ```
+```text
+sudo nano /etc/docker/daemon.json
 
+{"registry-mirrors": [
+    "https://xxxxxxx.mirror.aliyuncs.com", #改成自己的阿里云加速器地址
+    "https://docker.rainbond.cc",
+    "https://do.nark.eu.org",
+    "https://dc.j8.work",
+    "https://docker.m.daocloud.io",
+    "https://dockerproxy.com",
+    "https://registry.docker-cn.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com",
+    "https://docker.nju.edu.cn"
+  ]
+}
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+这时候再拉去镜像就不会报错了
+sudo docker run hello-world
+
+```
 
 
 

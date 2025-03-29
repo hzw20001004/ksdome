@@ -33,7 +33,7 @@ alter table custom_target modify column target longtext;
 --改变列名称 key关键字
 ALTER TABLE test CHANGE `key` keysss  VARCHAR(50);
 --删除表里的某个字段
-    ALTER TABLE t_xcxshuffling DROP COLUMN sharing_type
+ALTER TABLE t_xcxshuffling DROP COLUMN sharing_type
 -- 就是避免在同一语句中，先select出同一表中的某些值，再update这个表
 --修改 同个表的数据
 update 表A set 字段=值 where id in (select id from (select 表A.id from wp_posts a left join ......一大长串查询......) 别名);
@@ -41,6 +41,8 @@ update 表A set 字段=值 where id in (select id from (select 表A.id from wp_p
 --修改 表名称
 ALTER TABLE QRTZ_LOCKS rename to qrtz_locks
 
+--修改某个表的字段编码
+ALTER TABLE ypp_card_platform_relation CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 --加索引
 ALTER TABLE `jinlangtou`.`t_member_credit` 
