@@ -19,12 +19,17 @@ NAME="ens192" //名称
 UUID="51e111fd-ec09-44f5-8163-81d8f8ebc8f4" //唯一ID
 DEVICE="ens192" //设备名称
 ONBOOT="yes" //开启启动
- IPADDR="192.168.100.83" //IP
- PREFIX="24" //子网掩码长度
- GATEWAY="192.168.100.1" //网关
- DNS1="114.114.114.114" //DNS1
- DNS2="8.8.8.8" //DNS1
- IPV6_PRIVACY="no" //IPV6隐私
+
+IPADDR="192.168.100.83"
+PREFIX="24"
+GATEWAY="192.168.100.1"
+DNS1="114.114.114.114"
+DNS2="8.8.8.8"
+
+ 
+ 
+CentOS8网卡配置后重启网络
+systemctl restart  NetworkManager
 ```
 
 
