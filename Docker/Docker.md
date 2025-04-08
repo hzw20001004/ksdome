@@ -34,8 +34,22 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 {
 {
   "registry-mirrors": ["https://lqsf4g9t.mirror.aliyuncs.com"]
+  "registry-mirrors": ["https://lqsf4g9t.mirror.aliyuncs.com"]
 }
 }
+
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-EOF
+{
+    "registry-mirrors": [
+        "https://dockerproxy.com",
+        "https://mirror.baidubce.com",
+        "https://docker.m.daocloud.io",
+        "https://docker.nju.edu.cn",
+        "https://docker.mirrors.sjtug.sjtu.edu.cn"
+    ]
+}
+EOF
 
 
 EOF
@@ -46,7 +60,7 @@ sudo systemctl restart docker
 docker info
 ```
 ```text
-sudo nano /etc/docker/daemon.json
+sudo vim /etc/docker/daemon.json
 
 {"registry-mirrors": [
     "https://xxxxxxx.mirror.aliyuncs.com", #改成自己的阿里云加速器地址
