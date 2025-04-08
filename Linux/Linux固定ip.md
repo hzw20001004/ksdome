@@ -2,6 +2,8 @@
 
 ###基础操作命令
 ```shell
+vi /etc/sysconfig/network-scripts/ifcfg-ens192
+
 TYPE="Ethernet" //以太网，还有其他的如bond，bridge
 PROXY_METHOD="none"//默认代理方式：关闭状态
 BROWSER_ONLY="no" //默认只是浏览器：否
