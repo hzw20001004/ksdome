@@ -2,28 +2,26 @@
 
 ```yaml
 
-- {name: k8s-master-111, address: 192.168.31.111, internalAddress: 192.168.31.111, port: 22, user: root, password: "root123"}
-- {name: k8s-master-112, address: 192.168.31.112, internalAddress: 192.168.31.112, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-- {name: k8s-master-113, address: 192.168.31.113, internalAddress: 192.168.31.113, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-- {name: k8s-worker-114, address: 192.168.31.114, internalAddress: 192.168.31.114, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-- {name: k8s-worker-115, address: 192.168.31.115, internalAddress: 192.168.31.115, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-- {name: k8s-worker-116, address: 192.168.31.116, internalAddress: 192.168.31.116, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
+- {name: k8s-master-201, address: 192.168.31.201, internalAddress: 192.168.31.201, port: 22, user: root, password: "sig123"}
+- {name: k8s-master-202, address: 192.168.31.202, internalAddress: 192.168.31.202, port: 22, user: root, privateKeyPath: "~/.ssh/id_rsa"}
+- {name: k8s-master-203, address: 192.168.31.203, internalAddress: 192.168.31.203, port: 22, user: root, privateKeyPath: "~/.ssh/id_rsa"}
+- {name: k8s-node-211, address: 192.168.31.211, internalAddress: 192.168.31.211, port: 22, user: root, privateKeyPath: "~/.ssh/id_rsa"}
+- {name: k8s-node-212, address: 192.168.31.212, internalAddress: 192.168.31.212, port: 22, user: root, privateKeyPath: "~/.ssh/id_rsa"}
+- {name: k8s-node-213, address: 192.168.31.213, internalAddress: 192.168.31.213, port: 22, user: root, privateKeyPath: "~/.ssh/id_rsa"}
 
 
 etcd:
-- k8s-master-111
-- k8s-master-112
-- k8s-master-113
+- k8s-master-201
+- k8s-master-202
+- k8s-master-203
   control-plane:
-- k8s-master-111
-- k8s-master-112
-- k8s-master-113
+- k8s-master-201
+- k8s-master-202
+- k8s-master-203
   worker:
-- k8s-worker-114
-- k8s-worker-115
-- k8s-worker-116
-  registry:
-- k8s-worker-114
+- k8s-node-211
+- k8s-node-212
+- k8s-node-213
 
 ```
 
