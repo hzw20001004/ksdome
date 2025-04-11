@@ -52,6 +52,33 @@ sudo tee /etc/docker/daemon.json <<-EOF
 EOF
 
 
+
+{
+	"registry-mirrors": [
+	"https://docker.1panelproxy.com",
+	"https://2a6bf1988cb6428c877f723ec7530dbc.mirror.swr.myhuaweicloud.com",
+	"https://docker.m.daocloud.io",
+	"https://hub-mirror.c.163.com",
+	"https://mirror.baidubce.com",
+	"https://your_preferred_mirror",
+	"https://dockerhub.icu",
+	"https://docker.registry.cyou",
+	"https://docker-cf.registry.cyou",
+	"https://dockercf.jsdelivr.fyi",
+	"https://docker.jsdelivr.fyi",
+	"https://dockertest.jsdelivr.fyi",
+	"https://mirror.aliyuncs.com",
+	"https://dockerproxy.com",
+	"https://mirror.baidubce.com",
+	"https://docker.m.daocloud.io",
+	"https://docker.nju.edu.cn",
+	"https://docker.mirrors.sjtug.sjtu.edu.cn",
+	"https://docker.mirrors.ustc.edu.cn",
+	"https://mirror.iscas.ac.cn",
+	"https://docker.rainbond.cc"
+	]
+}
+
 EOF
 # 重启后台线程  # 重启docker
 sudo systemctl daemon-reload
@@ -84,7 +111,20 @@ sudo docker run hello-world
 
 ```
 
-
+docker run -d --name ocp-421 \
+--network host \
+--cpu-period 100000 --cpu-quota 400000 --memory=$8G \
+-e OCP_METADB_HOST="${OCP_METADB_HOST}" \
+-e OCP_METADB_PORT="${OCP_METADB_PORT}" \
+-e OCP_METADB_DBNAME="${OCP_METADB_DBNAME}" \
+-e OCP_METADB_USER="${OCP_METADB_USER}" \
+-e OCP_METADB_PASSWORD="${OCP_METADB_PASSWORD}" \
+-e OCP_MONITORDB_DBNAME="${OCP_MONITORDB_DBNAME}" \
+-e OCP_MONITORDB_USER="${OCP_MONITORDB_USER}" \
+-e OCP_MONITORDB_PASSWORD="${OCP_MONITORDB_PASSWORD}" \
+-e OCP_INITIAL_ADMIN_PASSWORD="${OCP_INITIAL_ADMIN_PASSWORD}" \
+-e OCP_CONFIG_PROPERTIES="${OCP_CONFIG_PROPERTIES}" \
+oceanbase/ocp-ce
 
 
 
