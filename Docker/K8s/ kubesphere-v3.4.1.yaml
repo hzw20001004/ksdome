@@ -1,42 +1,41 @@
+
 apiVersion: kubekey.kubesphere.io/v1alpha2
 kind: Cluster
 metadata:
   name: sample
 spec:
   hosts:
-  - {name: k8s-master-111, address: 192.168.31.111, internalAddress: 192.168.31.111, port: 22, user: root, password: "root123"}
-  - {name: k8s-master-112, address: 192.168.31.112, internalAddress: 192.168.31.112, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-  - {name: k8s-master-113, address: 192.168.31.113, internalAddress: 192.168.31.113, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-  - {name: k8s-worker-114, address: 192.168.31.114, internalAddress: 192.168.31.114, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-  - {name: k8s-worker-115, address: 192.168.31.115, internalAddress: 192.168.31.115, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-  - {name: k8s-worker-116, address: 192.168.31.116, internalAddress: 192.168.31.116, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
+    - { name: k8s-master-201, address: 192.168.31.201, internalAddress: 192.168.31.201, port: 22, user: root, password: "sig123" }
+    - { name: k8s-master-202, address: 192.168.31.202, internalAddress: 192.168.31.202, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+    - { name: k8s-master-203, address: 192.168.31.203, internalAddress: 192.168.31.203, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+    - { name: k8s-node-211, address: 192.168.31.211, internalAddress: 192.168.31.211, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+    - { name: k8s-node-212, address: 192.168.31.212, internalAddress: 192.168.31.212, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+    - { name: k8s-node-213, address: 192.168.31.213, internalAddress: 192.168.31.213, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
   roleGroups:
     etcd:
-    - k8s-master-111
-    - k8s-master-112
-    - k8s-master-113
+      - k8s-master-201
+      - k8s-master-202
+      - k8s-master-203
     control-plane:
-    - k8s-master-111
-    - k8s-master-112
-    - k8s-master-113
+      - k8s-master-201
+      - k8s-master-202
+      - k8s-master-203
     worker:
-    - k8s-worker-114
-    - k8s-worker-115
-    - k8s-worker-116
-    registry:
-    - k8s-worker-114
+      - k8s-node-211
+      - k8s-node-212
+      - k8s-node-213
   controlPlaneEndpoint:
-    ## Internal loadbalancer for apiservers 
+    ## Internal loadbalancer for apiservers
     # internalLoadbalancer: haproxy
 
     domain: lb.kubesphere.local
     address: ""
     port: 6443
   kubernetes:
-    version: v1.23.17
+    version: v1.26.5.
     clusterName: cluster.local
     autoRenewCerts: true
-    containerManager: docker
+    containerManager: containerd
   etcd:
     type: kubekey
   network:
@@ -71,7 +70,7 @@ spec:
   local_registry: ""
   # dev_tag: ""
   etcd:
-    monitoring: true
+    monitoring: false
     endpointIps: localhost
     port: 2379
     tlsEnable: true
@@ -101,9 +100,9 @@ spec:
         enabled: false
     gpu:
       kinds:
-      - resourceName: "nvidia.com/gpu"
-        resourceType: "GPU"
-        default: true
+        - resourceName: "nvidia.com/gpu"
+          resourceType: "GPU"
+          default: true
     es:
       # master:
       #   volumeSize: 4Gi
@@ -154,7 +153,7 @@ spec:
     # webhook:
     #   resources: {}
   devops:
-    enabled: true
+    enabled: false
     jenkinsCpuReq: 0.5
     jenkinsCpuLim: 1
     jenkinsMemoryReq: 4Gi
@@ -171,13 +170,13 @@ spec:
       replicas: 2
     #   resources: {}
   logging:
-    enabled: true
+    enabled: false
     logsidecar:
       enabled: true
       replicas: 2
       # resources: {}
   metrics_server:
-    enabled: true
+    enabled: false
   monitoring:
     storageClass: ""
     node_exporter:
@@ -210,21 +209,21 @@ spec:
     clusterRole: none
   network:
     networkpolicy:
-      enabled: true
+      enabled: false
     ippool:
-      type: calico
+      type: none
     topology:
-      type: weave-scope
+      type: none
   openpitrix:
     store:
-      enabled: true
+      enabled: false
   servicemesh:
-    enabled: true
+    enabled: false
     istio:
       components:
         ingressGateways:
-        - name: istio-ingressgateway
-          enabled: false
+          - name: istio-ingressgateway
+            enabled: false
         cni:
           enabled: false
   edgeruntime:
@@ -257,6 +256,5 @@ spec:
     #   resources: {}
   terminal:
     timeout: 600
-  zone: ""
 
 
