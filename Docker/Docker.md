@@ -9,12 +9,11 @@ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 sudo yum install -y docker-ce docker-ce-cli containerd.io
 启动docker
-service docker start 
 查看版本 验证是否安装成功
-docker version
 设置开机自启
+service docker start 
 sudo systemctl enable docker
-
+docker version
 
 安装docker-compose
 sudo yum install docker-compose-plugin
@@ -30,56 +29,14 @@ docker-compose version
 # 创建文件
 sudo mkdir -p /etc/docker
 # 修改配置, 设置镜像
-sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-{
-  "registry-mirrors": ["https://lqsf4g9t.mirror.aliyuncs.com"]
-  "registry-mirrors": ["https://lqsf4g9t.mirror.aliyuncs.com"]
-}
-}
-
 sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json <<-EOF
+
+sudo tee /etc/docker/daemon.json <<EOF
 {
-    "registry-mirrors": [
-        "https://dockerproxy.com",
-        "https://mirror.baidubce.com",
-        "https://docker.m.daocloud.io",
-        "https://docker.nju.edu.cn",
-        "https://docker.mirrors.sjtug.sjtu.edu.cn"
-    ]
+  "registry-mirrors": [ "https://docker.1ms.run","https://docker.xuanyuan.me"]
 }
 EOF
 
-
-
-{
-	"registry-mirrors": [
-	"https://docker.1panelproxy.com",
-	"https://2a6bf1988cb6428c877f723ec7530dbc.mirror.swr.myhuaweicloud.com",
-	"https://docker.m.daocloud.io",
-	"https://hub-mirror.c.163.com",
-	"https://mirror.baidubce.com",
-	"https://your_preferred_mirror",
-	"https://dockerhub.icu",
-	"https://docker.registry.cyou",
-	"https://docker-cf.registry.cyou",
-	"https://dockercf.jsdelivr.fyi",
-	"https://docker.jsdelivr.fyi",
-	"https://dockertest.jsdelivr.fyi",
-	"https://mirror.aliyuncs.com",
-	"https://dockerproxy.com",
-	"https://mirror.baidubce.com",
-	"https://docker.m.daocloud.io",
-	"https://docker.nju.edu.cn",
-	"https://docker.mirrors.sjtug.sjtu.edu.cn",
-	"https://docker.mirrors.ustc.edu.cn",
-	"https://mirror.iscas.ac.cn",
-	"https://docker.rainbond.cc"
-	]
-}
-
-EOF
 # 重启后台线程  # 重启docker
 sudo systemctl daemon-reload
 sudo systemctl restart docker
