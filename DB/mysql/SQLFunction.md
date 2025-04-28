@@ -15,6 +15,9 @@ group by id
 -- 日期格式函数
 DATE_FORMAT(wo.ks_create_time, '%Y年%m月%d日')
 
+-- json解析
+JSON_EXTRACT(co.delivery_json, '$.expressId')   AS                                         '物流单号'
+
 -- 逗号分隔进行查询
 select owner_no,short_name , ww.warehouse_no,ww.name
 from wms_owner wo left join wms_warehouse ww  ON FIND_IN_SET(warehouse_no,owner_warehouse) > 0;          

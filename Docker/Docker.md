@@ -7,7 +7,10 @@
 安装命令
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+sudo yum install -y containerd.io
+
 sudo yum install -y docker-ce docker-ce-cli containerd.io
+
 启动docker
 查看版本 验证是否安装成功
 设置开机自启
@@ -36,6 +39,7 @@ sudo tee /etc/docker/daemon.json <<EOF
   "registry-mirrors": [ "https://docker.1ms.run","https://docker.xuanyuan.me"]
 }
 EOF
+
 
 # 重启后台线程  # 重启docker
 sudo systemctl daemon-reload
