@@ -23,7 +23,6 @@ DEVICE="ens192" //设备名称
 ONBOOT="yes" //开启启动
 
 
-
 IPADDR="192.168.31.201"
 PREFIX="24"
 GATEWAY="192.168.31.1"
