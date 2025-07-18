@@ -8,14 +8,13 @@
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 sudo yum install -y containerd.io
-
 sudo yum install -y docker-ce docker-ce-cli containerd.io
 
 启动docker
 查看版本 验证是否安装成功
 设置开机自启
-service docker start 
-sudo systemctl enable docker
+systemctl status docker
+systemctl enable docker
 docker version
 
 安装docker-compose
@@ -24,6 +23,8 @@ curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compo
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose  
 docker-compose version
+卸载
+sudo rm /usr/local/bin/docker-compose
 ```
 
 
@@ -72,51 +73,8 @@ sudo docker run hello-world
 
 ```
 
-docker run -d --name ocp-421 \
---network host \
---cpu-period 100000 --cpu-quota 400000 --memory=$8G \
--e OCP_METADB_HOST="${OCP_METADB_HOST}" \
--e OCP_METADB_PORT="${OCP_METADB_PORT}" \
--e OCP_METADB_DBNAME="${OCP_METADB_DBNAME}" \
--e OCP_METADB_USER="${OCP_METADB_USER}" \
--e OCP_METADB_PASSWORD="${OCP_METADB_PASSWORD}" \
--e OCP_MONITORDB_DBNAME="${OCP_MONITORDB_DBNAME}" \
--e OCP_MONITORDB_USER="${OCP_MONITORDB_USER}" \
--e OCP_MONITORDB_PASSWORD="${OCP_MONITORDB_PASSWORD}" \
--e OCP_INITIAL_ADMIN_PASSWORD="${OCP_INITIAL_ADMIN_PASSWORD}" \
--e OCP_CONFIG_PROPERTIES="${OCP_CONFIG_PROPERTIES}" \
-oceanbase/ocp-ce
 
 
-
->镜像云镜像服务上
-
-1.登录到阿里云
-2.找到容器镜像服务
-3.创建命名空间
-4.创建容器镜像
-![img_19.png](img/img_19.png)
-5.镜像推送到阿里云的的镜像仓库
-```shell
-# 登录
-[root@iZbp1bjhiosovua6v1vsclZ ~]# docker login --username=迷人酥酥 registry.cn-hangzhou.aliyuncs.com
-Password: 
-WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
-Configure a credential helper to remove this warning. See
-https://docs.docker.com/engine/reference/commandline/login/#credentials-store
-Login Succeeded
-[root@iZbp1bjhiosovua6v1vsclZ ~]# docker images
-REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
-hzw/tomcat               1.5       fb16eb6c7c09   11 hours ago   545MB
-hzw20001004/tomcat8080   1.5       fb16eb6c7c09   11 hours ago   545MB
-diytomcat8080            latest    fb16eb6c7c09   11 hours ago   545MB
-[root@iZbp1bjhiosovua6v1vsclZ ~]# docker push hzw20001004/tomcat8080:1.5
-```
-具体操作到阿里云官网看看
-
-##小结
-![img_20.png](img/img_20.png)
-![img_21.png](img/img_21.png)
 
 
 
