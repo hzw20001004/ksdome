@@ -49,6 +49,12 @@ ALTER TABLE `jinlangtou`.`t_member_credit`
 ADD INDEX `idx_new_amount`(`new_amount`) USING BTREE;
 -- 删除索引
 ALTER TABLE wms_sales_out DROP INDEX idx_new_stockin_time;
+
+-- 表字段重新编码
+ALTER TABLE coupon_record
+    MODIFY COLUMN coupon_code varchar(50)
+        CHARACTER SET utf8mb4
+            COLLATE utf8mb4_general_ci;
 ```
 
 
