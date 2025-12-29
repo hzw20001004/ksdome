@@ -2,6 +2,9 @@
 
 ###基础操作命令
 ```shell
+
+直接登录linux服务器改换IP
+
 vi /etc/sysconfig/network-scripts/ifcfg-ens192
 
 /etc/sysconfig/network-scripts
@@ -28,6 +31,9 @@ PREFIX="24"
 GATEWAY="192.168.31.1"
 DNS1="114.114.114.114"
 DNS2="8.8.8.8"
+
+ 
+
 
  
  
