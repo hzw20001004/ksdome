@@ -3,7 +3,9 @@
 >数据库操作  
 ```sql
 -- 进入数据库内部
-mysql -h 127.0.0.1 -P 3300 -u root -p
+mysql -h 127.0.0.1 -P 3300 -u root -p K#8vR3!pL9$Q
+
+mysql -h 10.33.62.91 -P 32307 -u jdsdht -p K#8vR3!pL9$Q
 
 -- 执行sql脚本
 source /home/20220221.sql

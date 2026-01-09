@@ -11,10 +11,15 @@ nohup java -jar warehouse-0.1.0.jar &
 
 > 指定文件
 ```text
+# 查看所有配置文件中的 listen 指令（推荐）
+grep -r "listen " /etc/nginx/
 nohup java -jar chengfa.jar >temp.txt &
 ``` 
 > 端口进程查看 进程杀除
 ```text
+// 查看所有端口
+sudo netstat -tulnp
+
 netstat -nlp | grep :9083
 
 netstat -nlp | grep :7077
@@ -27,7 +32,7 @@ whereis nginx
 ```
 kill -9 nginx
 
-
+sudo systemctl start nginx
 
 docker-compose build && docker-compose docker-compose-tomcat.yml up -d
 
