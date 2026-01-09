@@ -13,7 +13,7 @@ vim /mydata/cert/script/cert.sh   #编辑脚本
 #!/bin/bash 
 set -e
 if [ -z $1 ];then
-echo "服务器ip 示例192.168.1.1"
+echo "116.148.224.80"
 exit 0
 fi
 HOST=$1

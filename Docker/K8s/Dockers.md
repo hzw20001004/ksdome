@@ -1,31 +1,24 @@
 # K8s 集群部署
 
-```yaml
+> node节点8080问题
+```text
 
-- {name: k8s-master-111, address: 192.168.31.111, internalAddress: 192.168.31.111, port: 22, user: root, password: "root123"}
-- {name: k8s-master-112, address: 192.168.31.112, internalAddress: 192.168.31.112, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-- {name: k8s-master-113, address: 192.168.31.113, internalAddress: 192.168.31.113, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-- {name: k8s-worker-114, address: 192.168.31.114, internalAddress: 192.168.31.114, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-- {name: k8s-worker-115, address: 192.168.31.115, internalAddress: 192.168.31.115, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-- {name: k8s-worker-116, address: 192.168.31.116, internalAddress: 192.168.31.116, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519"}
-
-
-etcd:
-- k8s-master-111
-- k8s-master-112
-- k8s-master-113
-  control-plane:
-- k8s-master-111
-- k8s-master-112
-- k8s-master-113
-  worker:
-- k8s-worker-114
-- k8s-worker-115
-- k8s-worker-116
-  registry:
-- k8s-worker-114
-
+拷贝文件到子节点
+/etc/kubernetes/admin.conf
+kubectl get pod -A
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >>  ~/.bash_profile x
+source ~/.bash_profile
+验证节点是否加入进去了
+kubectl get nodes
 ```
+
+
+
+
+        [plugins."io.containerd.grpc.v1.cri".registry.configs."docker.io".auth]
+          username = "508578631@qq.com"
+          password = "qpalzm13579"
+
 
 
 

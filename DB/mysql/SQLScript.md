@@ -11,9 +11,9 @@ mysql -h 10.33.62.91 -P 32307 -u jdsdht -p K#8vR3!pL9$Q
 source /home/20220221.sql
 source /sql/sigx.sql
                       
-  source /var/log/mysql/111.sql;
-  source /var/log/mysql/test.sql;
-  source /var/log/mysql/sigx_config.sql;
+source /var/log/mysql/111.sql;
+source /var/log/mysql/test.sql;
+source /var/log/mysql/sigx_config.sql;
                       
                   
 
@@ -22,10 +22,16 @@ docker exec -i ba46824c3dd2 mysql -uroot -pHzw20011004. jinlangtou > /mydata/jin
 
 -- 导出指定数据库 并指定导出位置
 mysqldump -u root -p    sigx_cps  > /sql/sigx_cps.sql
-
 mysqldump -uroot -proot sigx_cps  > /var/log/mysql/sigx_cps.sql
 mysqldump -u root -p sigx  > /var/log/mysql/sigx.sql
 mysqldump -u root -p sigx_config  > /var/log/mysql/sigx_config.sql
+          
+
+          
+          
+mysqldump -uroot -proot sigx_job  > /var/log/mysql/sigx_job.sql
+mysqldump -uroot -proot sigx_zmn  > /var/log/mysql/sigx_zmn.sql
+mysqldump -uroot -proot sigx_cps  > /var/log/mysql/sigx_cps.sql
 
 -- 查看日志
 

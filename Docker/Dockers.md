@@ -67,10 +67,7 @@ docker cp /mydata/sql c5a715a1c74b:/sql
 
 
 
-
-
-
-
+docker cp 8466c4380af4:/etc/mysql/conf.d /mydata
 docker cp /mydata 768de823c49f:/home/sigx_cps.sql
 
 

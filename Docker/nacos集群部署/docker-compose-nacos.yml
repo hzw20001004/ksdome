@@ -1,0 +1,109 @@
+# 使用说明 V5.2
+# 1. 使用docker-compose  宿主机不需要配置host来发现
+# 2. 无需修改源码，根目录  docker-compose up 即可
+# 3. 静静等待服务启动
+
+version: '3'
+services:
+  nacos80-83:
+    image: nacos/nacos-server:v2.4.3 #此处根据实际需求更换版本号
+    container_name: nacos # 容器名称
+    environment:
+
+      # 使用 MySQL 数据库
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com
+      MYSQL_SERVICE_DB_NAME: sigx_config
+      MYSQL_SERVICE_USER: sigpig
+      MYSQL_SERVICE_PASSWORD: siginfo456$%^
+      # 集群配置
+      NACOS_SERVERS: 192.168.1.83:18848 192.168.1.90:18848 192.168.1.126:18848
+      PREFER_HOST_MODE: hostname
+      NACOS_SERVER_IP: 192.168.1.83
+      MODE: cluster
+      # 鉴权配置
+      NACOS_AUTH_ENABLE: "true"
+      NACOS_AUTH_TOKEN_EXPIRE_SECONDS: "18000"
+      NACOS_AUTH_TOKEN: "jVrHYqHcQU07sPS6woy8tRzvAchPoD+QV57ouPjvgCv="
+      NACOS_AUTH_CACHE_ENABLE: "false"
+      NACOS_AUTH_IDENTITY_KEY: "siginfo456KEY"
+      NACOS_AUTH_IDENTITY_VALUE: "siginfo456VALUE"
+
+    volumes:
+      - /mydata/nacos/cluster.conf:/home/nacos/conf/cluster.conf
+      - /mydata/nacos/logs:/home/nacos/logs
+    ports:
+      - "18848:8848"
+      - "17848:7848"
+      - "19848:9848"  # Nacos 2.0 新增的 gRPC 端口
+      - "19849:9849"  # Nacos 2.0 新增的 gRPC 端口
+    restart: always
+
+  nacos227-90:
+    image: nacos/nacos-server:v2.4.3 #此处根据实际需求更换版本号
+    container_name: nacos # 容器名称
+    environment:
+
+      # 使用 MySQL 数据库
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com
+      MYSQL_SERVICE_DB_NAME: sigx_config
+      MYSQL_SERVICE_USER: sigpig
+      MYSQL_SERVICE_PASSWORD: siginfo456$%^
+      # 集群配置
+      NACOS_SERVERS: 192.168.1.83:18848 192.168.1.90:18848 192.168.1.126:18848
+      PREFER_HOST_MODE: hostname
+#      NACOS_SERVER_IP: 116.148.225.227
+      NACOS_SERVER_IP: 192.168.1.90
+      MODE: cluster
+      # 鉴权配置
+      NACOS_AUTH_ENABLE: "true"
+      NACOS_AUTH_TOKEN_EXPIRE_SECONDS: "18000"
+      NACOS_AUTH_TOKEN: "jVrHYqHcQU07sPS6woy8tRzvAchPoD+QV57ouPjvgCv="
+      NACOS_AUTH_CACHE_ENABLE: "false"
+      NACOS_AUTH_IDENTITY_KEY: "siginfo456KEY"
+      NACOS_AUTH_IDENTITY_VALUE: "siginfo456VALUE"
+
+    volumes:
+      - /mydata/nacos/cluster.conf:/home/nacos/conf/cluster.conf
+      - /mydata/nacos/logs:/home/nacos/logs
+    ports:
+      - "18848:8848"
+      - "17848:7848"
+      - "19848:9848"  # Nacos 2.0 新增的 gRPC 端口
+      - "19849:9849"  # Nacos 2.0 新增的 gRPC 端口
+    restart: always
+
+
+  nacos252-126:
+    image: nacos/nacos-server:v2.4.3 #此处根据实际需求更换版本号
+    container_name: nacos # 容器名称
+    environment:
+
+      # 使用 MySQL 数据库
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com
+      MYSQL_SERVICE_DB_NAME: sigx_config
+      MYSQL_SERVICE_USER: sigpig
+      MYSQL_SERVICE_PASSWORD: siginfo456$%^
+      # 集群配置
+      NACOS_SERVERS: 192.168.1.83:18848 192.168.1.90:18848 192.168.1.126:18848
+      PREFER_HOST_MODE: hostname
+      NACOS_SERVER_IP: 192.168.1.126
+      MODE: cluster
+      # 鉴权配置
+      NACOS_AUTH_ENABLE: "true"
+      NACOS_AUTH_TOKEN_EXPIRE_SECONDS: "18000"
+      NACOS_AUTH_TOKEN: "jVrHYqHcQU07sPS6woy8tRzvAchPoD+QV57ouPjvgCv="
+      NACOS_AUTH_CACHE_ENABLE: "false"
+      NACOS_AUTH_IDENTITY_KEY: "siginfo456KEY"
+      NACOS_AUTH_IDENTITY_VALUE: "siginfo456VALUE"
+
+    volumes:
+      - /mydata/nacos/cluster.conf:/home/nacos/conf/cluster.conf
+    ports:
+      - "18848:8848"
+      - "7848:7848"
+      - "9848:9848"  # Nacos 2.0 新增的 gRPC 端口
+    restart: always
+
