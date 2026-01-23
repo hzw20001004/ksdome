@@ -25,6 +25,8 @@ kill -s 9 24204
 > nginx 文件目录
 ```text
 whereis nginx
+//刷新配置
+nginx -s reload
 ```
 kill -9 nginx
 
