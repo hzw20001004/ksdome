@@ -4,7 +4,7 @@
 以查看 80 端口占用
 netstat -ano | findstr ":8080"
 强制终止 pid 
-taskkill /f /pid 1234
+  吗jjjop-【；‘
 java -jar meeting-modules-1.0.0.jar nohup.log 2>&1 &
 
 
