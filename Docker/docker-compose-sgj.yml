@@ -1,18 +1,27 @@
 version: '3'
 services:
-  mysql:
-    image: mysql:8
-    container_name: mysql
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  sig-mysql:
+    image: mysql:8.0.18
+    container_name: sig-mysql
     restart: always
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
-      MYSQL_ROOT_PASSWORD: ew2q#dDqes22e # 设置root帐号密码
-    ports:
-      - 3306:3306
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: Aw123456.
+      TZ: Asia/Shanghai
+      SET_CONTAINER_TIMEZONE: true
+      CONTAINER_TIMEZONE: Asia/Shanghai
     volumes:
-      - /mydata/mysql/data/db:/var/lib/mysql # 数据文件挂载
-      - /mydata/mysql/data/conf:/etc/mysql/conf.d # 配置文件挂载
-      - /mydata/mysql/log:/var/log/mysql # 日志文件挂载
+      # 推荐：挂载自定义配置到 conf.d 目录（MySQL 会自动加载该目录下的 .cnf 文件）
+      - "/mydata/mysql/conf:/etc/mysql/conf.d"
+      # 正确：挂载 MySQL 核心数据目录（必须是 /var/lib/mysql）
+      - "/mydata/mysql/data:/var/lib/mysql"
+      # 日志目录挂载（路径正确，保留）
+      - "/mydata/mysql/log:/var/log/mysql"
+      # 时区同步（保留，ro 表示只读）
+      - "/etc/localtime:/etc/localtime:ro"
+    network_mode: host
   redis:
     image: redis:7
     container_name: redis
