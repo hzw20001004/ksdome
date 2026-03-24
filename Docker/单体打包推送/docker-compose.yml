@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  ruoyi-admin-czfz:
+    build: ./ruoyi-admin
+    image: ruoyi-admin
+    container_name: ruoyi-admin-czfz
+    restart: always
+    network_mode: host
+    environment:
+      TZ: Asia/Shanghai
+      JAVA_OPTS: -Xms512m -Xmx1024m
