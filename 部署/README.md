@@ -7,6 +7,7 @@ nohup java -jar parent-services-0.0.1-SNAPSHOT.jar &
 java -jar station.jar > stationLog.txt 2>&1 &
 ```
 nohup java -jar warehouse-0.1.0.jar &
+nohup java -jar ruoyi-admin.jar &
 
 
 > 指定文件
@@ -29,6 +30,8 @@ kill -s 9 24204
 > nginx 文件目录
 ```text
 whereis nginx
+//刷新配置
+nginx -s reload
 ```
 kill -9 nginx
 //更新配置

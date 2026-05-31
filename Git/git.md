@@ -33,6 +33,9 @@ git push --set-upstream origin XXX 设置默认分支
 git branch -D <name> 强行删除分支
 git reset --soft HEAD^ 不删除工作空间改动代码，撤销commit，不撤销git add . 
 git commit --amend 修改注释
+
+# 如果是文件夹，加 -r；如果是单个文件，去掉 -r 即可
+git rm -r --cached .claude
 ```
 
 

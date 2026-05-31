@@ -22,7 +22,7 @@ CREATE TABLE `表名` (
 
  `update_name` varchar(50) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0)  NULL COMMENT '更新人',
  create_time datetime DEFAULT CURRENT_TIMESTAMP  NULL COMMENT '创建时间',
- xupdate_time datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP   NULL COMMENT '更新时间'
+ update_time datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP   NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC 
   comment '小程序';
 

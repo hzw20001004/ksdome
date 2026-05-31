@@ -1,6 +1,13 @@
 > 打包命令
 
 ``` xml
+// 引用外部jar导入到本地电脑maven库
+mvn install:install-file ^
+-Dfile=D:\zwdd-sdk-java-1.2.1.jar ^
+-DgroupId=com.zwdd ^
+-DartifactId=zwdd-sdk-java ^
+-Dversion=1.2.1 ^
+-Dpackaging=jar
 
 1. maven引用外部的jar，在pom.xml添加
 <dependencies>
