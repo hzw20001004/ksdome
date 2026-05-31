@@ -31,7 +31,9 @@ kill -s 9 24204
 whereis nginx
 ```
 kill -9 nginx
-
+//更新配置
+sudo systemctl reload nginx
+//启动nginx
 sudo systemctl start nginx
 >操作tomcat 启动命令
 ```shell
