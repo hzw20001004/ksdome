@@ -31,6 +31,7 @@ kill -s 9 24204
 ```text
 whereis nginx
 //刷新配置
+nginx -t
 nginx -s reload
 ```
 kill -9 nginx

@@ -1,5 +1,2 @@
 #!/bin/sh
-nohup env LOG_PATH=/home/onlyoffice-docs \
-java -jar ruoyi-admin.jar \
-> nohup.log 2>&1 &
-
+nohup java -jar -Dserver.port=8080 ruoyi-admin.jar > /dev/null 2>&1 &
