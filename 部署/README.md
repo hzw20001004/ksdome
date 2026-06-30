@@ -29,10 +29,14 @@ kill -s 9 24204
 ``` 
 > nginx 文件目录
 ```text
+//寻找根目录
 whereis nginx
+//检查配置
+sudo nginx -t
 //刷新配置
-nginx -t
 nginx -s reload
+//更新并重启
+nginx -t && systemctl restart nginx && nginx -v
 ```
 kill -9 nginx
 //更新配置

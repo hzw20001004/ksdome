@@ -1,0 +1,45 @@
+server:
+  port: 8081
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+
+canal.conf:
+  mode: tcp
+  flatMessage: true
+  zookeeperHosts:
+  syncBatchSize: 5000           # 原 1000 -> 5000, 一次提交批量大, 减少往返
+  retries: -1
+  timeout:
+  accessKey:
+  secretKey:
+  consumerProperties:
+    canal.tcp.server.host: canal-server:11111
+    canal.tcp.zookeeper.hosts:
+    canal.tcp.batch.size: 2000  # 原 500 -> 2000, 单次从 canal-server 拉取的消息数
+    canal.tcp.username:
+    canal.tcp.password:
+
+  srcDataSources:
+    defaultDS:
+      url: jdbc:mysql://rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com:3306/jielong?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: systemdba
+      password: gRdrqp3LLuSgdgZH
+  canalAdapters:
+  - instance: jielong
+    groups:
+    - groupId: g1
+      outerAdapters:
+      - name: logger
+      - name: rdb
+        key: mysqlKey
+        properties:
+          jdbc.driverName: com.mysql.cj.jdbc.Driver
+          # rewriteBatchedStatements=true 让 JDBC 把多条 INSERT 合并成一条, 极大提升批量写入速度
+          # serverTimezone=Asia/Shanghai 避免时区告警
+          jdbc.url: jdbc:mysql://sig-mysql-txg:3306/jielong?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
+          jdbc.username: root
+          jdbc.password: Aw123456.
+          threads: 20              # 原 5 -> 20, 32 核机器足够支撑

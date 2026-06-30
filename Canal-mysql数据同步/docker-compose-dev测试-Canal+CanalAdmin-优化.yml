@@ -1,0 +1,69 @@
+# ============================================================================
+# Canal + Canal-Adapter 部署编排 (独立模式, 不依赖 Canal-Admin)
+# 数据流向: 阿里云 RDS (源) -> Canal-Server -> Canal-Adapter -> 本地 MySQL (sig-mysql-txg)
+# 官方文档: https://github.com/alibaba/canal
+# 挂载根目录: /home/canal
+# 使用说明:
+#   1. 创建配置目录并上传配置文件到 /home/canal/{canal-server-conf,canal-adapter-conf,canal-*-logs}
+#   2. docker-compose up -d
+# ============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # Canal-Server: 读取 阿里云 RDS 的 binlog
+  # 独立模式 (file-instance.xml): 自动扫描 conf/<destination>/instance.properties 加载实例
+  # 实例由文件系统挂载直接提供, 不再需要 canal-admin Web UI 注册
+  # ---------------------------------------------------------------------------
+  canal-server:
+    image: docker.1ms.run/canal/canal-server:v1.1.5
+    # 备用镜像源 (任选其一, 替换 image 即可):
+    #   docker.m.daocloud.io/canal/canal-server:v1.1.5
+    #   dockerproxy.com/canal/canal-server:v1.1.5
+    #   registry.cn-hangzhou.aliyuncs.com/canal/canal-server:v1.1.5
+    container_name: canal-server
+    restart: always
+    ports:
+      - "11111:11111"     # canal-server 数据传输端口 (canal-adapter 连接)
+      - "11112:11112"     # canal-server metrics
+    environment:
+      TZ: Asia/Shanghai
+      canal.port: 11111
+      canal.metrics.pull.port: 11112
+      canal.zkServers: ""
+      canal.withoutNetty: "false"
+      canal.auto.scan: "false"                # 关闭扫描, 避免加载镜像自带 example 实例
+      canal.auto.scan.interval: 5
+      canal.instance.global.spring.xml: classpath:spring/file-instance.xml
+      canal.instance.global.mode: spring
+      # JVM 堆 (宿主机 64G, 给 4G 足够, 默认 2G 偏小)
+      CANAL_SERVER_HEAP: "-Xms4g -Xmx4g"
+    volumes:
+      - "/home/canal/canal-server-conf/canal.properties:/home/admin/canal-server/conf/canal.properties"
+      - "/home/canal/canal-server-conf/jielong-instance.properties:/home/admin/canal-server/conf/jielong/instance.properties"
+      - "/home/canal/canal-server-conf/logback.xml:/home/admin/canal-server/conf/logback.xml"
+      - "/home/canal/canal-server-logs:/home/admin/canal-server/logs"
+      - "/etc/localtime:/etc/localtime:ro"
+
+  # ---------------------------------------------------------------------------
+  # Canal-Adapter: 接收 canal-server 数据, 写入本地 MySQL (目标库 jielong)
+  # 注意: 官方 canal/canal-adapter 没有 Docker 镜像, 使用社区维护的 slpcat/canal-adapter
+  # ---------------------------------------------------------------------------
+  canal-adapter:
+    image: docker.1ms.run/slpcat/canal-adapter:v1.1.5
+    # 备用社区镜像:
+    #   docker.1ms.run/dyrnq/canal-adapter:1.1.5-alpha-1-jdk8
+    container_name: canal-adapter
+    restart: always
+    ports:
+      - "8081:8081"       # Canal-Adapter REST 接口
+    environment:
+      TZ: Asia/Shanghai
+      # JVM 堆 (宿主机 64G, 给 4G 足够; 启动脚本会读取 JAVA_OPTS 环境变量)
+      JAVA_OPTS: "-server -Xms4g -Xmx4g -Xmn2g -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
+    volumes:
+      - "/home/canal/canal-adapter-conf/application.yml:/opt/canal-adapter/conf/application.yml"
+      - "/home/canal/canal-adapter-conf/rdb:/opt/canal-adapter/conf/rdb"
+      - "/home/canal/canal-adapter-logs:/opt/canal-adapter/logs"
+      - "/etc/localtime:/etc/localtime:ro"
+    depends_on:
+      - canal-server
