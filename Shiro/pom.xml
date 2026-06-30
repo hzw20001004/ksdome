@@ -13,10 +13,5 @@
     <properties>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>com</groupId>
-            <artifactId>common</artifactId>
-            <version>${version}</version>
-        </dependency>
     </dependencies>
 </project>

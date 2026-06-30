@@ -19,9 +19,7 @@
     <description>hzw - KsDome</description>
     <!-- 子模块 -->
     <modules>
-        <module>Springboot</module>
         <module>Shiro</module>
-        <module>common</module>
         <module>SpringSecurity</module>
         <module>Mybatis-puls</module>
         <module>SpringCloud</module>
