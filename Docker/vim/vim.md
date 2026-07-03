@@ -27,7 +27,7 @@ apt-get update
 apt-get install vim 
 
 #测试vim文件编辑 成功
-vim test.yml
+vim test.txt.yml
 ```
 ![img_1.png](img_1.png)
 

@@ -50,7 +50,7 @@
           R apply(T t);
  
   4. Predicate<T> 断言型接口
-          Boolean test(T t);
+          Boolean test.txt(T t);
 ```
 >方法引用与构造器引用
 

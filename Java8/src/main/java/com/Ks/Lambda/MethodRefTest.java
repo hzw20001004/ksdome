@@ -69,7 +69,7 @@ public class MethodRefTest<test> {
      */
     @Test
     public void test3(){
-        // boolean test(T t,U u) 与 boolean equals(Object anObject)
+        // boolean test.txt(T t,U u) 与 boolean equals(Object anObject)
         BiPredicate<String,String> biPredicate=(x,y)-> x.equals(y);
         System.out.println(biPredicate.test("han","hello"));
         System.out.println("-------------------------------------");

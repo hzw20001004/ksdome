@@ -185,7 +185,7 @@ curl http://localhost:8081/syncSwitch/jielong
 -- RDS 上
 USE jielong;
 -- 假设有测试表 test_canal (id INT PRIMARY KEY, val VARCHAR(50))
-INSERT INTO test_canal(id, val) VALUES(99999, 'canal-sync-test-' NOW());
+INSERT INTO test_canal(id, val) VALUES(99999, 'canal-sync-test.txt-' NOW());
 COMMIT;
 ```
 

@@ -22,7 +22,7 @@ import java.util.function.Supplier;
  *         R apply(T t);
  *
  * 4. Predicate<T> 断言型接口
- *         Boolean test(T t);
+ *         Boolean test.txt(T t);
  *
  * @Created Ks
  */
