@@ -13,6 +13,26 @@
 停用Docker自动唤醒机制  systemctl stop docker.socket
 查看Docker自动唤醒机制是否关闭  systemctl status docker
 
+# 开机自启
+systemctl enable docker
+
+# 取消开机自启
+systemctl disable docker
+
+# 立刻启动docker
+systemctl start docker
+
+# 停止docker
+systemctl stop docker
+# 重启docker（修改配置后常用）
+systemctl restart docker
+# 查看所有容器自启动策略
+docker ps -a --quiet | while read cid;do
+  name=$(docker inspect --format '{{.Name}}' $cid | sed 's/\///g')
+  mode=$(docker inspect --format '{{.HostConfig.RestartPolicy.Name}}' $cid)
+  echo "容器名：$name  重启策略：$mode"
+done
+
 ```
 
 

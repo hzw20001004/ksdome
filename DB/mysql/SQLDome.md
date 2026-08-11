@@ -44,6 +44,9 @@ ALTER TABLE QRTZ_LOCKS rename to qrtz_locks
 -- 修改某个表的字段编码
 ALTER TABLE ypp_card_platform_relation CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
+-- 修改字段名称
+ALTER TABLE `sys_xcx_city` CHANGE COLUMN `province_ad_id` `city_code_id` varchar(500) COMMENT '省级广告id编号, 多个用英文逗号分隔';
+
 -- 加索引
 ALTER TABLE `jinlangtou`.`t_member_credit` 
 ADD INDEX `idx_new_amount`(`new_amount`) USING BTREE;

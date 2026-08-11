@@ -14,6 +14,7 @@ sudo yum install -y docker-ce docker-ce-cli containerd.io
 查看版本 验证是否安装成功
 设置开机自启
 systemctl status docker
+设置开机自启
 systemctl enable docker
 docker version
 

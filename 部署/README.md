@@ -19,6 +19,8 @@ nohup java -jar chengfa.jar >temp.txt &
 > 端口进程查看 进程杀除
 ```text
 // 查看所有端口
+ss -tulnp
+
 sudo netstat -tulnp
 
 netstat -nlp | grep :9083

@@ -1,4 +1,8 @@
 # 更新源
+
+
+
+
 cat > /etc/yum.repos.d/nginx.repo <<'EOF'
 [nginx-stable]
 name=nginx stable repo
@@ -18,3 +22,26 @@ nginx -v
 
 dnf remove -y nginx
 dnf install -y nginx-1:1.30.3-1.el8.ngx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
