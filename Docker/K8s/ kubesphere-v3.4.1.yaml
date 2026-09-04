@@ -1,0 +1,57 @@
+
+apiVersion: kubekey.kubesphere.io/v1alpha2
+kind: Cluster
+metadata:
+  name: sample
+spec:
+  hosts:
+    - { name: k8s-m-201, address: 192.168.31.201, internalAddress: 192.168.31.201, port: 22, user: root, password: "sig123" }
+    - { name: k8s-m-202, address: 192.168.31.202, internalAddress: 192.168.31.202, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+    - { name: k8s-m-203, address: 192.168.31.203, internalAddress: 192.168.31.203, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+    - { name: k8s-node-211, address: 192.168.31.211, internalAddress: 192.168.31.211, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+    - { name: k8s-node-212, address: 192.168.31.212, internalAddress: 192.168.31.212, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+    - { name: k8s-node-213, address: 192.168.31.213, internalAddress: 192.168.31.213, port: 22, user: root, privateKeyPath: "~/.ssh/id_ed25519" }
+  roleGroups:
+    etcd:
+    - k8s-m-201
+    - k8s-m-202
+    - k8s-m-203
+    control-plane:
+    - k8s-m-201
+    - k8s-m-202
+    - k8s-m-203
+    worker:
+    - k8s-node-211
+    - k8s-node-212
+    - k8s-node-213
+  controlPlaneEndpoint:
+    ## Internal loadbalancer for apiservers
+    # internalLoadbalancer: haproxy
+
+    domain: lb.kubesphere.local
+    address: ""
+    port: 6443
+  kubernetes:
+    version: v1.26.5.
+    clusterName: cluster.local
+    autoRenewCerts: true
+    containerManager: containerd
+  etcd:
+    type: kubekey
+  network:
+    plugin: calico
+    kubePodsCIDR: 10.233.64.0/18
+    kubeServiceCIDR: 10.233.0.0/18
+    ## multus support. https://github.com/k8snetworkplumbingwg/multus-cni
+    multusCNI:
+      enabled: false
+  registry:
+    privateRegistry: ""
+    namespaceOverride: ""
+    registryMirrors: []
+    insecureRegistries: []
+  addons: []
+
+
+
+

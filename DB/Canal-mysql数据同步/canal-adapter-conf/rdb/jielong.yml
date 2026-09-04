@@ -1,0 +1,6 @@
+outerAdapterKey: mysqlKey
+destination: jielong
+groupId: g1
+dbMapping:
+  mirrorDb: true
+  database: jielong
