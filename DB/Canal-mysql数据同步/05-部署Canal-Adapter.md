@@ -11,7 +11,7 @@
 docker exec canal-server ss -lntp | grep 11111
 
 # 2. 目标 MySQL 已起，jielong 库已建（见 03-部署MySQL.md）
-docker exec sig-mysql-txg mysql -uroot -p'Aw123456.' -e "SHOW DATABASES LIKE 'jielong'"
+docker exec sig-mysql-txg mysql -uroot -p'*******' -e "SHOW DATABASES LIKE 'jielong'"
 
 # 3. adapter 能解析 sig-mysql-txg 主机名（同一 network）
 docker exec canal-server ping -c 1 sig-mysql-txg 2>&1 | head -1 || \
@@ -62,7 +62,7 @@ srcDataSources:
   defaultDS:
     url: jdbc:mysql://rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com:3306/jielong?...
     username: systemdba
-    password: gRdrqp3LLuSgdgZH
+    password: *******
 ```
 
 > `srcDataSources` **不是**用来读 binlog 的（那是 canal-server 的事），而是 adapter 用来：
@@ -84,7 +84,7 @@ canalAdapters:
         jdbc.driverName: com.mysql.cj.jdbc.Driver
         jdbc.url: jdbc:mysql://sig-mysql-txg:3306/jielong?...&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
         jdbc.username: root
-        jdbc.password: Aw123456.
+        jdbc.password: *******
         threads: 20                # 原 5 → 20, 32 核机器支撑
 ```
 
@@ -192,7 +192,7 @@ COMMIT;
 5-10 秒内在 **本地 MySQL** 验证：
 
 ```bash
-docker exec -it sig-mysql-txg mysql -uroot -p'Aw123456.' jielong -e \
+docker exec -it sig-mysql-txg mysql -uroot -p'*******' jielong -e \
   "SELECT * FROM test_canal WHERE id=99999;"
 ```
 
@@ -211,7 +211,7 @@ DELETE FROM jielong.test_canal WHERE id=99999;
 docker compose logs --tail=100 canal-adapter | grep -E 'batch|sink'
 
 # 2. 看 MySQL 写入速度（慢查询日志里 2 秒以上的）
-docker exec sig-mysql-txg mysql -uroot -p'Aw123456.' -e \
+docker exec sig-mysql-txg mysql -uroot -p'*******' -e \
   "SHOW VARIABLES LIKE 'slow_query_log%'; SELECT COUNT(*) FROM mysql.slow_log;"
 
 # 3. JVM 状态（通过 metrics）

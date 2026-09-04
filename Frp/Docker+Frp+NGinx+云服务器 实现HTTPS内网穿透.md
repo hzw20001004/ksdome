@@ -51,7 +51,7 @@ log_max_days = 2
 # 认证超时时间
 authentication_timeout = 900
 # 认证token，客户端需要和此对应，类似于密码，建议设置复杂
-token=2DwEfQYnY8f0jG7vPYI29tzzA72_iha93n1gmYqCj5Zw1wxH
+token=*******
 # 最大连接数
 max_pool_count = 5
 max_ports_per_client = 0
@@ -120,7 +120,7 @@ server_addr = xxxx
 # 对应服务端配置 bind_port
 server_port = 7000
 # 对应服务端配置中的 token
-token = 2DwEfQYnY8f0jG7vPYI29tzzA72_iha93n1gmYqCj5Zw1wxH
+token = *******
 
 # 每一个 server 对应一个端口映射，名称可自定义
 [server-1]

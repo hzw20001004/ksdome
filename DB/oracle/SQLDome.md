@@ -20,9 +20,9 @@ permanent
 -- 创建后立即可以使用
 online;
 
--- 3. 创建【数据库账号】：账号名 jczl，密码 jdcz_jczl08
+-- 3. 创建【数据库账号】：账号名 jczl，密码 *******
 -- 默认把数据存到刚才创建的 jczl 表空间里
-create user jczl identified by jdcz_jczl08 default tablespace jczl;
+create user jczl identified by ******* default tablespace jczl;
 
 -- 4. 给账号授权 DBA 权限（最高权限，开发/测试随便用）
 grant dba to jczl;
@@ -33,7 +33,7 @@ grant connect, resource to jczl;
 -- 拷贝进容器
 docker cp /home/STATION.dmp e78f1f82309a:/home/oracle/STATION.dmp
 -- oracle导入 dbf文件
-imp jczl/jdcz_jczl08@127.0.0.1/XE file=/home/oracle/STATION.dmp full=yes tablespaces=STATION
+imp jczl/*******@127.0.0.1/XE file=/home/oracle/STATION.dmp full=yes tablespaces=STATION
 
 
 

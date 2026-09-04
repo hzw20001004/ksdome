@@ -17,7 +17,7 @@ public class AddressGaoDeUtils
     private static final Logger log = LoggerFactory.getLogger(AddressGaoDeUtils.class);
 
     // IP地址查询
-    public static final String IP_URL = "https://restapi.amap.com/v3/ip?key=71f460a8e4ca19c2525c06148e90bcd2";
+    public static final String IP_URL = "https://restapi.amap.com/v3/ip?key=*******";
 
     public static JSONObject getRealAddressByIP(String ip)
     {

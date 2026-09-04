@@ -4,7 +4,7 @@
 ```sql
 终极登录方法（分步，绝对成功）
 disql /nolog
-conn SYSDBA/"Dameng@123"@localhost:4236
+conn SYSDBA/"*******"@localhost:4236
 
 ```
 

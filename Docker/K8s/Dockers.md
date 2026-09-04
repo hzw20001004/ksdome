@@ -17,7 +17,7 @@ kubectl get nodes
 
         [plugins."io.containerd.grpc.v1.cri".registry.configs."docker.io".auth]
           username = "508578631@qq.com"
-          password = "qpalzm13579"
+          password = "*******"
 
 
 

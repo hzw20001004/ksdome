@@ -33,7 +33,7 @@ chown -R dmdba:dinstall /db_data
 su - dmdba
 
 # 初始化（软件装在 /data/dmdbms，数据落到 /db_data/dmdata）
-/data/dmdbms/bin/dminit PATH=/db_data/dmdata PAGE_SIZE=32 LOG_SIZE=2048 SYSDBA_PWD="Dameng@123"
+/data/dmdbms/bin/dminit PATH=/db_data/dmdata PAGE_SIZE=32 LOG_SIZE=2048 SYSDBA_PWD="*******"
 ```
 
 执行成功后，会在 `/db_data/dmdata/DAMENG/` 下生成 `dm.ini`、`dm.ctl`、数据文件、联机日志等。
@@ -92,7 +92,7 @@ ps -ef | grep dmserver
 ```bash
 su - dmdba
 cd /data/dmdbms/bin
-./disql SYSDBA/"Dameng@123"@localhost:5236
+./disql SYSDBA/"*******"@localhost:5236
 ```
 
 ```sql
@@ -186,7 +186,7 @@ backup database full backupset '/db_data/dmbak/bak1';
 | 归档目录 | `/db_data/dmarch` |
 | 备份目录 | `/db_data/dmbak` |
 | 默认端口 | `5236` |
-| 默认账号 | `SYSDBA` / `Dameng@123` |
+| 默认账号 | `SYSDBA` / `*******` |
 | 服务脚本 | `/data/dmdbms/bin/DmServiceDM` |
 | disql | `/data/dmdbms/bin/disql` |
 | 服务注册 | `/data/dmdbms/script/root/dm_service_installer.sh` |

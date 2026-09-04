@@ -25,7 +25,7 @@ canal-server 启动前，RDS 必须**先**做这三件事，否则 server 起不
 
 ```sql
 -- 在 RDS 上执行 (用高权限账号)
-CREATE USER 'systemdba'@'%' IDENTIFIED BY 'gRdrqp3LLuSgdgZH';
+CREATE USER 'systemdba'@'%' IDENTIFIED BY '*******';
 GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'systemdba'@'%';
 FLUSH PRIVILEGES;
 ```
@@ -68,7 +68,7 @@ RDS 控制台 → 数据安全性 → 白名单设置：加入 canal-server 机�
 
 ```bash
 # canal-server 机器上测试连通性
-mysql -h rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com -u systemdba -p'gRdrqp3LLuSgdgZH' -e "SELECT 1;"
+mysql -h rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com -u systemdba -p'*******' -e "SELECT 1;"
 # 期望: 1
 ```
 
@@ -117,7 +117,7 @@ canal.instance.master.gtid =                      # 空 = 不用 GTID
 
 # 2. 账号
 canal.instance.dbUsername = systemdba
-canal.instance.dbPassword = gRdrqp3LLuSgdgZH
+canal.instance.dbPassword = *******
 canal.instance.defaultDatabaseName = jielong
 
 # 3. 订阅规则: 只同步 jielong 库的所有表

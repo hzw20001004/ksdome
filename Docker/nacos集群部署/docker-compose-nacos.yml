@@ -15,7 +15,7 @@ services:
       MYSQL_SERVICE_HOST: rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com
       MYSQL_SERVICE_DB_NAME: sigx_config
       MYSQL_SERVICE_USER: sigpig
-      MYSQL_SERVICE_PASSWORD: siginfo456$%^
+      MYSQL_SERVICE_PASSWORD: *******
       # 集群配置
       NACOS_SERVERS: 192.168.1.83:18848 192.168.1.90:18848 192.168.1.126:18848
       PREFER_HOST_MODE: hostname
@@ -24,10 +24,10 @@ services:
       # 鉴权配置
       NACOS_AUTH_ENABLE: "true"
       NACOS_AUTH_TOKEN_EXPIRE_SECONDS: "18000"
-      NACOS_AUTH_TOKEN: "jVrHYqHcQU07sPS6woy8tRzvAchPoD+QV57ouPjvgCv="
+      NACOS_AUTH_TOKEN: "*******"
       NACOS_AUTH_CACHE_ENABLE: "false"
       NACOS_AUTH_IDENTITY_KEY: "siginfo456KEY"
-      NACOS_AUTH_IDENTITY_VALUE: "siginfo456VALUE"
+      NACOS_AUTH_IDENTITY_VALUE: "*******"
 
     volumes:
       - /mydata/nacos/cluster.conf:/home/nacos/conf/cluster.conf
@@ -49,7 +49,7 @@ services:
       MYSQL_SERVICE_HOST: rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com
       MYSQL_SERVICE_DB_NAME: sigx_config
       MYSQL_SERVICE_USER: sigpig
-      MYSQL_SERVICE_PASSWORD: siginfo456$%^
+      MYSQL_SERVICE_PASSWORD: *******
       # 集群配置
       NACOS_SERVERS: 192.168.1.83:18848 192.168.1.90:18848 192.168.1.126:18848
       PREFER_HOST_MODE: hostname
@@ -59,10 +59,10 @@ services:
       # 鉴权配置
       NACOS_AUTH_ENABLE: "true"
       NACOS_AUTH_TOKEN_EXPIRE_SECONDS: "18000"
-      NACOS_AUTH_TOKEN: "jVrHYqHcQU07sPS6woy8tRzvAchPoD+QV57ouPjvgCv="
+      NACOS_AUTH_TOKEN: "*******"
       NACOS_AUTH_CACHE_ENABLE: "false"
       NACOS_AUTH_IDENTITY_KEY: "siginfo456KEY"
-      NACOS_AUTH_IDENTITY_VALUE: "siginfo456VALUE"
+      NACOS_AUTH_IDENTITY_VALUE: "*******"
 
     volumes:
       - /mydata/nacos/cluster.conf:/home/nacos/conf/cluster.conf
@@ -85,7 +85,7 @@ services:
       MYSQL_SERVICE_HOST: rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com
       MYSQL_SERVICE_DB_NAME: sigx_config
       MYSQL_SERVICE_USER: sigpig
-      MYSQL_SERVICE_PASSWORD: siginfo456$%^
+      MYSQL_SERVICE_PASSWORD: *******
       # 集群配置
       NACOS_SERVERS: 192.168.1.83:18848 192.168.1.90:18848 192.168.1.126:18848
       PREFER_HOST_MODE: hostname
@@ -94,10 +94,10 @@ services:
       # 鉴权配置
       NACOS_AUTH_ENABLE: "true"
       NACOS_AUTH_TOKEN_EXPIRE_SECONDS: "18000"
-      NACOS_AUTH_TOKEN: "jVrHYqHcQU07sPS6woy8tRzvAchPoD+QV57ouPjvgCv="
+      NACOS_AUTH_TOKEN: "*******"
       NACOS_AUTH_CACHE_ENABLE: "false"
       NACOS_AUTH_IDENTITY_KEY: "siginfo456KEY"
-      NACOS_AUTH_IDENTITY_VALUE: "siginfo456VALUE"
+      NACOS_AUTH_IDENTITY_VALUE: "*******"
 
     volumes:
       - /mydata/nacos/cluster.conf:/home/nacos/conf/cluster.conf

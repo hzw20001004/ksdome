@@ -13,7 +13,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_HOST: "%"
-      MYSQL_ROOT_PASSWORD: Aw123456.
+      MYSQL_ROOT_PASSWORD: *******
       TZ: Asia/Shanghai
       SET_CONTAINER_TIMEZONE: true
       CONTAINER_TIMEZONE: Asia/Shanghai

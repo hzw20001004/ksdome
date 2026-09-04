@@ -48,7 +48,7 @@ Your MySQL connection id is 3
 表示成功
 ```
 
-ALTER USER 'marketing'@'%' IDENTIFIED WITH mysql_native_password BY 'rMwbrNDZGMetN47n';
+ALTER USER 'marketing'@'%' IDENTIFIED WITH mysql_native_password BY '*******';
 >指定用户的访问ip
 ```text
 update user set host = '%' where user = 'root'; 
@@ -60,8 +60,8 @@ flush privileges;
 # 查看当前的认证插件
 select user,plugin from user where user='root';
 # 更改该用户的加密方式
-alter user 'marketing'@'localhost' identified with mysql_native_password by 'sigsoft';
-alter user 'root'@'localhost' identified with mysql_native_password by 'sigsoft';
+alter user 'marketing'@'localhost' identified with mysql_native_password by '*******';
+alter user 'root'@'localhost' identified with mysql_native_password by '*******';
 # 刷新生效
 flush privileges;
 ```

@@ -18,11 +18,11 @@ import java.util.Arrays;
 
 public class ddTest {
 
-    public static final String CUSTOM_ROBOT_TOKEN = "8eb97b5a6383ab30e2117844da88375a4421c0c55a27236b7ce98fe390eec071";
+    public static final String CUSTOM_ROBOT_TOKEN = "*******";
 
     public static final String USER_ID= "<you need @ group user's userId>";
 
-    public static final String SECRET = "SECc4f5d5ab60154a5e864a7005d8e0eb5176ed21ad9b61b1f670de6c81553727f6";
+    public static final String SECRET = "*******";
 
     public static void main(String[] args) {
         try {

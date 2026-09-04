@@ -87,7 +87,7 @@ docker compose -f docker-compose-dev测试-Canal+CanalAdmin-优化.yml up -d
 | RDS 地址 | `rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com:3306` | application.yml / jielong-instance.properties | 阿里云 RDS 源库 |
 | RDS 账号 | `systemdba` | 同上 | — |
 | 本地目标库 | `sig-mysql-txg:3306` | application.yml | docker 内部服务名 |
-| 目标库账号 | `root / Aw123456.` | application.yml | — |
+| 目标库账号 | `root / *******` | application.yml | — |
 | Canal-Server 端口 | `11111`（数据）/ `11112`（metrics） | canal.properties | — |
 | Canal-Adapter 端口 | `8081` | application.yml | REST 接口 |
 | 实例名 | `jielong` | jielong-instance.properties | 镜像整个 `jielong` 库 |

@@ -105,7 +105,7 @@ canal-adapter 启动后会自动建表（mirrorDb 模式下），但**库本身�
 
 ```bash
 # 进 MySQL 容器
-docker exec -it sig-mysql-txg mysql -uroot -p'Aw123456.'
+docker exec -it sig-mysql-txg mysql -uroot -p'*******'
 
 # 在 MySQL 提示符下:
 CREATE DATABASE IF NOT EXISTS jielong
@@ -142,7 +142,7 @@ ss -lntp | grep 13306
 
 # 4. 远程连接测试（从 canal-adapter 容器视角）
 docker run --rm mysql:8.0.36 \
-  mysql -h sig-mysql-txg -P 3306 -uroot -p'Aw123456.' -e "SELECT VERSION();"
+  mysql -h sig-mysql-txg -P 3306 -uroot -p'*******' -e "SELECT VERSION();"
 # 注意: 这条要在 canal-adapter 同 network 下才能解析 sig-mysql-txg
 ```
 

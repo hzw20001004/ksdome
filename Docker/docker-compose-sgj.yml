@@ -8,7 +8,7 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_ROOT_HOST: "%"
-      MYSQL_ROOT_PASSWORD: Aw123456.
+      MYSQL_ROOT_PASSWORD: *******
       TZ: Asia/Shanghai
       SET_CONTAINER_TIMEZONE: true
       CONTAINER_TIMEZONE: Asia/Shanghai
@@ -25,7 +25,7 @@ services:
   redis:
     image: redis:7
     container_name: redis
-    command:  redis-server --requirepass ew2q#dDqes22e --appendonly yes
+    command:  redis-server --requirepass ******* --appendonly yes
     restart: always
     volumes:
       - /mydata/redis/data:/data # 数据文件挂载
@@ -111,7 +111,7 @@ services:
     command: server /data --console-address ":9090" --address ":9000"
     environment:
       MINIO_ROOT_USER: minio
-      MINIO_ROOT_PASSWORD: ew2q#dDqes22e
+      MINIO_ROOT_PASSWORD: *******
       MINIO_SERVER_URL: http://www.sgj.asia:9000 # 设置分享文件地址，否则分享地址ip会为docker内部ip
     volumes:
       - /mydata/minio/data:/data
@@ -131,5 +131,5 @@ services:
 #      MYSQL_SERVICE_HOST: sgj.asia
 #      MYSQL_SERVICE_PORT: 3306
 #      MYSQL_SERVICE_USER: root
-#      MYSQL_SERVICE_PASSWORD: ew2q#dDqes22e
+#      MYSQL_SERVICE_PASSWORD: *******
 #      MYSQL_SERVICE_DB_NAME: nacos_config

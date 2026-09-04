@@ -19,7 +19,7 @@ services:
       MYSQL_SERVICE_PASSWORD: root
       MYSQL_SERVICE_DB_NAME: nacos_config
       NACOS_AUTH_ENABLE: true
-      NACOS_AUTH_TOKEN: SecretKey012345678901234567890123456789012345678901234567890123456789
+      NACOS_AUTH_TOKEN: *******
       NACOS_AUTH_IDENTITY_KEY: serverIdentity
       NACOS_AUTH_IDENTITY_VALUE: security
 
@@ -55,7 +55,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
       #SA用户密码长度必须至少为 8 个字符，并包含以下四组中的三组字符：大写字母、小写字母、10 位基数和符号
-      - SA_PASSWORD=Xdkj123...
+      - SA_PASSWORD=*******
   frp:
     image: snowdreamtech/frps
     container_name: frp
@@ -92,7 +92,7 @@ services:
   redis:
     image: redis:7
     container_name: redis
-    command:  redis-server --requirepass Hzw20011004. --appendonly yes
+    command:  redis-server --requirepass ******* --appendonly yes
     restart: always
     volumes:
       - /mydata/redis/data:/data #数据文件挂载
@@ -116,7 +116,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: Hzw20011004.
+      RABBITMQ_DEFAULT_PASS: *******
     volumes:
       - /mydata/rabbitmq/data:/var/lib/rabbitmq #数据文件挂载
       - /mydata/rabbitmq/log:/var/log/rabbitmq #日志文件挂载
@@ -173,7 +173,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: Hzw20011004.
+      MONGO_INITDB_ROOT_PASSWORD: *******
     volumes:
       - /mydata/mongodb/db:/data/db #数据文件挂载
       - /mydata/mongodb/log:/var/log/mongodb #日志文件挂载
@@ -192,7 +192,7 @@ services:
       ME_CONFIG_BASICAUTH_USERNAME: mongoexpress
       ME_CONFIG_BASICAUTH_PASSWORD: mongoexpress
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: Hzw20011004.
+      ME_CONFIG_MONGODB_ADMINPASSWORD: *******
   minio:
     image: minio/minio:latest
     container_name: minio
@@ -203,7 +203,7 @@ services:
     command: server /data --console-address ":9090" --address ":9000"
     environment:
       MINIO_ROOT_USER: minio
-      MINIO_ROOT_PASSWORD: Hzw20011004.
+      MINIO_ROOT_PASSWORD: *******
       MINIO_SERVER_URL: http://43.142.243.64:9000
     volumes:
       - /mydata/minio/data:/data

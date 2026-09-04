@@ -26,7 +26,7 @@ canal.conf:
     defaultDS:
       url: jdbc:mysql://rm-bp1c2x3191qxo5o7x8o.mysql.rds.aliyuncs.com:3306/jielong?useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: systemdba
-      password: gRdrqp3LLuSgdgZH
+      password: *******
   canalAdapters:
   - instance: jielong
     groups:
@@ -41,5 +41,5 @@ canal.conf:
           # serverTimezone=Asia/Shanghai 避免时区告警
           jdbc.url: jdbc:mysql://sig-mysql-txg:3306/jielong?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
           jdbc.username: root
-          jdbc.password: Aw123456.
+          jdbc.password: *******
           threads: 20              # 原 5 -> 20, 32 核机器足够支撑

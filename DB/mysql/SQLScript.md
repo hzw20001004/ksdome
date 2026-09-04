@@ -3,9 +3,9 @@
 >数据库操作  
 ```sql
 -- 进入数据库内部
-mysql -h 127.0.0.1 -P 3300 -u root -p K#8vR3!pL9$Q
+mysql -h 127.0.0.1 -P 3300 -u root -p *******
 
-mysql -h 10.33.62.91 -P 32307 -u jdsdht -p K#8vR3!pL9$Q
+mysql -h 10.33.62.91 -P 32307 -u jdsdht -p *******
 
 -- 执行sql脚本
 source /home/20220221.sql
@@ -18,7 +18,7 @@ source /var/log/mysql/sigx_config.sql;
                   
 
 -- docker容器外 执行sql脚本
-docker exec -i ba46824c3dd2 mysql -uroot -pHzw20011004. jinlangtou > /mydata/jinlangtou.sql;
+docker exec -i ba46824c3dd2 mysql -uroot -p******* jinlangtou > /mydata/jinlangtou.sql;
 
 -- 导出指定数据库 并指定导出位置
 mysqldump -u root -p    sigx_cps  > /sql/sigx_cps.sql
