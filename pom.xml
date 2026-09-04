@@ -17,14 +17,11 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>hzw - KsDome</description>
-    <!-- 子模块 -->
+    <!-- 子模块（收敛为实际存在的可运行代码模块） -->
     <modules>
-        <module>Shiro</module>
-        <module>SpringSecurity</module>
         <module>Mybatis-puls</module>
-        <module>SpringCloud</module>
-        <module>SpringCloud/seata-order-service2001</module>
-<!--        <module>MVC</module>-->
+        <module>Java8</module>
+        <module>rabbitMq-Mqtt</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
