@@ -8,8 +8,11 @@ conn SYSDBA/"*******"@localhost:4236
 
 ```
 
- 
+达梦数据库导入
+先导入表
 
+解决字符大小扩大  VARCHAR(10 CHAR) VARCHAR(10)
+再导数据
 
 
 
