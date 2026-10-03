@@ -1,4 +1,19 @@
 # Sql 基础语法 Dome
+# 进入容器
+docker exec -it oracle-xe bash
+# 切换oracle用户
+su oracle
+# 本地登录，容器内部不用密码，操作系统认证
+sqlplus / as sysdba
+-- 修改system密码，11g注意：密码尽量不要特殊符号，大小写敏感
+ALTER USER system IDENTIFIED BY oracle123;
+-- 同时可以改sys密码
+ALTER USER sys IDENTIFIED BY oracle123;
+-- 解锁账号（防止账号被锁）
+ALTER USER system ACCOUNT UNLOCK;
+ALTER USER sys ACCOUNT UNLOCK;
+commit;
+
 
 >创建数据库
 ```sql
