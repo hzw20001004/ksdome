@@ -33,6 +33,9 @@ docker ps -a --quiet | while read cid;do
   echo "容器名：$name  重启策略：$mode"
 done
 
+# 1. 清理构建缓存（推荐优先执行，最安全，很多人这里十几G）
+docker builder prune --all
+
 ```
 
 
