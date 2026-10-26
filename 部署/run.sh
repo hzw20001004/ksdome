@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # 定义一些路径变量，方便后续修改
-APP_NAME="gzyun-zc-biz.jar"
-DEPLOY_DIR="/home/project/zhenlong/zc"
-NEW_JAR_DIR="/home/project/zhenlong/zc/new-code"
+APP_NAME="gzyun-yc-biz.jar"
+DEPLOY_DIR="/home/project/zhenlong/yc"
+NEW_JAR_DIR="/home/project/zhenlong/yc/new-code"
 
 echo "=== 开始执行应用更新与重启脚本 ==="
 

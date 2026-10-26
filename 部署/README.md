@@ -34,7 +34,7 @@ kill -s 9 24204
 //寻找根目录
 whereis nginx
 //检查配置
-sudo nginx -t
+nginx -t
 //刷新配置
 nginx -s reload
 /home/nginx/nginx-1.30.3/objs/nginx -s reload

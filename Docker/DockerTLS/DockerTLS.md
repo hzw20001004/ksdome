@@ -61,6 +61,9 @@ vim /usr/lib/systemd/system/docker.service
 #端口自己改一下 记得配置开放端口和防火墙    
 #/mydata/cert/docker  这个AC加密文件路径和上面创建一致 不一致自己调整
 ExecStart=/usr/bin/dockerd --tlsverify --tlscacert=/mydata/cert/docker/ca.pem --tlscert=/mydata/cert/docker/server-cert.pem --tlskey=/mydata/cert/docker/server-key.pem -H tcp://0.0.0.0:12345 -H unix:///var/run/docker.sock
+
+
+
 ```
 >更新并重启docker 
 

@@ -17,8 +17,7 @@ conn SYSDBA/"*******"@localhost:4236
 
 
 
-
-
+disql SYSDBA/"Dameng123"@localhost:3435
 
 
 
