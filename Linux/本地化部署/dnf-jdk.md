@@ -19,4 +19,6 @@ java -version
 
 
 
-
+多个直接解压就好了
+验证
+/home/jdk8/jdk8u422-b05/bin/java -version
