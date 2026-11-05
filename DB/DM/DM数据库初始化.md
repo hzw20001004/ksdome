@@ -30,7 +30,7 @@ firewall-cmd --state
 # ping 端口
 telnet 10.33.2.234 3435
 
-
+sudo netstat -tulnp
 
 
 
