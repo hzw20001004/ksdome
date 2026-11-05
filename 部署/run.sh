@@ -1,59 +1,56 @@
 #!/bin/bash
-
-# 定义一些路径变量，方便后续修改
+set -u
 APP_NAME="ruoyi-admin.jar"
-DEPLOY_DIR="/home/dining/"
+DEPLOY_DIR="/home/dining"
 NEW_JAR_DIR="/home/dining/newjar"
+PORT=8555
+PROFILE="nei"                      # 显式钉死, 防 jar 内 active 配置漂移(7158559 同源坑)
+JAVA_BIN="${JAVA_HOME:-/usr}/bin/java"
+LOG="$DEPLOY_DIR/app_$(date +%Y%m%d_%H%M%S).log"
 
-echo "=== 开始执行应用更新与重启脚本 ==="
+echo "=== 应用更新与重启 ==="
 
-# 第一步：找到正在运行的进程并杀掉
-PID=$(ps -ef | grep "$APP_NAME" | grep -v grep | awk '{print $2}')
-
+# 1) 优雅停机: 先 SIGTERM, 20s 不退再 -9
+PID=$(pgrep -f "${APP_NAME}" || true)
 if [ -n "$PID" ]; then
-    echo "发现应用正在运行，PID为: $PID，正在尝试关闭..."
-    kill -9 $PID
-    # 稍微等待一下，确保进程完全退出，端口释放
-    sleep 3
-    echo "进程已成功关闭。"
+    echo "运行中 PID=$PID, 优雅关闭..."
+    kill $PID
+    for i in $(seq 1 20); do kill -0 $PID 2>/dev/null || break; sleep 1; done
+    kill -0 $PID 2>/dev/null && { echo "超时, 强杀"; kill -9 $PID; sleep 2; }
 else
-    echo "未发现正在运行的 $APP_NAME 进程，跳过关闭步骤。"
+    echo "未发现运行中的进程。"
 fi
 
-# 第二步：删除旧的jar包
+# 2) 旧包留一份回滚, 新包临时名+mv 原子替换
 if [ -f "$DEPLOY_DIR/$APP_NAME" ]; then
-    echo "正在删除旧版本的jar包..."
-    rm -f "$DEPLOY_DIR/$APP_NAME"
-    echo "旧版本jar包已删除。"
-else
-    echo "未找到旧的jar包，跳过删除步骤。"
+    mv -f "$DEPLOY_DIR/$APP_NAME" "$DEPLOY_DIR/$APP_NAME.bak"
 fi
+[ -f "$NEW_JAR_DIR/$APP_NAME" ] || { echo "错误: $NEW_JAR_DIR/$APP_NAME 不存在!"; exit 1; }
+cp "$NEW_JAR_DIR/$APP_NAME" "$DEPLOY_DIR/$APP_NAME.tmp" || { echo "复制失败, 保留旧包可回滚"; exit 1; }
+mv -f "$DEPLOY_DIR/$APP_NAME.tmp" "$DEPLOY_DIR/$APP_NAME"
 
-# 第三步：将新jar包复制到部署目录
-if [ -f "$NEW_JAR_DIR/$APP_NAME" ]; then
-    echo "正在从 $NEW_JAR_DIR 复制新版本jar包到 $DEPLOY_DIR ..."
-    cp "$NEW_JAR_DIR/$APP_NAME" "$DEPLOY_DIR/"
-    echo "新版本jar包复制完成。"
-else
-    echo "错误：在 $NEW_JAR_DIR 下未找到新的 $APP_NAME 文件！请检查。"
-    exit 1
-fi
+cd "$DEPLOY_DIR" || exit 1
 
-# 第四步：切换到部署目录
-cd "$DEPLOY_DIR" || exit
-echo "当前工作目录已切换至：$(pwd)"
+# 3) 启动: profile/端口显式传参, 日志按时间戳落盘
+nohup "$JAVA_BIN" -jar "$APP_NAME" \
+    --server.port="$PORT" --spring.profiles.active="$PROFILE" > "$LOG" 2>&1 &
+JAVA_PID=$!
+echo "已拉起 PID=$JAVA_PID, 日志: $LOG"
 
-# 第五步：后台启动应用，并将日志输出到 app.log
-echo "正在启动新版本应用..."
-nohup java -jar "$APP_NAME" > app.log 2>&1 &
-
-# 稍微等待一下，让程序开始初始化
-sleep 3
-NEW_PID=$(ps -ef | grep "$APP_NAME" | grep -v grep | awk '{print $2}')
-
-if [ -n "$NEW_PID" ]; then
-    echo "=== 应用启动成功！新进程 PID: $NEW_PID ==="
-    echo "可以通过 tail -f app.log 查看实时日志。"
-else
-    echo "=== 警告：应用可能启动失败，请务必检查 app.log 日志！ ==="
-fi
+# 4) 真启动判据: 轮询端口(最长120s), 挂了自动吐日志尾部
+for i in $(seq 1 60); do
+    sleep 2
+    (exec 3<>/dev/tcp/127.0.0.1/$PORT) 2>/dev/null && {
+        exec 3>&- 3<&-
+        echo "=== 启动成功(端口 $PORT 已就绪), PID=$JAVA_PID ==="
+        exit 0
+    }
+    kill -0 $JAVA_PID 2>/dev/null || {
+        echo "=== 进程中途退出! 最近日志: ==="
+        tail -50 "$LOG"
+        echo "=== 如需回滚: cp $DEPLOY_DIR/$APP_NAME.bak $DEPLOY_DIR/$APP_NAME && 重跑本脚本 ==="
+        exit 1
+    }
+done
+echo "=== 120s 未就绪, 请人工检查: tail -f $LOG ==="
+exit 1
