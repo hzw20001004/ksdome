@@ -2,11 +2,12 @@
 set -u
 APP_NAME="ruoyi-admin.jar"
 DEPLOY_DIR="/home/dining"
+DEPLOY_DIR_LOG="/home/dining/log"
 NEW_JAR_DIR="/home/dining/newjar"
 PORT=8555
 PROFILE="nei"                      # 显式钉死, 防 jar 内 active 配置漂移(7158559 同源坑)
 JAVA_BIN="${JAVA_HOME:-/usr}/bin/java"
-LOG="$DEPLOY_DIR/app_$(date +%Y%m%d_%H%M%S).log"
+LOG="$DEPLOY_DIR_LOG/app_$(date +%Y%m%d_%H%M%S).log"
 
 echo "=== 应用更新与重启 ==="
 

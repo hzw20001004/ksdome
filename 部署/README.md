@@ -1,21 +1,6 @@
 部署命令
->后台启动
-```text
-nohup java -jar chengfa.jar &
-nohup java -jar wh-1.0.1.jar &
-nohup java -jar parent-services-0.0.1-SNAPSHOT.jar &
-java -jar station.jar > stationLog.txt 2>&1 &
-```
-nohup java -jar warehouse-0.1.0.jar &
-nohup java -jar ruoyi-admin.jar &
 
 
-> 指定文件
-```text
-# 查看所有配置文件中的 listen 指令（推荐）
-grep -r "listen " /etc/nginx/
-nohup java -jar chengfa.jar >temp.txt &
-``` 
 > 端口进程查看 进程杀除
 ```text
 // 查看所有端口
