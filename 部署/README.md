@@ -23,6 +23,7 @@ nginx -t
 //刷新配置
     nginx -s reload
 /home/nginx/nginx-1.30.3/objs/nginx -s reload
+/home/nginx/nginx-1.30.3/objs/nginx -t
 //更新并重启
 nginx -t && systemctl restart nginx && nginx -v
 ```
