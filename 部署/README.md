@@ -1,6 +1,7 @@
 部署命令
 
-
+查询防火墙状态
+systemctl status firewalld
 > 端口进程查看 进程杀除
 ```text
 // 查看所有端口
