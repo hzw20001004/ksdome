@@ -22,9 +22,10 @@ whereis nginx
 //检查配置
 nginx -t
 //刷新配置
-nginx -s reload
-    
-systemctl reload nginx130
+    nginx -s reload
+/home/nginx/nginx-1.31.9/objs/nginx -s reload
+/home/nginx/nginx-1.31.9/objs/nginx -t
+/home/nginx/nginx-1.31.9/objs/nginx -s stop
 //更新并重启
 nginx -t && systemctl restart nginx && nginx -v
 ```
@@ -42,8 +43,10 @@ sh shutdown.sh 停止
 
 docker-compose build && docker-compose docker-compose-tomcat.yml up -d
 
-
-
+文件夹加锁
+chattr +i /home/mbpc/ruoyi-files
+解锁
+chattr -R -i /home/mbpc/ruoyi-files
 
 
 
