@@ -22,3 +22,20 @@ java -version
 多个直接解压就好了
 验证
 /home/jdk8/jdk8u422-b05/bin/java -version
+
+
+## jdk17
+tar -zxvf OpenJDK17U-jdk_x64_linux_hotspot_17.0.20_8.tar.gz -C /usr/local/
+ln -s /usr/local/jdk8u422-b05 /usr/local/jdk
+
+cat >> /etc/profile <<'EOF'
+export JAVA_HOME=/usr/local/jdk
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+EOF
+
+source /etc/profile
+java -version
+
+
